@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impressum - CoreLead Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', Arial, Helvetica, sans-serif;
+      color: #333; background: #0a0a0a; line-height: 1.6; overflow-x: hidden;
+    }
+
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 24px 60px;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .logo {
+      font-family: 'Merriweather', serif; font-size: 24px; font-weight: 700;
+      color: #fff; text-decoration: none; letter-spacing: 1px;
+    }
+    .logo span { font-weight: 300; color: rgba(255,255,255,0.5); }
+    nav { display: flex; gap: 36px; align-items: center; }
+    nav a {
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500;
+      color: rgba(255,255,255,0.6); text-decoration: none;
+      text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s;
+      position: relative;
+    }
+    nav a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 1px; background: #fff; transition: width 0.3s ease;
+    }
+    nav a:hover { color: #fff; }
+    nav a:hover::after { width: 100%; }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .page-hero {
+      padding: 180px 60px 80px; text-align: center;
+    }
+    .page-hero h1 {
+      font-family: 'Merriweather', serif; font-size: 44px; font-weight: 300;
+      color: #fff; letter-spacing: 2px;
+      opacity: 0; animation: fadeInUp 1s 0.3s forwards;
+    }
+
+    .legal-content {
+      padding: 60px 60px 120px;
+      max-width: 800px; margin: 0 auto;
+    }
+
+    .legal-content h2 {
+      font-family: 'Merriweather', serif; font-size: 20px; font-weight: 700;
+      color: #fff; margin-top: 48px; margin-bottom: 16px;
+    }
+
+    .legal-content p {
+      font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.9;
+      margin-bottom: 8px;
+    }
+
+    .legal-content a {
+      color: rgba(255,255,255,0.7); text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      transition: all 0.3s;
+    }
+    .legal-content a:hover {
+      color: #fff; border-bottom-color: rgba(255,255,255,0.5);
+    }
+
+    .legal-divider {
+      width: 40px; height: 1px;
+      background: rgba(255,255,255,0.1);
+      margin: 48px 0;
+    }
+
+    footer {
+      background: #0a0a0a; padding: 40px 60px;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-logo {
+      font-family: 'Merriweather', serif; font-size: 18px; font-weight: 700;
+      color: rgba(255,255,255,0.6); text-decoration: none; letter-spacing: 1px;
+    }
+    .footer-logo span { font-weight: 300; color: rgba(255,255,255,0.25); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a {
+      font-size: 11px; color: rgba(255,255,255,0.25); text-decoration: none;
+      text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.3s;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,0.6); }
+
+    @media (max-width: 768px) {
+      header { padding: 18px 24px; }
+      nav { gap: 20px; }
+      nav a { font-size: 11px; }
+      .page-hero { padding: 140px 24px 60px; }
+      .page-hero h1 { font-size: 28px; }
+      .legal-content { padding: 40px 24px 80px; }
+      footer {
+        flex-direction: column; gap: 20px;
+        padding: 30px 24px; text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo">Core<span>Lead</span></a>
+    <nav>
+      <a href="warum-corelead.html">Warum CoreLead</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+  </header>
+
+  <section class="page-hero">
+    <h1>Impressum</h1>
+  </section>
+
+  <div class="legal-content">
+    <h2>Angaben gemäß § 5 TMG</h2>
+    <p>CoreLead Solutions</p>
+    <p>Togostr. 6</p>
+    <p>81827 München</p>
+    <p>Deutschland</p>
+
+    <div class="legal-divider"></div>
+
+    <h2>Vertreten durch</h2>
+    <p>David Oberholzner</p>
+
+    <div class="legal-divider"></div>
+
+    <h2>Kontakt</h2>
+    <p>Telefon: <a href="tel:+498920033313">+49 89 200 333 13</a></p>
+    <p>E-Mail: <a href="mailto:hello@corelead.solutions">hello@corelead.solutions</a></p>
+
+    <div class="legal-divider"></div>
+
+    <h2>Inhaltlich Verantwortlicher gemäß § 18 Abs. 2 MStV</h2>
+    <p>David Oberholzner</p>
+    <p>Togostr. 6</p>
+    <p>81827 München</p>
+  </div>
+
+  <footer>
+    <a href="index.html" class="footer-logo">Core<span>Lead</span></a>
+    <div class="footer-links">
+      <a href="datenschutz.html">Datenschutzerklärung</a>
+      <a href="impressum.html">Impressum</a>
+    </div>
+  </footer>
+
+</body>
+</html>

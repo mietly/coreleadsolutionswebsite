@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Datenschutzerklärung - CoreLead Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', Arial, Helvetica, sans-serif;
+      color: #333; background: #0a0a0a; line-height: 1.6; overflow-x: hidden;
+    }
+
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 24px 60px;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .logo {
+      font-family: 'Merriweather', serif; font-size: 24px; font-weight: 700;
+      color: #fff; text-decoration: none; letter-spacing: 1px;
+    }
+    .logo span { font-weight: 300; color: rgba(255,255,255,0.5); }
+    nav { display: flex; gap: 36px; align-items: center; }
+    nav a {
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500;
+      color: rgba(255,255,255,0.6); text-decoration: none;
+      text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s;
+      position: relative;
+    }
+    nav a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 1px; background: #fff; transition: width 0.3s ease;
+    }
+    nav a:hover { color: #fff; }
+    nav a:hover::after { width: 100%; }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .page-hero {
+      padding: 180px 60px 80px; text-align: center;
+    }
+    .page-hero h1 {
+      font-family: 'Merriweather', serif; font-size: 44px; font-weight: 300;
+      color: #fff; letter-spacing: 2px;
+      opacity: 0; animation: fadeInUp 1s 0.3s forwards;
+    }
+    .page-hero .last-updated {
+      font-size: 13px; color: rgba(255,255,255,0.25);
+      margin-top: 16px; letter-spacing: 1px;
+      opacity: 0; animation: fadeInUp 1s 0.5s forwards;
+    }
+
+    .legal-content {
+      padding: 60px 60px 120px;
+      max-width: 800px; margin: 0 auto;
+    }
+
+    .legal-content h2 {
+      font-family: 'Merriweather', serif; font-size: 20px; font-weight: 700;
+      color: #fff; margin-top: 48px; margin-bottom: 16px;
+    }
+
+    .legal-content h3 {
+      font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600;
+      color: rgba(255,255,255,0.7); text-transform: uppercase;
+      letter-spacing: 1px; margin-top: 32px; margin-bottom: 12px;
+    }
+
+    .legal-content p {
+      font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.9;
+      margin-bottom: 12px;
+    }
+
+    .legal-content ul {
+      list-style: none; padding: 0; margin-bottom: 16px;
+    }
+
+    .legal-content ul li {
+      font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.9;
+      padding-left: 20px; position: relative;
+    }
+
+    .legal-content ul li::before {
+      content: ''; position: absolute; left: 0; top: 12px;
+      width: 6px; height: 1px; background: rgba(255,255,255,0.2);
+    }
+
+    .legal-content a {
+      color: rgba(255,255,255,0.7); text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.15); transition: all 0.3s;
+    }
+    .legal-content a:hover {
+      color: #fff; border-bottom-color: rgba(255,255,255,0.5);
+    }
+
+    .legal-divider {
+      width: 40px; height: 1px;
+      background: rgba(255,255,255,0.1); margin: 48px 0;
+    }
+
+    footer {
+      background: #0a0a0a; padding: 40px 60px;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-logo {
+      font-family: 'Merriweather', serif; font-size: 18px; font-weight: 700;
+      color: rgba(255,255,255,0.6); text-decoration: none; letter-spacing: 1px;
+    }
+    .footer-logo span { font-weight: 300; color: rgba(255,255,255,0.25); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a {
+      font-size: 11px; color: rgba(255,255,255,0.25); text-decoration: none;
+      text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.3s;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,0.6); }
+
+    @media (max-width: 768px) {
+      header { padding: 18px 24px; }
+      nav { gap: 20px; }
+      nav a { font-size: 11px; }
+      .page-hero { padding: 140px 24px 60px; }
+      .page-hero h1 { font-size: 28px; }
+      .legal-content { padding: 40px 24px 80px; }
+      footer {
+        flex-direction: column; gap: 20px;
+        padding: 30px 24px; text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo">Core<span>Lead</span></a>
+    <nav>
+      <a href="warum-corelead.html">Warum CoreLead</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+  </header>
+
+  <section class="page-hero">
+    <h1>Datenschutzerklärung</h1>
+    <p class="last-updated">Stand: 12/2025</p>
+  </section>
+
+  <div class="legal-content">
+
+    <h2>1. Verantwortlicher</h2>
+    <p>CoreLead Solutions<br>Togostr. 6<br>81827 München<br>E-Mail: <a href="mailto:hello@corelead.solutions">hello@corelead.solutions</a></p>
+
+    <div class="legal-divider"></div>
+
+    <h2>2. Hosting</h2>
+    <p>Diese Website wird bei IONOS SE gehostet. Beim Aufruf dieser Website werden durch den Hoster automatisch technische Daten erhoben und in sogenannten Server-Logfiles gespeichert. Dazu gehören:</p>
+    <ul>
+      <li>IP-Adresse des anfragenden Rechners</li>
+      <li>Datum und Uhrzeit des Zugriffs</li>
+      <li>Name und URL der abgerufenen Seite</li>
+      <li>Verwendeter Browser und Betriebssystem</li>
+      <li>Referrer-URL</li>
+    </ul>
+    <p>Die Rechtsgrundlage für die Verarbeitung ist Art. 6 Abs. 1 lit. f DSGVO. Das berechtigte Interesse besteht im sicheren und störungsfreien Betrieb der Website.</p>
+
+    <div class="legal-divider"></div>
+
+    <h2>3. Server-Logfiles</h2>
+    <p>Server-Logdateien werden ausschließlich für Fehleranalyse und Angriffsabwehr gespeichert. Eine Zusammenführung mit anderen Daten findet nicht statt. Die Speicherdauer richtet sich nach den Einstellungen bei IONOS.</p>
+
+    <div class="legal-divider"></div>
+
+    <h2>4. Kontaktaufnahme</h2>
+    <p>Bei der Kontaktaufnahme per E-Mail oder über das Kontaktformular werden die von Ihnen übermittelten Daten (Name, E-Mail-Adresse, Nachrichteninhalt) zum Zwecke der Bearbeitung Ihrer Anfrage verarbeitet und gespeichert.</p>
+    <p>Die Rechtsgrundlage hierfür ist Art. 6 Abs. 1 lit. b DSGVO bei vorvertraglichen Anfragen bzw. Art. 6 Abs. 1 lit. f DSGVO bei sonstigen Anfragen.</p>
+
+    <div class="legal-divider"></div>
+
+    <h2>5. Cookies und Tracking</h2>
+    <p>Diese Website nutzt keine Analyse-Tools und kein Tracking.</p>
+
+    <div class="legal-divider"></div>
+
+    <h2>6. TLS-Verschlüsselung</h2>
+    <p>Diese Website nutzt aus Sicherheitsgründen eine TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie an dem „https://" in der Adresszeile Ihres Browsers.</p>
+
+    <div class="legal-divider"></div>
+
+    <h2>7. Empfänger von Daten</h2>
+    <p>Eine Übermittlung personenbezogener Daten erfolgt an folgende Empfänger:</p>
+    <ul>
+      <li>IONOS SE als Hosting-Dienstleister</li>
+      <li>IT-Dienstleister im Rahmen von Wartungsarbeiten</li>
+    </ul>
+
+    <div class="legal-divider"></div>
+
+    <h2>8. Ihre Rechte</h2>
+    <p>Sie haben folgende Rechte hinsichtlich Ihrer personenbezogenen Daten:</p>
+    <ul>
+      <li>Auskunft nach Art. 15 DSGVO</li>
+      <li>Berichtigung nach Art. 16 DSGVO</li>
+      <li>Löschung nach Art. 17 DSGVO</li>
+      <li>Einschränkung der Verarbeitung nach Art. 18 DSGVO</li>
+      <li>Datenübertragbarkeit nach Art. 20 DSGVO</li>
+      <li>Widerspruchsrecht nach Art. 21 DSGVO</li>
+    </ul>
+    <p>Zur Ausübung Ihrer Rechte wenden Sie sich bitte an: <a href="mailto:hello@corelead.solutions">hello@corelead.solutions</a></p>
+  </div>
+
+  <footer>
+    <a href="index.html" class="footer-logo">Core<span>Lead</span></a>
+    <div class="footer-links">
+      <a href="datenschutz.html">Datenschutzerklärung</a>
+      <a href="impressum.html">Impressum</a>
+    </div>
+  </footer>
+
+</body>
+</html>
