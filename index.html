@@ -70,17 +70,14 @@
     }
 
     .logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 24px;
-      font-weight: 700;
-      color: #fff;
+      display: inline-block;
       text-decoration: none;
-      letter-spacing: 1px;
+      line-height: 1;
     }
 
-    .logo span {
-      font-weight: 300;
-      color: rgba(255, 255, 255, 0.5);
+    .logo img {
+      height: 32px;
+      width: auto;
     }
 
     nav {
@@ -624,17 +621,18 @@
     }
 
     .footer-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 18px;
-      font-weight: 700;
-      color: rgba(255, 255, 255, 0.6);
+      display: inline-block;
       text-decoration: none;
-      letter-spacing: 1px;
+      line-height: 1;
+      opacity: 0.5;
+      transition: opacity 0.3s;
     }
 
-    .footer-logo span {
-      font-weight: 300;
-      color: rgba(255, 255, 255, 0.25);
+    .footer-logo:hover { opacity: 0.8; }
+
+    .footer-logo img {
+      height: 22px;
+      width: auto;
     }
 
     .footer-links {
@@ -756,7 +754,7 @@
 
   <!-- Header -->
   <header id="header">
-    <a href="/" class="logo">Core<span>Lead</span></a>
+    <a href="index.html" class="logo"><img src="logo-corelead.svg" alt="CoreLead Solutions"></a>
     <nav>
       <a href="warum-corelead.html">Warum CoreLead</a>
       <a href="kontakt.html">Kontakt</a>
@@ -873,7 +871,7 @@
 
   <!-- Footer -->
   <footer>
-    <a href="/" class="footer-logo">Core<span>Lead</span></a>
+    <a href="index.html" class="footer-logo"><img src="logo-corelead.svg" alt="CoreLead Solutions"></a>
     <div class="footer-links">
       <a href="datenschutz.html">Datenschutzerklärung</a>
       <a href="impressum.html">Impressum</a>

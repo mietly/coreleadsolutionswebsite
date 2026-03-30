@@ -25,10 +25,9 @@
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
     .logo {
-      font-family: 'Bebas Neue', sans-serif; font-size: 24px; font-weight: 700;
-      color: #fff; text-decoration: none; letter-spacing: 1px;
+      display: inline-block; text-decoration: none; line-height: 1;
     }
-    .logo span { font-weight: 300; color: rgba(255,255,255,0.5); }
+    .logo img { height: 32px; width: auto; }
     nav { display: flex; gap: 36px; align-items: center; }
     nav a {
       font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500;
@@ -93,10 +92,11 @@
       border-top: 1px solid rgba(255,255,255,0.06);
     }
     .footer-logo {
-      font-family: 'Bebas Neue', sans-serif; font-size: 18px; font-weight: 700;
-      color: rgba(255,255,255,0.6); text-decoration: none; letter-spacing: 1px;
+      display: inline-block; text-decoration: none; line-height: 1;
+      opacity: 0.5; transition: opacity 0.3s;
     }
-    .footer-logo span { font-weight: 300; color: rgba(255,255,255,0.25); }
+    .footer-logo:hover { opacity: 0.8; }
+    .footer-logo img { height: 22px; width: auto; }
     .footer-links { display: flex; gap: 24px; }
     .footer-links a {
       font-size: 11px; color: rgba(255,255,255,0.25); text-decoration: none;
@@ -121,7 +121,7 @@
 <body>
 
   <header>
-    <a href="index.html" class="logo">Core<span>Lead</span></a>
+    <a href="index.html" class="logo"><img src="logo-corelead.svg" alt="CoreLead Solutions"></a>
     <nav>
       <a href="warum-corelead.html">Warum CoreLead</a>
       <a href="kontakt.html">Kontakt</a>
