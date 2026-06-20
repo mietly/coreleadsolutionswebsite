@@ -25,7 +25,7 @@
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
 
     body {
       font-family: var(--body);
@@ -739,7 +739,7 @@
 <body>
 
   <header id="header">
-    <a href="index.html" class="logo"><img src="logo-corelead.svg" alt="CoreLead"></a>
+    <a href="/" class="logo"><img src="logo-corelead.svg" alt="CoreLead"></a>
     <nav id="nav">
       <a href="#ki" class="nav-link">KI-Workflows</a>
       <a href="#sicherheit" class="nav-link">Informationssicherheit</a>
@@ -984,7 +984,7 @@
   <footer>
     <div class="footer-top">
       <div class="footer-brand">
-        <a href="index.html" class="footer-logo"><img src="logo-corelead.svg" alt="CoreLead"></a>
+        <a href="/" class="footer-logo"><img src="logo-corelead.svg" alt="CoreLead"></a>
         <p>Individuelle Software, KI-Workflows und Informationssicherheit für den Mittelstand.</p>
       </div>
       <div class="footer-links">
@@ -1286,6 +1286,45 @@
         const y = wrap.offsetTop + ((i + 0.5) / n) * total;
         window.scrollTo({ top: y, behavior: 'smooth' });
       }));
+    })();
+
+    // ── Clean URLs (no /index.html, no #hash in the address bar) ──
+    (function() {
+      function clean() { return location.pathname.replace(/index\.html$/, '') + location.search; }
+
+      // On load: scroll to a deep-link target (if any), then strip hash + index.html
+      function normalize() {
+        if (location.hash.length > 1) {
+          const el = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+          if (el) el.scrollIntoView({ block: 'start' });
+        }
+        history.replaceState(null, '', clean());
+      }
+      if (location.hash.length > 1) {
+        // wait for layout so the scroll lands correctly, then clean
+        requestAnimationFrame(() => requestAnimationFrame(normalize));
+      } else {
+        history.replaceState(null, '', clean());
+      }
+
+      // Intercept same-page anchor clicks: smooth-scroll, keep the URL clean
+      document.addEventListener('click', function(e) {
+        const a = e.target.closest('a[href]');
+        if (!a) return;
+        const href = a.getAttribute('href');
+        if (!href || href.indexOf('#') === -1) return;
+        const i = href.indexOf('#');
+        const path = href.slice(0, i);
+        const id = href.slice(i + 1);
+        const samePage = path === '' || path === '/' || path === 'index.html' || path === '/index.html' || path === location.pathname;
+        if (!samePage || !id) return;
+        const el = document.getElementById(id);
+        if (!el) return;
+        e.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.replaceState(null, '', clean());
+        document.body.classList.remove('menu-open');
+      });
     })();
 
     // ── Year ──
