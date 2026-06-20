@@ -3,175 +3,276 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Impressum - CoreLead</title>
+  <title>Impressum | Corelead GmbH</title>
+  <meta name="robots" content="noindex">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg:           #0a0a0a;
+      --bg-alt:       #0f0f0f;
+      --text:         rgba(255,255,255,0.95);
+      --text-soft:    rgba(255,255,255,0.62);
+      --text-dim:     rgba(255,255,255,0.45);
+      --text-faint:   rgba(255,255,255,0.22);
+      --border:       rgba(255,255,255,0.07);
+      --border-hover: rgba(255,255,255,0.16);
+      --display:      'Bebas Neue', sans-serif;
+      --body:         'Manrope', system-ui, sans-serif;
+    }
+
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', Arial, Helvetica, sans-serif;
-      color: #333; background: #0a0a0a; line-height: 1.6; overflow-x: hidden;
+      font-family: var(--body);
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
+    ::selection { background: rgba(255,255,255,0.16); color: #fff; }
 
+    /* ── Header ── */
     header {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       display: flex; justify-content: space-between; align-items: center;
-      padding: 24px 60px;
-      background: rgba(10,10,10,0.85);
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 17px 48px;
+      background: rgba(10,10,10,0.86);
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
     }
-    .logo {
-      display: inline-block; text-decoration: none; line-height: 1;
+    .logo { display: inline-flex; align-items: center; text-decoration: none; line-height: 1; }
+    .logo img { height: 26px; width: auto; }
+
+    nav { display: flex; gap: 34px; align-items: center; }
+    nav a.nav-link {
+      font-family: var(--body); font-size: 10.5px; font-weight: 600;
+      color: rgba(255,255,255,0.58); text-decoration: none;
+      text-transform: uppercase; letter-spacing: 2.2px;
+      transition: color 0.3s; position: relative; white-space: nowrap;
     }
-    .logo img { height: 32px; width: auto; }
-    nav { display: flex; gap: 36px; align-items: center; }
-    nav a {
-      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500;
-      color: rgba(255,255,255,0.6); text-decoration: none;
-      text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s;
-      position: relative;
-    }
-    nav a::after {
+    nav a.nav-link::after {
       content: ''; position: absolute; bottom: -4px; left: 0;
-      width: 0; height: 1px; background: #fff; transition: width 0.3s ease;
+      width: 0; height: 1px; background: var(--text); transition: width 0.3s ease;
     }
-    nav a:hover { color: #fff; }
-    nav a:hover::after { width: 100%; }
+    nav a.nav-link:hover { color: var(--text); }
+    nav a.nav-link:hover::after { width: 100%; }
 
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+    .nav-cta {
+      font-family: var(--body); font-size: 10px; font-weight: 700;
+      letter-spacing: 2.2px; text-transform: uppercase; text-decoration: none;
+      color: var(--text); padding: 10px 22px; border: 1px solid var(--border-hover);
+      position: relative; overflow: hidden; white-space: nowrap;
+      transition: color 0.4s ease, border-color 0.4s ease;
     }
+    .nav-cta::before {
+      content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+      background: var(--text); transition: left 0.4s cubic-bezier(0.16,1,0.3,1); z-index: -1;
+    }
+    .nav-cta:hover { color: var(--bg); border-color: var(--text); }
+    .nav-cta:hover::before { left: 0; }
 
-    .page-hero {
-      padding: 180px 60px 80px; text-align: center;
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 6px; z-index: 1100;
+    }
+    .menu-toggle span {
+      width: 24px; height: 1.5px; background: var(--text);
+      transition: transform 0.35s ease, opacity 0.3s ease;
+    }
+    body.menu-open .menu-toggle span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    body.menu-open .menu-toggle span:nth-child(2) { opacity: 0; }
+    body.menu-open .menu-toggle span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+
+    /* ── Page hero ── */
+    .page-hero { padding: 168px 48px 70px; text-align: center; position: relative; }
+    .page-hero::after {
+      content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 1px; height: 56px; background: linear-gradient(to bottom, rgba(255,255,255,0.12), transparent);
     }
     .page-hero h1 {
-      font-family: 'Bebas Neue', sans-serif; font-size: 44px; font-weight: 300;
-      color: #fff; letter-spacing: 2px;
-      opacity: 0; animation: fadeInUp 1s 0.3s forwards;
+      font-family: var(--display); font-weight: 400;
+      font-size: clamp(38px, 6vw, 72px); letter-spacing: 2px; color: var(--text);
+      text-transform: uppercase; line-height: 1;
+      opacity: 0; animation: fadeInUp 1s 0.25s forwards;
+    }
+    .page-hero .sub {
+      font-size: 12px; color: var(--text-faint); letter-spacing: 2px; text-transform: uppercase;
+      margin-top: 18px; opacity: 0; animation: fadeInUp 1s 0.45s forwards;
     }
 
-    .legal-content {
-      padding: 60px 60px 120px;
-      max-width: 800px; margin: 0 auto;
+    /* ── Legal content ── */
+    .legal { padding: 70px 48px 130px; max-width: 800px; margin: 0 auto; }
+    .legal-block { margin-bottom: 44px; }
+    .legal h2 {
+      font-family: var(--display); font-weight: 400; font-size: 24px;
+      letter-spacing: 1px; color: var(--text); margin-bottom: 14px;
+      display: flex; align-items: baseline; gap: 14px;
+    }
+    .legal h2 .idx {
+      font-family: var(--body); font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      color: var(--text-faint); transform: translateY(-1px);
+    }
+    .legal p { font-size: 15px; color: var(--text-soft); line-height: 1.95; margin-bottom: 6px; }
+    .legal .label {
+      display: block; font-size: 10px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 3px; color: var(--text-faint); margin: 22px 0 6px;
+    }
+    .legal a {
+      color: rgba(255,255,255,0.8); text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.18); transition: all 0.3s;
+    }
+    .legal a:hover { color: #fff; border-bottom-color: rgba(255,255,255,0.55); }
+    .legal-divider { width: 40px; height: 1px; background: rgba(255,255,255,0.1); margin: 40px 0; }
+    .todo {
+      display: inline-block; margin-left: 6px; padding: 1px 8px; border-radius: 2px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
+      color: #ffd9a0; background: rgba(255,170,60,0.10); border: 1px solid rgba(255,170,60,0.30);
     }
 
-    .legal-content h2 {
-      font-family: 'Bebas Neue', sans-serif; font-size: 20px; font-weight: 700;
-      color: #fff; margin-top: 48px; margin-bottom: 16px;
+    /* ── Footer ── */
+    footer { background: var(--bg); border-top: 1px solid var(--border); padding: 56px 48px 38px; }
+    .footer-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 48px; flex-wrap: wrap; margin-bottom: 44px;
     }
-
-    .legal-content p {
-      font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.9;
-      margin-bottom: 8px;
-    }
-
-    .legal-content a {
-      color: rgba(255,255,255,0.7); text-decoration: none;
-      border-bottom: 1px solid rgba(255,255,255,0.15);
-      transition: all 0.3s;
-    }
-    .legal-content a:hover {
-      color: #fff; border-bottom-color: rgba(255,255,255,0.5);
-    }
-
-    .legal-divider {
-      width: 40px; height: 1px;
-      background: rgba(255,255,255,0.1);
-      margin: 48px 0;
-    }
-
-    footer {
-      background: #0a0a0a; padding: 40px 60px;
-      display: flex; justify-content: space-between; align-items: center;
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
-    .footer-logo {
-      display: inline-block; text-decoration: none; line-height: 1;
-      opacity: 0.5; transition: opacity 0.3s;
-    }
-    .footer-logo:hover { opacity: 0.8; }
-    .footer-logo img { height: 22px; width: auto; }
-    .footer-links { display: flex; gap: 24px; }
+    .footer-brand { max-width: 320px; }
+    .footer-brand .footer-logo { display: inline-block; margin-bottom: 18px; opacity: 0.85; }
+    .footer-brand .footer-logo img { height: 22px; width: auto; }
+    .footer-brand p { font-size: 13px; color: var(--text-dim); line-height: 1.7; }
+    .footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
     .footer-links a {
-      font-size: 11px; color: rgba(255,255,255,0.25); text-decoration: none;
-      text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.3s;
+      font-size: 10px; font-weight: 600; color: var(--text-faint); text-decoration: none;
+      text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s;
     }
-    .footer-links a:hover { color: rgba(255,255,255,0.6); }
+    .footer-links a:hover { color: var(--text-soft); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center; gap: 20px;
+      flex-wrap: wrap; padding-top: 28px; border-top: 1px solid var(--border);
+    }
+    .footer-bottom small { font-size: 11px; color: var(--text-faint); letter-spacing: 0.3px; }
 
     @media (max-width: 768px) {
-      header { padding: 18px 24px; }
-      nav { gap: 20px; }
-      nav a { font-size: 11px; }
-      .page-hero { padding: 140px 24px 60px; }
-      .page-hero h1 { font-size: 28px; }
-      .legal-content { padding: 40px 24px 80px; }
-      footer {
-        flex-direction: column; gap: 20px;
-        padding: 30px 24px; text-align: center;
+      header { padding: 16px 24px; }
+      nav {
+        position: fixed; top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: 100vh; z-index: 1050;
+        flex-direction: column; justify-content: center; gap: 30px;
+        background: var(--bg); transform: translateX(100%);
+        transition: transform 0.45s cubic-bezier(0.16,1,0.3,1);
       }
+      body.menu-open { overflow: hidden; }
+      body.menu-open nav { transform: translateX(0); }
+      nav a.nav-link { font-size: 14px; letter-spacing: 3px; color: var(--text-soft); }
+      .nav-cta { margin-top: 10px; padding: 14px 30px; font-size: 12px; }
+      .menu-toggle { display: flex; }
+      .page-hero { padding: 132px 24px 56px; }
+      .legal { padding: 50px 24px 90px; }
+      footer { padding: 44px 24px 30px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <a href="index.html" class="logo"><img src="logo-corelead.svg" alt="CoreLead"></a>
-    <nav>
-      <a href="warum-corelead.html">Warum CoreLead</a>
-      <a href="kontakt.html">Kontakt</a>
+  <header id="header">
+    <a href="index.html" class="logo"><img src="logo-corelead.svg" alt="Corelead GmbH"></a>
+    <nav id="nav">
+      <a href="index.html#ki" class="nav-link">KI-Workflows</a>
+      <a href="index.html#sicherheit" class="nav-link">Informationssicherheit</a>
+      <a href="kontakt.html" class="nav-link">Kontakt</a>
+      <a href="kontakt.html" class="nav-cta">Projekt besprechen</a>
     </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </header>
 
   <section class="page-hero">
     <h1>Impressum</h1>
+    <span class="sub">Angaben gemäß § 5 DDG</span>
   </section>
 
-  <div class="legal-content">
-    <h2>Angaben gemäß § 5 TMG</h2>
-    <p>CoreLead Solutions</p>
-    <p>Togostr. 6</p>
-    <p>81827 München</p>
-    <p>Deutschland</p>
+  <div class="legal">
+
+    <div class="legal-block">
+      <h2><span class="idx">01</span> Anbieter</h2>
+      <p>Corelead GmbH<br>Togostr. 6<br>81827 München<br>Deutschland</p>
+    </div>
 
     <div class="legal-divider"></div>
 
-    <h2>Vertreten durch</h2>
-    <p>David Oberholzner</p>
+    <div class="legal-block">
+      <h2><span class="idx">02</span> Vertretung</h2>
+      <span class="label">Geschäftsführer</span>
+      <p>David Oberholzner</p>
+    </div>
 
     <div class="legal-divider"></div>
 
-    <h2>Kontakt</h2>
-    <p>Telefon: <a href="tel:+498920033313">+49 89 200 333 13</a></p>
-    <p>E-Mail: <a href="mailto:hello@corelead.solutions">hello@corelead.solutions</a></p>
+    <div class="legal-block">
+      <h2><span class="idx">03</span> Kontakt</h2>
+      <span class="label">Telefon</span>
+      <p><a href="tel:+498920033313">+49 89 200 333 13</a></p>
+      <span class="label">E-Mail</span>
+      <p><a href="mailto:hello@corelead.solutions">hello@corelead.solutions</a></p>
+    </div>
 
     <div class="legal-divider"></div>
 
-    <h2>Registrierung und Steuerdaten</h2>
-    <p>Amtsgericht München</p>
-    <p>Steuernummer: 146/113/30260</p>
-    <p>USt-IdNr.: DE288081127</p>
+    <div class="legal-block">
+      <h2><span class="idx">04</span> Registereintrag</h2>
+      <span class="label">Handelsregister</span>
+      <p>Amtsgericht München · HRB 313245</p>
+      <span class="label">Umsatzsteuer-Identifikationsnummer</span>
+      <p>DE288081127</p>
+    </div>
 
     <div class="legal-divider"></div>
 
-    <h2>Inhaltlich Verantwortlicher gemäß § 18 Abs. 2 MStV</h2>
-    <p>David Oberholzner</p>
-    <p>Togostr. 6</p>
-    <p>81827 München</p>
+    <div class="legal-block">
+      <h2><span class="idx">05</span> Inhaltlich verantwortlich</h2>
+      <p>Gemäß § 18 Abs. 2 MStV:</p>
+      <p>David Oberholzner<br>Togostr. 6<br>81827 München</p>
+    </div>
+
   </div>
 
   <footer>
-    <a href="index.html" class="footer-logo"><img src="logo-corelead.svg" alt="CoreLead"></a>
-    <div class="footer-links">
-      <a href="datenschutz.html">Datenschutzerklärung</a>
-      <a href="impressum.html">Impressum</a>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo"><img src="logo-corelead.svg" alt="Corelead GmbH"></a>
+        <p>Individuelle Software, KI-Automatisierung und Informationssicherheit für den Mittelstand.</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html#ki">Leistungen</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="impressum.html">Impressum</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <small>&copy; <span id="year"></span> Corelead GmbH &middot; München, Deutschland</small>
+      <small>hello@corelead.solutions</small>
     </div>
   </footer>
 
+  <script>
+    (function() {
+      const toggle = document.getElementById('menuToggle');
+      const nav = document.getElementById('nav');
+      function close() { document.body.classList.remove('menu-open'); toggle.setAttribute('aria-expanded', 'false'); }
+      toggle.addEventListener('click', () => {
+        const open = document.body.classList.toggle('menu-open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      nav.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+    })();
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

@@ -1,0 +1,12 @@
+# OS
+.DS_Store
+
+# Local dev workspace & snapshots (not deployed)
+relaunch/
+backup/
+backup-online-*/
+design-system/
+.extract-design-system/
+
+# Node
+**/node_modules/

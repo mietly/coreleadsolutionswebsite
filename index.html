@@ -3,121 +3,180 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CoreLead - Individuelle Softwarelösungen</title>
+  <title>CoreLead | KI-Workflows, Software &amp; Informationssicherheit</title>
+  <meta name="description" content="CoreLead entwickelt sichere KI-Workflow-Systeme, individuelle Software und Compliance-Lösungen für den deutschen Mittelstand.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --bg:           #0a0a0a;
+      --bg-alt:       #0f0f0f;
+      --bg-card:      rgba(255,255,255,0.018);
+      --text:         rgba(255,255,255,0.95);
+      --text-soft:    rgba(255,255,255,0.65);
+      --text-dim:     rgba(255,255,255,0.45);
+      --text-faint:   rgba(255,255,255,0.22);
+      --text-ghost:   rgba(255,255,255,0.07);
+      --border:       rgba(255,255,255,0.07);
+      --border-hover: rgba(255,255,255,0.16);
+      --display:      'Bebas Neue', sans-serif;
+      --body:         'Manrope', system-ui, sans-serif;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', Arial, Helvetica, sans-serif;
-      color: #333;
-      background: #0a0a0a;
+      font-family: var(--body);
+      color: var(--text);
+      background: var(--bg);
       line-height: 1.6;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ── Scroll Reveal ── */
+    ::selection { background: rgba(255,255,255,0.16); color: #fff; }
+
+    .wrap { max-width: 1180px; margin: 0 auto; }
+
+    /* ── Shared micro-label ── */
+    .eyebrow {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: var(--text-faint);
+      margin-bottom: 26px;
+    }
+
+    /* ── Reveal ── */
     .reveal {
       opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(28px);
+      transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.9s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.08s; }
+    .reveal-delay-2 { transition-delay: 0.16s; }
+    .reveal-delay-3 { transition-delay: 0.24s; }
+    .reveal-delay-4 { transition-delay: 0.32s; }
+    .reveal-delay-5 { transition-delay: 0.40s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      *, *::before, *::after { animation-duration: 0.001s !important; }
+      html { scroll-behavior: auto; }
+      .rt-word > span { transform: none !important; }
+      .pin-wrap { height: auto; }
+      .pin-stage { position: static; height: auto; display: block; padding: 90px 24px; }
+      .pin-panels { height: auto; }
+      .pin-panel { position: static; opacity: 1; transform: none; margin-bottom: 44px; pointer-events: auto; }
+      .pin-panel h3 { font-size: clamp(40px, 12vw, 72px); }
+      .pin-rail { display: none; }
+      .uc-desc { max-height: none; opacity: 1; margin-top: 14px; }
+      .uc-ghost { display: none; }
     }
 
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-    .reveal-delay-4 { transition-delay: 0.4s; }
-
-    /* ── Header / Navigation ── */
+    /* ── Header ── */
     header {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 1000;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 24px 60px;
-      background: rgba(10, 10, 10, 0);
-      backdrop-filter: blur(0px);
-      -webkit-backdrop-filter: blur(0px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0);
-      transition: all 0.4s ease;
+      padding: 26px 48px;
+      border-bottom: 1px solid transparent;
+      transition: padding 0.4s ease, background 0.4s ease,
+                  backdrop-filter 0.4s ease, border-color 0.4s ease;
     }
-
     header.scrolled {
-      padding: 16px 60px;
-      background: rgba(10, 10, 10, 0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 15px 48px;
+      background: rgba(10,10,10,0.86);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom-color: var(--border);
     }
 
-    .logo {
-      display: inline-block;
-      text-decoration: none;
-      line-height: 1;
-    }
+    .logo { display: inline-flex; align-items: center; text-decoration: none; line-height: 1; }
+    .logo img { height: 26px; width: auto; }
 
-    .logo img {
-      height: 32px;
-      width: auto;
-    }
+    nav { display: flex; gap: 34px; align-items: center; }
 
-    nav {
-      display: flex;
-      gap: 36px;
-      align-items: center;
-    }
-
-    nav a {
-      font-family: 'Inter', sans-serif;
-      font-size: 13px;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.6);
+    nav a.nav-link {
+      font-family: var(--body);
+      font-size: 10.5px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.58);
       text-decoration: none;
       text-transform: uppercase;
-      letter-spacing: 2px;
+      letter-spacing: 2.2px;
       transition: color 0.3s;
       position: relative;
+      white-space: nowrap;
     }
-
-    nav a::after {
+    nav a.nav-link::after {
       content: '';
       position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: #fff;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: var(--text);
       transition: width 0.3s ease;
     }
+    nav a.nav-link:hover        { color: var(--text); }
+    nav a.nav-link:hover::after { width: 100%; }
 
-    nav a:hover {
-      color: #fff;
+    .nav-cta {
+      font-family: var(--body);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--text);
+      padding: 10px 22px;
+      border: 1px solid var(--border-hover);
+      position: relative;
+      overflow: hidden;
+      transition: color 0.4s ease, border-color 0.4s ease;
+      white-space: nowrap;
     }
-
-    nav a:hover::after {
-      width: 100%;
+    .nav-cta::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: var(--text);
+      transition: left 0.4s cubic-bezier(0.16,1,0.3,1);
+      z-index: -1;
     }
+    .nav-cta:hover { color: var(--bg); border-color: var(--text); }
+    .nav-cta:hover::before { left: 0; }
 
-    /* ── Hero Section ── */
+    /* ── Mobile menu toggle ── */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      z-index: 1100;
+    }
+    .menu-toggle span {
+      width: 24px; height: 1.5px;
+      background: var(--text);
+      transition: transform 0.35s ease, opacity 0.3s ease;
+    }
+    body.menu-open .menu-toggle span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    body.menu-open .menu-toggle span:nth-child(2) { opacity: 0; }
+    body.menu-open .menu-toggle span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ── Hero ── */
     .hero {
       position: relative;
       min-height: 100vh;
@@ -126,772 +185,887 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 120px 60px 80px;
+      padding: 150px 48px 110px;
       overflow: hidden;
     }
-
     #particle-canvas {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       z-index: 0;
     }
-
-    .hero-content {
-      position: relative;
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 42%, transparent 30%, rgba(10,10,10,0.55) 100%);
+      pointer-events: none;
       z-index: 1;
     }
+    .hero-content { position: relative; z-index: 2; max-width: 980px; }
 
     .hero-badge {
-      display: inline-block;
-      padding: 8px 20px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 100px;
-      font-size: 12px;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.5);
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      margin-bottom: 40px;
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 0;
+      border: 1px solid transparent;
+      margin-bottom: 48px;
       opacity: 0;
-      animation: fadeInDown 0.8s 0.3s forwards;
+      animation: fadeInDown 0.8s 0.25s forwards;
+    }
+
+    /* Security-Log - tokens run right→left inside the badge frame */
+    .hex-stream {
+      position: relative;
+      width: 300px;
+      height: 13px;
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent);
+              mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent);
+    }
+    .hex-stream .track {
+      position: absolute;
+      top: 0; left: 0;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      white-space: nowrap;
+      font-family: 'SFMono-Regular', ui-monospace, 'Menlo', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.4px;
+      color: rgba(255,255,255,0.30);
+      will-change: transform;
+    }
+    .hex-stream .track .sep { color: rgba(255,255,255,0.12); }
+    .hex-stream .track b {
+      font-weight: 500;
+      color: rgba(255,255,255,0.85);
+      text-shadow: 0 0 8px rgba(255,255,255,0.30);
+      transition: color 0.4s ease, text-shadow 0.4s ease;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hex-stream .track { animation: none !important; }
     }
 
     .hero h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 52px;
-      font-weight: 300;
-      letter-spacing: 4px;
-      color: #fff;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-      opacity: 0;
-      animation: fadeInUp 1s 0.5s forwards;
-    }
-
-    .hero h1 .dot {
-      margin: 0 18px;
-      color: rgba(255, 255, 255, 0.2);
-      transition: color 0.5s;
-    }
-
-    .hero-sub {
-      font-size: 16px;
-      font-weight: 300;
-      color: rgba(255, 255, 255, 0.4);
-      max-width: 680px;
-      margin: 0 auto 50px;
-      line-height: 1.8;
-      letter-spacing: 0.5px;
-      opacity: 0;
-      animation: fadeInUp 1s 0.7s forwards;
-    }
-
-    .hero .cta-button {
-      display: inline-block;
-      position: relative;
-      background: transparent;
-      color: #fff;
-      padding: 16px 42px;
-      font-size: 12px;
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      text-transform: uppercase;
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(40px, 6.4vw, 88px);
       letter-spacing: 3px;
-      text-decoration: none;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      cursor: pointer;
-      overflow: hidden;
-      transition: all 0.4s ease;
-      opacity: 0;
-      animation: fadeInUp 1s 0.9s forwards;
-    }
-
-    .hero .cta-button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: #fff;
-      transition: left 0.4s ease;
-      z-index: -1;
-    }
-
-    .hero .cta-button:hover {
-      color: #0a0a0a;
-      border-color: #fff;
-    }
-
-    .hero .cta-button:hover::before {
-      left: 0;
-    }
-
-    .scroll-indicator {
-      position: absolute;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 1;
-      opacity: 0;
-      animation: fadeInUp 1s 1.2s forwards;
-    }
-
-    .scroll-indicator .line {
-      width: 1px;
-      height: 60px;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
-      margin: 0 auto;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .scroll-indicator .line::after {
-      content: '';
-      position: absolute;
-      top: -60px;
-      width: 1px;
-      height: 60px;
-      background: linear-gradient(to bottom, transparent, #fff);
-      animation: scrollLine 2s infinite;
-    }
-
-    @keyframes scrollLine {
-      0% { top: -60px; }
-      100% { top: 60px; }
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ── Intro Text Section ── */
-    .intro {
-      background: #0f0f0f;
-      padding: 120px 60px;
-      text-align: center;
-      position: relative;
-    }
-
-    .intro::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 1px;
-      height: 80px;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.1), transparent);
-    }
-
-    .intro-inner {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .intro p.lead {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 20px;
-      line-height: 2;
-      color: rgba(255, 255, 255, 0.85);
-      margin-bottom: 30px;
-      font-weight: 300;
-    }
-
-    .intro p.sub {
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.35);
-      line-height: 1.8;
+      color: var(--text);
       text-transform: uppercase;
-      letter-spacing: 2px;
+      line-height: 1.02;
+      margin-bottom: 34px;
     }
-
-    /* ── USP / Approach ── */
-    .usp {
-      background: #0f0f0f;
-      padding: 120px 60px;
-    }
-
-    .section-label {
-      text-align: center;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 4px;
-      color: rgba(255, 255, 255, 0.25);
-      margin-bottom: 60px;
-      font-weight: 500;
-    }
-
-    .usp-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 30px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .usp-item {
-      text-align: center;
-      padding: 50px 30px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      background: rgba(255, 255, 255, 0.02);
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .usp-item::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      opacity: 0;
-      transition: opacity 0.5s;
-    }
-
-    .usp-item:hover {
-      border-color: rgba(255, 255, 255, 0.12);
-      background: rgba(255, 255, 255, 0.04);
-      transform: translateY(-4px);
-    }
-
-    .usp-item:hover::before {
-      opacity: 1;
-    }
-
-    .usp-icon {
-      width: 48px;
-      height: 48px;
-      margin: 0 auto 24px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      color: rgba(255, 255, 255, 0.5);
-      transition: all 0.5s;
-    }
-
-    .usp-item:hover .usp-icon {
-      border-color: rgba(255, 255, 255, 0.3);
-      color: #fff;
-    }
-
-    .usp-item h3 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: #fff;
-      margin-bottom: 16px;
-    }
-
-    .usp-item p {
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.4);
-      line-height: 1.8;
-    }
-
-    /* ── Produkte / Services ── */
-    .services {
-      background: #0a0a0a;
-      padding: 120px 60px;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .service-item {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 48px;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      cursor: default;
-    }
-
-    .service-item::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.06) 0%, transparent 60%);
-      opacity: 0;
-      transition: opacity 0.4s;
-      pointer-events: none;
-    }
-
-    .service-item:hover {
-      border-color: rgba(255, 255, 255, 0.12);
-      transform: translateY(-2px);
-    }
-
-    .service-item:hover::after {
-      opacity: 1;
-    }
-
-    .service-item .number {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 48px;
-      font-weight: 300;
-      color: rgba(255, 255, 255, 0.06);
-      letter-spacing: 1px;
-      margin-bottom: 20px;
+    .hero h1 .line {
       display: block;
-      line-height: 1;
-      transition: color 0.5s;
+      opacity: 0;
+      transform: translateY(26px);
+      animation: heroLine 1s forwards;
     }
+    .hero h1 .line:nth-child(1) { animation-delay: 0.45s; }
+    .hero h1 .line:nth-child(2) { animation-delay: 0.60s; color: rgba(255,255,255,0.55); }
+    .hero h1 .line:nth-child(3) { animation-delay: 0.75s; }
+    @keyframes heroLine { to { opacity: 1; transform: none; } }
 
-    .service-item:hover .number {
-      color: rgba(255, 255, 255, 0.1);
-    }
-
-    .service-item h3 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 20px;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 6px;
-    }
-
-    .service-item .tagline {
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.3);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 18px;
-      display: block;
-    }
-
-    .service-item p {
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.4);
-      line-height: 1.8;
-    }
-
-    /* ── CTA Section ── */
-    .cta-section {
-      background: #0f0f0f;
-      padding: 140px 60px;
-      text-align: center;
-      position: relative;
-    }
-
-    .cta-section::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .cta-section h2 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 36px;
-      font-weight: 300;
-      color: #fff;
-      margin-bottom: 16px;
-      letter-spacing: 1px;
-      position: relative;
-    }
-
-    .cta-section .cta-sub {
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.35);
-      margin-bottom: 40px;
-      letter-spacing: 1px;
-      position: relative;
-    }
-
-    .cta-buttons {
-      position: relative;
+    .hero-actions {
       display: flex;
       justify-content: center;
       gap: 16px;
       flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeInUp 1s 1.25s forwards;
     }
 
-    .cta-section .cta-button {
+    /* ── Buttons ── */
+    .btn {
       display: inline-block;
       position: relative;
-      background: #fff;
-      color: #0a0a0a;
-      padding: 18px 48px;
-      font-size: 12px;
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
+      font-family: var(--body);
+      font-size: 10.5px;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 3px;
       text-decoration: none;
-      border: none;
-      cursor: pointer;
-      transition: all 0.4s ease;
+      padding: 16px 40px;
+      border: 1px solid var(--text);
       overflow: hidden;
+      cursor: pointer;
+      transition: color 0.4s ease, border-color 0.4s ease;
     }
+    .btn span { position: relative; z-index: 1; }
 
-    .cta-section .cta-button::before {
+    .btn-primary { background: var(--text); color: var(--bg); }
+    .btn-primary::before {
       content: '';
       position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      background: #0a0a0a;
+      top: 50%; left: 50%;
+      width: 0; height: 0;
+      background: var(--bg);
       border-radius: 50%;
-      transform: translate(-50%, -50%);
-      transition: all 0.5s ease;
+      transform: translate(-50%,-50%);
+      transition: width 0.55s ease, height 0.55s ease;
       z-index: 0;
     }
+    .btn-primary:hover { color: var(--text); }
+    .btn-primary:hover::before { width: 620px; height: 620px; }
 
-    .cta-section .cta-button span {
+    .btn-ghost { background: transparent; color: var(--text); border-color: rgba(255,255,255,0.24); }
+    .btn-ghost::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: var(--text);
+      transition: left 0.45s cubic-bezier(0.16,1,0.3,1);
+      z-index: 0;
+    }
+    .btn-ghost:hover { color: var(--bg); border-color: var(--text); }
+    .btn-ghost:hover::before { left: 0; }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      opacity: 0;
+      animation: fadeInUp 1s 1.5s forwards;
+    }
+    .scroll-indicator .line {
+      width: 1px; height: 50px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.22), transparent);
+      margin: 0 auto;
       position: relative;
-      z-index: 1;
+      overflow: hidden;
+    }
+    .scroll-indicator .line::after {
+      content: '';
+      position: absolute;
+      top: -50px; width: 1px; height: 50px;
+      background: linear-gradient(to bottom, transparent, var(--text));
+      animation: scrollLine 2.5s ease-in-out infinite;
     }
 
-    .cta-section .cta-button:hover {
-      color: #fff;
-      box-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
+    @keyframes scrollLine  { 0% { top: -50px; } 100% { top: 50px; } }
+    @keyframes fadeInUp    { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+    @keyframes fadeInDown  { from { opacity: 0; transform: translateY(-14px); } to { opacity: 1; transform: none; } }
+
+    /* ── Section base ── */
+    section.block { padding: 130px 48px; position: relative; }
+    .block.alt { background: var(--bg-alt); }
+    .block.alt::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 1px; height: 58px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.10), transparent);
     }
 
-    .cta-section .cta-button:hover::before {
-      width: 400px;
-      height: 400px;
+    .section-head { max-width: 760px; margin-bottom: 64px; }
+    .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+    .section-head h2 {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(30px, 4vw, 52px);
+      letter-spacing: 1.5px;
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 22px;
+    }
+    .section-head p {
+      font-size: 15px;
+      color: var(--text-dim);
+      line-height: 1.85;
+      max-width: 600px;
+    }
+    .section-head.center p { margin: 0 auto; }
+
+    /* ── Use cases — interactive index list ── */
+    .uc-list { border-top: 1px solid var(--border); }
+    .uc-row {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 30px 26px 30px 0;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      transition: padding 0.55s cubic-bezier(0.16,1,0.3,1), background 0.5s ease;
+    }
+    .uc-row::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 50%;
+      transform: translateY(-50%);
+      width: 2px; height: 0;
+      background: var(--text);
+      transition: height 0.55s cubic-bezier(0.16,1,0.3,1);
+    }
+    .uc-row:hover, .uc-row:focus-within {
+      background: rgba(255,255,255,0.022);
+      padding-left: 26px;
+    }
+    .uc-row:hover::before, .uc-row:focus-within::before { height: 64%; }
+    .uc-row:focus-visible { outline: none; }
+
+    .uc-main { display: flex; align-items: baseline; gap: 26px; position: relative; z-index: 2; min-width: 0; }
+    .uc-idx {
+      font-family: var(--display);
+      font-size: 26px; letter-spacing: 1px;
+      color: var(--text-ghost); line-height: 1;
+      min-width: 42px; flex-shrink: 0;
+      transition: color 0.5s ease, transform 0.55s cubic-bezier(0.16,1,0.3,1);
+    }
+    .uc-row:hover .uc-idx, .uc-row:focus-within .uc-idx { color: var(--text); }
+
+    .uc-text { min-width: 0; }
+    .uc-tag {
+      display: block;
+      font-size: 9.5px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--text-faint);
+      margin-bottom: 10px; transition: color 0.5s ease;
+    }
+    .uc-row:hover .uc-tag, .uc-row:focus-within .uc-tag { color: var(--text-dim); }
+    .uc-text h3 {
+      font-family: var(--body);
+      font-size: clamp(19px, 2.3vw, 27px); font-weight: 600;
+      letter-spacing: 0.2px; color: var(--text); line-height: 1.18;
+    }
+    .uc-desc {
+      font-size: 14px; color: var(--text-dim); line-height: 1.75; max-width: 560px;
+      max-height: 0; opacity: 0; overflow: hidden; margin-top: 0;
+      transition: max-height 0.6s cubic-bezier(0.16,1,0.3,1), opacity 0.5s ease, margin-top 0.5s ease;
+    }
+    .uc-row:hover .uc-desc, .uc-row:focus-within .uc-desc {
+      max-height: 120px; opacity: 1; margin-top: 14px;
     }
 
-    .cta-section .cta-button-outline {
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      color: #fff;
+    .uc-arrow {
+      position: relative; z-index: 2; flex-shrink: 0;
+      color: var(--text-faint);
+      transition: color 0.45s ease, transform 0.55s cubic-bezier(0.16,1,0.3,1);
+    }
+    .uc-row:hover .uc-arrow, .uc-row:focus-within .uc-arrow { color: var(--text); transform: translateX(7px); }
+
+    .uc-ghost {
+      position: absolute; right: 18px; top: 50%;
+      transform: translateY(-50%) translateX(40px);
+      font-family: var(--display);
+      font-size: clamp(76px, 11vw, 148px); letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.028); line-height: 1;
+      pointer-events: none; user-select: none; z-index: 1; opacity: 0;
+      transition: opacity 0.6s ease, transform 0.65s cubic-bezier(0.16,1,0.3,1);
+    }
+    .uc-row:hover .uc-ghost, .uc-row:focus-within .uc-ghost {
+      opacity: 1; transform: translateY(-50%) translateX(0);
     }
 
-    .cta-section .cta-button-outline::before {
-      background: #fff;
+    /* ── Security / split layout ── */
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .sec-list { list-style: none; display: flex; flex-direction: column; }
+    .sec-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 18px 0;
+      border-top: 1px solid var(--border);
+      font-size: 14.5px;
+      color: var(--text-soft);
+    }
+    .sec-list li:last-child { border-bottom: 1px solid var(--border); }
+    .sec-list li svg { flex-shrink: 0; margin-top: 2px; color: var(--text-dim); }
+    .note {
+      margin-top: 30px;
+      font-size: 12.5px;
+      color: var(--text-faint);
+      line-height: 1.7;
+      max-width: 460px;
+      padding-left: 16px;
+      border-left: 1px solid var(--border);
     }
 
-    .cta-section .cta-button-outline:hover {
-      color: #0a0a0a;
-      border-color: #fff;
+    /* ── Process steps ── */
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .step { background: var(--bg); padding: 40px 30px 46px; position: relative; transition: background 0.4s ease; }
+    .step:hover { background: rgba(255,255,255,0.02); }
+    .step-num {
+      font-family: var(--display);
+      font-size: 34px;
+      letter-spacing: 2px;
+      color: var(--text-ghost);
+      line-height: 1;
+      margin-bottom: 24px;
+      transition: color 0.4s ease;
     }
+    .step:hover .step-num { color: rgba(255,255,255,0.22); }
+    .step h3 {
+      font-family: var(--body);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 12px;
+      letter-spacing: 0.3px;
+    }
+    .step p { font-size: 13px; color: var(--text-dim); line-height: 1.75; }
+
+    /* ── Closing CTA ── */
+    .cta-final {
+      background: var(--bg-alt);
+      padding: 150px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-final::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 680px; height: 680px;
+      background: radial-gradient(circle, rgba(255,255,255,0.028) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .cta-final h2 {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(30px, 4.4vw, 58px);
+      letter-spacing: 1.5px;
+      line-height: 1.05;
+      margin-bottom: 20px;
+      position: relative;
+      max-width: 820px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-final p {
+      font-size: 15px;
+      color: var(--text-dim);
+      max-width: 560px;
+      margin: 0 auto 46px;
+      line-height: 1.85;
+      position: relative;
+    }
+    .cta-final .hero-actions { animation: none; opacity: 1; }
 
     /* ── Footer ── */
     footer {
-      background: #0a0a0a;
-      padding: 40px 60px;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 64px 48px 40px;
+    }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 48px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+    .footer-brand { max-width: 320px; }
+    .footer-brand .footer-logo { display: inline-block; margin-bottom: 18px; opacity: 0.85; }
+    .footer-brand .footer-logo img { height: 22px; width: auto; }
+    .footer-brand p { font-size: 13px; color: var(--text-dim); line-height: 1.7; }
+    .footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
+    .footer-links a {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-faint);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--text-soft); }
+    .footer-bottom {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      gap: 20px;
+      flex-wrap: wrap;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
     }
+    .footer-bottom small { font-size: 11px; color: var(--text-faint); letter-spacing: 0.3px; }
 
-    .footer-logo {
+    /* ── Headline mask + split-stagger reveal ── */
+    .rt-word { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.06em; margin-bottom: -0.06em; }
+    .rt-word > span {
       display: inline-block;
-      text-decoration: none;
-      line-height: 1;
-      opacity: 0.5;
-      transition: opacity 0.3s;
+      transform: translateY(118%);
+      transition: transform 0.75s cubic-bezier(0.16,1,0.3,1);
     }
+    .reveal-text.in .rt-word > span { transform: translateY(0); }
 
-    .footer-logo:hover { opacity: 0.8; }
-
-    .footer-logo img {
-      height: 22px;
-      width: auto;
-    }
-
-    .footer-links {
+    /* ── Pinned scroll-story: Vom Dokument zum Prozess ── */
+    .pin-wrap { position: relative; height: 320vh; background: var(--bg); }
+    .pin-stage {
+      position: sticky;
+      top: 0;
+      height: 100vh;
       display: flex;
-      gap: 24px;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 80px 48px;
     }
-
-    .footer-links a {
-      font-size: 11px;
-      color: rgba(255, 255, 255, 0.25);
-      text-decoration: none;
+    .pin-stage::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 44%, rgba(255,255,255,0.035), transparent 60%);
+      pointer-events: none;
+    }
+    .pin-inner { width: 100%; max-width: 900px; text-align: center; position: relative; z-index: 1; }
+    .pin-count {
+      font-family: var(--display);
+      font-size: 14px;
+      letter-spacing: 4px;
+      color: var(--text-faint);
+      margin-bottom: 30px;
+    }
+    .pin-count #pinNum { color: var(--text); }
+    .pin-panels { position: relative; height: 240px; }
+    .pin-panel {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
+      pointer-events: none;
+    }
+    .pin-panel.active { opacity: 1; transform: none; pointer-events: auto; }
+    .pin-panel h3 {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(54px, 9vw, 130px);
+      letter-spacing: 3px;
+      line-height: 1;
       text-transform: uppercase;
-      letter-spacing: 1.5px;
-      transition: color 0.3s;
+      color: var(--text);
+      margin-bottom: 22px;
+    }
+    .pin-panel p { font-size: 15px; color: var(--text-dim); line-height: 1.8; max-width: 460px; }
+    .pin-rail { margin-top: 44px; }
+    .pin-rail-line { position: relative; height: 1px; background: var(--border); max-width: 640px; margin: 0 auto 26px; }
+    .pin-rail-fill { position: absolute; left: 0; top: 0; height: 100%; width: 0; background: rgba(255,255,255,0.55); transition: width 0.15s linear; }
+    .pin-ticks { display: flex; justify-content: space-between; max-width: 680px; margin: 0 auto; }
+    .pin-tick {
+      background: none; border: none; cursor: pointer; padding: 0;
+      display: flex; flex-direction: column; align-items: center; gap: 11px; flex: 1;
+    }
+    .pin-tick .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--text-ghost);
+      transition: background 0.35s ease, box-shadow 0.35s ease;
+    }
+    .pin-tick .lbl {
+      font-size: 9.5px; font-weight: 600; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--text-faint);
+      transition: color 0.35s ease;
+    }
+    .pin-tick.done .dot { background: var(--text-dim); }
+    .pin-tick.active .dot { background: var(--text); box-shadow: 0 0 11px rgba(255,255,255,0.45); }
+    .pin-tick.active .lbl { color: var(--text); }
+
+    /* ── Responsive ── */
+    @media (max-width: 980px) {
+      .steps { grid-template-columns: repeat(2, 1fr); }
+      .split { grid-template-columns: 1fr; gap: 48px; }
     }
 
-    .footer-links a:hover {
-      color: rgba(255, 255, 255, 0.6);
-    }
-
-    /* ── Mobile ── */
     @media (max-width: 768px) {
-      header {
-        padding: 18px 24px;
-      }
-
-      header.scrolled {
-        padding: 14px 24px;
-      }
+      header, header.scrolled { padding: 16px 24px; }
 
       nav {
-        gap: 20px;
-      }
-
-      nav a {
-        font-size: 11px;
-        letter-spacing: 1.5px;
-      }
-
-      .hero {
-        padding: 100px 24px 60px;
-        min-height: 90vh;
-      }
-
-      .hero h1 {
-        font-size: 26px;
-        letter-spacing: 2px;
-      }
-
-      .hero h1 .dot {
-        margin: 0 8px;
-      }
-
-      .hero-sub {
-        font-size: 14px;
-      }
-
-      .intro {
-        padding: 80px 24px;
-      }
-
-      .intro p.lead {
-        font-size: 17px;
-      }
-
-      .usp {
-        padding: 80px 24px;
-      }
-
-      .usp-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-
-      .services {
-        padding: 80px 24px;
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-
-      .service-item {
-        padding: 32px;
-      }
-
-      .cta-section {
-        padding: 80px 24px;
-      }
-
-      .cta-section h2 {
-        font-size: 24px;
-      }
-
-      .cta-buttons {
+        position: fixed;
+        top: 0; right: 0; bottom: 0; left: 0;
+        width: 100%; height: 100vh;
+        z-index: 1050;
         flex-direction: column;
-        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        background: var(--bg);
+        transform: translateX(100%);
+        transition: transform 0.45s cubic-bezier(0.16,1,0.3,1);
       }
+      body.menu-open { overflow: hidden; }
+      body.menu-open nav { transform: translateX(0); }
+      nav a.nav-link { font-size: 14px; letter-spacing: 3px; color: var(--text-soft); }
+      .nav-cta { margin-top: 10px; padding: 14px 30px; font-size: 12px; }
+      .menu-toggle { display: flex; }
 
-      footer {
-        flex-direction: column;
-        gap: 20px;
-        padding: 30px 24px;
-        text-align: center;
-      }
+      .hero { padding: 130px 24px 90px; }
+      .hero h1 { letter-spacing: 2px; }
+
+      section.block { padding: 90px 24px; }
+      .section-head { margin-bottom: 44px; }
+
+      .steps { grid-template-columns: 1fr; }
+      .tile, .step { padding: 38px 28px; }
+
+      /* use-case list: always expanded on mobile (no hover) */
+      .uc-row { padding: 24px 0; }
+      .uc-row:hover, .uc-row:focus-within { padding-left: 0; }
+      .uc-main { gap: 18px; }
+      .uc-idx { font-size: 21px; min-width: 32px; }
+      .uc-text h3 { font-size: 19px; }
+      .uc-desc { max-height: none; opacity: 1; margin-top: 12px; }
+      .uc-arrow, .uc-ghost { display: none; }
+
+      .pin-stage { padding: 80px 22px; }
+      .pin-panels { height: 220px; }
+      .pin-panel h3 { font-size: clamp(46px, 15vw, 76px); letter-spacing: 1.5px; }
+      .pin-panel p { font-size: 13.5px; }
+      .pin-tick .lbl { font-size: 8px; letter-spacing: 1px; }
+      .pin-ticks { gap: 4px; }
+
+      .cta-final { padding: 100px 24px; }
+      .hero-actions { flex-direction: column; align-items: stretch; width: 100%; max-width: 320px; margin-left: auto; margin-right: auto; }
+      .btn { text-align: center; }
+
+      footer { padding: 48px 24px 32px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
   <header id="header">
     <a href="index.html" class="logo"><img src="logo-corelead.svg" alt="CoreLead"></a>
-    <nav>
-      <a href="warum-corelead.html">Warum CoreLead</a>
-      <a href="kontakt.html">Kontakt</a>
+    <nav id="nav">
+      <a href="#ki" class="nav-link">KI-Workflows</a>
+      <a href="#sicherheit" class="nav-link">Informationssicherheit</a>
+      <a href="kontakt.html" class="nav-link">Kontakt</a>
+      <a href="kontakt.html" class="nav-cta">Projekt besprechen</a>
     </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </header>
 
-  <!-- Hero -->
+  <!-- ── Hero ── -->
   <section class="hero">
     <canvas id="particle-canvas"></canvas>
     <div class="hero-content">
-      <div class="hero-badge">Software &middot; Beratung &middot; Umsetzung</div>
+      <div class="hero-badge" aria-label="Software, KI-Workflows, Informationssicherheit">
+        <span class="hex-stream" aria-hidden="true"><span class="track" id="hexTrack"></span></span>
+      </div>
       <h1>
-        <span id="typewriter"></span>
+        <span class="line">KI-Workflows.</span>
+        <span class="line">Informationssicherheit.</span>
+        <span class="line"><span id="heroWord">Transformation.</span></span>
       </h1>
-      <p class="hero-sub">
-        CoreLead entwickelt individuelle Softwarelösungen für konkrete geschäftliche Anforderungen. Von der Idee bis zum fertigen Produkt, mit Fokus auf Klarheit, Praxisbezug und operativen Nutzen.
-      </p>
-      <a href="#ansatz" class="cta-button">Mehr erfahren</a>
+      <div class="hero-actions">
+        <a href="kontakt.html" class="btn btn-primary"><span>Projekt besprechen</span></a>
+        <a href="#ki" class="btn btn-ghost"><span>Leistungen ansehen</span></a>
+      </div>
     </div>
-    <div class="scroll-indicator">
-      <div class="line"></div>
+    <div class="scroll-indicator"><div class="line"></div></div>
+  </section>
+
+  <!-- ── Use Cases ── -->
+  <section class="block alt" id="ki">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">KI-Workflows</span>
+        <h2>Konkrete Anwendungsfälle.</h2>
+        <p>Anwendungsfälle, die im Tagesgeschäft Zeit sparen - KI-gestützt, mit kontrollierter Datenhaltung und nachvollziehbaren Ergebnissen.</p>
+      </div>
+      <div class="uc-list reveal reveal-delay-1">
+        <div class="uc-row" tabindex="0">
+          <div class="uc-main">
+            <span class="uc-idx">01</span>
+            <div class="uc-text">
+              <span class="uc-tag">Angebote</span>
+              <h3>Angebotsassistent</h3>
+              <p class="uc-desc">Alte Angebote, Leistungsverzeichnisse und technische Unterlagen analysieren. Neue Angebotsentwürfe strukturiert vorbereiten.</p>
+            </div>
+          </div>
+          <span class="uc-arrow" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+          <span class="uc-ghost" aria-hidden="true">01</span>
+        </div>
+        <div class="uc-row" tabindex="0">
+          <div class="uc-main">
+            <span class="uc-idx">02</span>
+            <div class="uc-text">
+              <span class="uc-tag">Vergabe</span>
+              <h3>Ausschreibungsanalyse</h3>
+              <p class="uc-desc">Anforderungen, Risiken, Fristen und fehlende Informationen aus Ausschreibungsunterlagen extrahieren.</p>
+            </div>
+          </div>
+          <span class="uc-arrow" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+          <span class="uc-ghost" aria-hidden="true">02</span>
+        </div>
+        <div class="uc-row" tabindex="0">
+          <div class="uc-main">
+            <span class="uc-idx">03</span>
+            <div class="uc-text">
+              <span class="uc-tag">Verträge</span>
+              <h3>Vertrags- und Fristenradar</h3>
+              <p class="uc-desc">Verträge, AVVs, Wartungsverträge und Fristen zentral überwachen - mit Erinnerungen statt Excel-Listen.</p>
+            </div>
+          </div>
+          <span class="uc-arrow" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+          <span class="uc-ghost" aria-hidden="true">03</span>
+        </div>
+        <div class="uc-row" tabindex="0">
+          <div class="uc-main">
+            <span class="uc-idx">04</span>
+            <div class="uc-text">
+              <span class="uc-tag">Service-Desk</span>
+              <h3>Service-Desk- &amp; Wissensassistent</h3>
+              <p class="uc-desc">Tickets klassifizieren, Lösungsvorschläge erzeugen und Wissen aus bestehenden Quellen nutzbar machen.</p>
+            </div>
+          </div>
+          <span class="uc-arrow" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+          <span class="uc-ghost" aria-hidden="true">04</span>
+        </div>
+        <div class="uc-row" tabindex="0">
+          <div class="uc-main">
+            <span class="uc-idx">05</span>
+            <div class="uc-text">
+              <span class="uc-tag">Projekte</span>
+              <h3>Projekt- &amp; Baustellendokumentation</h3>
+              <p class="uc-desc">Berichte, Abnahmen, Nachträge und Projektdokumentation aus vorhandenen Informationen vorbereiten.</p>
+            </div>
+          </div>
+          <span class="uc-arrow" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+          <span class="uc-ghost" aria-hidden="true">05</span>
+        </div>
+        <div class="uc-row" tabindex="0">
+          <div class="uc-main">
+            <span class="uc-idx">06</span>
+            <div class="uc-text">
+              <span class="uc-tag">Fachportal</span>
+              <h3>Fachportal für interne Prozesse</h3>
+              <p class="uc-desc">Rollen, Workflows, Freigaben, Uploads, Dashboards und Exporte als internes SaaS - auf Ihre Prozesse zugeschnitten.</p>
+            </div>
+          </div>
+          <span class="uc-arrow" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+          <span class="uc-ghost" aria-hidden="true">06</span>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Intro -->
-  <section class="intro">
-    <div class="intro-inner">
-      <p class="lead reveal">
-        CoreLead entwickelt individuelle Software statt generischer Plattformen. Im Mittelpunkt stehen Lösungen mit klarer Problemlogik, hohem Praxisbezug und operativem Nutzen.
-      </p>
-      <p class="sub reveal reveal-delay-1">
-        Individuelle Software für reale operative Herausforderungen
-      </p>
+  <!-- ── Pinned scroll-story: Vom Dokument zum Prozess ── -->
+  <section class="pin-wrap" id="pipeline" aria-label="Vom Dokument zum Prozess">
+    <div class="pin-stage">
+      <div class="pin-inner">
+        <span class="eyebrow">Vom Dokument zum Prozess</span>
+        <div class="pin-count"><span id="pinNum">01</span>&thinsp;/&thinsp;05</div>
+        <div class="pin-panels">
+          <div class="pin-panel active" data-step="0">
+            <h3>Dokument</h3>
+            <p>Verträge, Angebote, Ausschreibungen und Berichte - Ihr vorhandenes Rohmaterial.</p>
+          </div>
+          <div class="pin-panel" data-step="1">
+            <h3>Analyse</h3>
+            <p>KI liest mit: Anforderungen, Fristen, Risiken und Kerndaten werden extrahiert.</p>
+          </div>
+          <div class="pin-panel" data-step="2">
+            <h3>Workflow</h3>
+            <p>Strukturierte Schritte, Regeln und klare Zuständigkeiten greifen automatisch.</p>
+          </div>
+          <div class="pin-panel" data-step="3">
+            <h3>Freigabe</h3>
+            <p>Die menschliche Prüfung bleibt - nichts verlässt das System ungesehen.</p>
+          </div>
+          <div class="pin-panel" data-step="4">
+            <h3>Report</h3>
+            <p>Sauberer Output, nachvollziehbarer Nachweis und Übergabe ins Tagesgeschäft.</p>
+          </div>
+        </div>
+        <div class="pin-rail">
+          <div class="pin-rail-line"><span class="pin-rail-fill" id="pinFill"></span></div>
+          <div class="pin-ticks">
+            <button class="pin-tick active" data-go="0" type="button"><span class="dot"></span><span class="lbl">Dokument</span></button>
+            <button class="pin-tick" data-go="1" type="button"><span class="dot"></span><span class="lbl">Analyse</span></button>
+            <button class="pin-tick" data-go="2" type="button"><span class="dot"></span><span class="lbl">Workflow</span></button>
+            <button class="pin-tick" data-go="3" type="button"><span class="dot"></span><span class="lbl">Freigabe</span></button>
+            <button class="pin-tick" data-go="4" type="button"><span class="dot"></span><span class="lbl">Report</span></button>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Ansatz -->
-  <section class="usp" id="ansatz">
-    <p class="section-label reveal">Wie CoreLead arbeitet</p>
-    <div class="usp-grid">
-      <div class="usp-item reveal reveal-delay-1">
-        <div class="usp-icon">&#8594;</div>
-        <h3>Praxisnah statt theoretisch</h3>
-        <p>Lösungen orientieren sich an realen Abläufen, nicht an idealisierten Prozessmodellen.</p>
+  <!-- ── Informationssicherheit & Compliance ── -->
+  <section class="block alt" id="sicherheit">
+    <div class="wrap split">
+      <div class="reveal">
+        <span class="eyebrow">Sicherheit &amp; Compliance</span>
+        <h2 style="font-family:var(--display);font-weight:400;font-size:clamp(30px,4vw,52px);letter-spacing:1.5px;line-height:1.05;margin-bottom:22px;">Sicherheit und Compliance nicht als Anhang, sondern als System.</h2>
+        <p style="font-size:15px;color:var(--text-dim);line-height:1.85;">
+          Wir bringen Struktur in Informationssicherheit und Compliance - auf Ebene von Prozessen, Nachweisen und Verantwortlichkeiten. Managementtauglich aufbereitet und für Audits vorbereitet.
+        </p>
+        <p class="note">
+          Hinweis: CoreLead leistet keine Zertifizierung und keine Rechtsberatung. Wir schaffen die strukturelle und technische Grundlage - Bewertung und Zertifizierung erfolgen durch die zuständigen Stellen.
+        </p>
       </div>
-      <div class="usp-item reveal reveal-delay-2">
-        <div class="usp-icon">&#9678;</div>
-        <h3>Fokussiert statt überladen</h3>
-        <p>Jede Lösung folgt einer klaren Kernlogik statt einer unscharfen Plattformidee.</p>
+      <ul class="sec-list reveal reveal-delay-1">
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>ISMS-Struktur und Dokumentenlenkung</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>ISO 27001 / NIS2 Vorbereitung</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Microsoft-365-Security-Checks</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Richtlinien und Nachweise</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Risiko- und Maßnahmenmanagement</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Management-Reports</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Audit-Readiness auf Strukturebene</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── Vorgehen ── -->
+  <section class="block">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Vorgehen</span>
+        <h2>Vom Prozessproblem zum funktionierenden System.</h2>
+        <p>Ein klarer Weg in vier Schritten - pragmatisch, messbar und ohne überzogene Versprechen.</p>
       </div>
-      <div class="usp-item reveal reveal-delay-3">
-        <div class="usp-icon">&#9776;</div>
-        <h3>Strukturiert statt improvisiert</h3>
-        <p>Risiken, Finanzen, Richtlinien oder operative Aufgaben werden nachvollziehbar abgebildet.</p>
-      </div>
-      <div class="usp-item reveal reveal-delay-4">
-        <div class="usp-icon">&#10003;</div>
-        <h3>Geschäftstauglich statt experimentell</h3>
-        <p>Software mit Blick auf Nutzbarkeit, Klarheit und betriebliche Relevanz.</p>
+      <div class="steps reveal reveal-delay-1">
+        <div class="step">
+          <div class="step-num">01</div>
+          <h3>Analyse</h3>
+          <p>Wir klären Prozess, Datenquellen, Rollen, Risiken und Zielbild.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <h3>Prototyp</h3>
+          <p>Ein erster Workflow zeigt schnell, ob Automatisierung wirtschaftlich sinnvoll ist.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <h3>Umsetzung</h3>
+          <p>Portal, Datenbank, KI-Auswertung, Freigaben, Reports und Sicherheit werden sauber umgesetzt.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <h3>Betrieb</h3>
+          <p>Wartung, Weiterentwicklung, Backups, Monitoring und Security-Checks bleiben planbar.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="cta-section">
-    <h2 class="reveal">Individuelle Software. Klare Ergebnisse.</h2>
-    <p class="cta-sub reveal reveal-delay-1">Sie haben eine konkrete Anforderung? Lassen Sie uns sprechen.</p>
-    <div class="cta-buttons reveal reveal-delay-2">
-      <a href="kontakt.html" class="cta-button"><span>Kontakt aufnehmen</span></a>
+  <!-- ── Closing CTA ── -->
+  <section class="cta-final" id="kontakt">
+    <h2 class="reveal">Sie haben einen Prozess,<br>der zu viel Zeit kostet?</h2>
+    <p class="reveal reveal-delay-1">
+      Dann lohnt sich ein kurzer Austausch. Wir prüfen, ob ein internes KI-Workflow-System, ein Fachportal oder eine Compliance-Struktur sinnvoll ist.
+    </p>
+    <div class="hero-actions reveal reveal-delay-2">
+      <a href="kontakt.html" class="btn btn-primary"><span>Projekt besprechen</span></a>
+      <a href="mailto:hello@corelead.solutions" class="btn btn-ghost"><span>E-Mail schreiben</span></a>
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- ── Footer ── -->
   <footer>
-    <a href="index.html" class="footer-logo"><img src="logo-corelead.svg" alt="CoreLead"></a>
-    <div class="footer-links">
-      <a href="datenschutz.html">Datenschutzerklärung</a>
-      <a href="impressum.html">Impressum</a>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo"><img src="logo-corelead.svg" alt="CoreLead"></a>
+        <p>Individuelle Software, KI-Workflows und Informationssicherheit für den Mittelstand.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#ki">Leistungen</a>
+        <a href="https://www.compliantdesk.de" target="_blank" rel="noopener">CompliantDesk</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="impressum.html">Impressum</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <small>&copy; <span id="year"></span> Corelead GmbH &middot; München, Deutschland</small>
+      <small>hello@corelead.solutions</small>
     </div>
   </footer>
 
   <script>
-    // ── Particle Network Canvas ──
+    // ── Particle Network ──
     (function() {
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const canvas = document.getElementById('particle-canvas');
+      if (!canvas || reduce) return;
       const ctx = canvas.getContext('2d');
       let particles = [];
       let mouse = { x: null, y: null };
-      let animationId;
 
       function resize() {
-        canvas.width = canvas.offsetWidth * window.devicePixelRatio;
+        canvas.width  = canvas.offsetWidth  * window.devicePixelRatio;
         canvas.height = canvas.offsetHeight * window.devicePixelRatio;
-        ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+        ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
+        init();
       }
-
-      window.addEventListener('resize', resize);
-      resize();
 
       class Particle {
         constructor() {
-          this.x = Math.random() * canvas.offsetWidth;
-          this.y = Math.random() * canvas.offsetHeight;
-          this.vx = (Math.random() - 0.5) * 0.4;
-          this.vy = (Math.random() - 0.5) * 0.4;
-          this.radius = Math.random() * 1.5 + 0.5;
+          this.x  = Math.random() * canvas.offsetWidth;
+          this.y  = Math.random() * canvas.offsetHeight;
+          this.vx = (Math.random() - 0.5) * 0.32;
+          this.vy = (Math.random() - 0.5) * 0.32;
+          this.r  = Math.random() * 1.2 + 0.4;
         }
-
         update() {
-          this.x += this.vx;
-          this.y += this.vy;
-
-          if (this.x < 0 || this.x > canvas.offsetWidth) this.vx *= -1;
+          this.x += this.vx; this.y += this.vy;
+          if (this.x < 0 || this.x > canvas.offsetWidth)  this.vx *= -1;
           if (this.y < 0 || this.y > canvas.offsetHeight) this.vy *= -1;
         }
-
         draw() {
           ctx.beginPath();
-          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+          ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(255,255,255,0.11)';
           ctx.fill();
         }
       }
 
       function init() {
-        const count = Math.min(80, Math.floor((canvas.offsetWidth * canvas.offsetHeight) / 12000));
-        particles = [];
-        for (let i = 0; i < count; i++) {
-          particles.push(new Particle());
-        }
+        const n = Math.min(64, Math.floor((canvas.offsetWidth * canvas.offsetHeight) / 15000));
+        particles = Array.from({ length: n }, () => new Particle());
       }
 
-      function connectParticles() {
+      function connect() {
         for (let i = 0; i < particles.length; i++) {
           for (let j = i + 1; j < particles.length; j++) {
             const dx = particles[i].x - particles[j].x;
             const dy = particles[i].y - particles[j].y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-
-            if (dist < 150) {
+            const d  = Math.sqrt(dx*dx + dy*dy);
+            if (d < 140) {
               ctx.beginPath();
-              ctx.strokeStyle = `rgba(255, 255, 255, ${0.06 * (1 - dist / 150)})`;
+              ctx.strokeStyle = `rgba(255,255,255,${0.045 * (1 - d/140)})`;
               ctx.lineWidth = 0.5;
               ctx.moveTo(particles[i].x, particles[i].y);
               ctx.lineTo(particles[j].x, particles[j].y);
               ctx.stroke();
             }
           }
-
-          if (mouse.x) {
+          if (mouse.x != null) {
             const dx = particles[i].x - mouse.x;
             const dy = particles[i].y - mouse.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 200) {
+            const d  = Math.sqrt(dx*dx + dy*dy);
+            if (d < 170) {
               ctx.beginPath();
-              ctx.strokeStyle = `rgba(255, 255, 255, ${0.12 * (1 - dist / 200)})`;
+              ctx.strokeStyle = `rgba(255,255,255,${0.09 * (1 - d/170)})`;
               ctx.lineWidth = 0.5;
               ctx.moveTo(particles[i].x, particles[i].y);
               ctx.lineTo(mouse.x, mouse.y);
@@ -904,45 +1078,49 @@
       function animate() {
         ctx.clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
         particles.forEach(p => { p.update(); p.draw(); });
-        connectParticles();
-        animationId = requestAnimationFrame(animate);
+        connect();
+        requestAnimationFrame(animate);
       }
 
       canvas.addEventListener('mousemove', e => {
-        const rect = canvas.getBoundingClientRect();
-        mouse.x = e.clientX - rect.left;
-        mouse.y = e.clientY - rect.top;
+        const r = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - r.left;
+        mouse.y = e.clientY - r.top;
       });
+      canvas.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
 
-      canvas.addEventListener('mouseleave', () => {
-        mouse.x = null;
-        mouse.y = null;
-      });
-
-      init();
+      window.addEventListener('resize', resize);
+      resize();
       animate();
     })();
 
-    // ── Typewriter Effect ──
+    // ── Hero word scramble-in (once, on load) ──
     (function() {
-      const el = document.getElementById('typewriter');
-      const text = 'Individuelle . Software . Lösungen';
-      let i = 0;
-
-      function type() {
-        if (i < text.length) {
-          const char = text[i];
-          if (char === '.' && text[i-1] === ' ') {
-            el.innerHTML += '<span class="dot">.</span>';
-          } else {
-            el.textContent += char;
-          }
-          i++;
-          setTimeout(type, i < 4 ? 120 : 55 + Math.random() * 30);
+      const el = document.getElementById('heroWord');
+      if (!el) return;
+      const target = 'Transformation.';
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { el.textContent = target; return; }
+      const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      const rc = () => CHARS[Math.floor(Math.random() * CHARS.length)];
+      const len = target.length;
+      let revealed = 0, acc = 0;
+      const RATE = 1 / 4.5;   // chars revealed per frame (50% slower than before)
+      function tick() {
+        let out = '';
+        for (let i = 0; i < len; i++) {
+          const ch = target[i];
+          if (i < revealed || ch === '.' || ch === ' ') out += ch;
+          else out += rc();
         }
+        el.textContent = out;
+        acc += RATE;
+        if (acc >= 1 && revealed < len) { revealed += Math.floor(acc); acc -= Math.floor(acc); }
+        if (revealed < len) requestAnimationFrame(tick);
+        else el.textContent = target;
       }
-
-      setTimeout(type, 600);
+      el.textContent = '';
+      // start once the third headline line has begun to appear
+      setTimeout(() => requestAnimationFrame(tick), 850);
     })();
 
     // ── Sticky Header ──
@@ -950,26 +1128,168 @@
       document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
     });
 
+    // ── Mobile Menu ──
+    (function() {
+      const toggle = document.getElementById('menuToggle');
+      const nav = document.getElementById('nav');
+      function close() {
+        document.body.classList.remove('menu-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+      toggle.addEventListener('click', () => {
+        const open = document.body.classList.toggle('menu-open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      nav.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+    })();
+
     // ── Scroll Reveal ──
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    // ── Security-Log stream (badge) ──
+    (function() {
+      const track = document.getElementById('hexTrack');
+      if (!track) return;
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const TOKENS = [
+        'AES-256', 'sha256', 'TLS 1.3', 'ISO 27001', 'NIS2', 'RSA-4096',
+        'OAuth2', 'MFA', 'RBAC', 'JWT', 'GDPR', 'Azure', 'M365',
+        '0xF2A9', '0x1C4E', 'audit.log', 'policy✓', 'hash✓', '200 OK',
+        'KI-Workflow', 'encrypt', 'verify', 'Security-by-Design'
+      ];
+      let ti = Math.floor(Math.random() * TOKENS.length);
+      const nextToken = () => TOKENS[(ti++) % TOKENS.length];
+
+      // a stream item = [token][separator]
+      function item(text) {
+        const frag = document.createDocumentFragment();
+        const hot = Math.random() < 0.16;
+        const tok = document.createElement(hot ? 'b' : 'span');
+        tok.className = 'tok';
+        tok.textContent = text;
+        const sep = document.createElement('span');
+        sep.className = 'sep';
+        sep.textContent = Math.random() < 0.3 ? '→' : '·';
+        frag.appendChild(tok); frag.appendChild(sep);
+        const wrap = document.createElement('span');
+        wrap.style.display = 'inline-flex';
+        wrap.style.alignItems = 'center';
+        wrap.style.gap = '12px';
+        wrap.appendChild(frag);
+        return wrap;
+      }
+      for (let i = 0; i < 40; i++) track.appendChild(item(nextToken()));
+
+      if (reduce) return;
+
+      let offset = 0;
+      const speed = 0.32;          // px per frame, calm terminal scroll
+      function step() {
+        offset -= speed;
+        const first = track.firstElementChild;
+        if (first) {
+          const w = first.getBoundingClientRect().width + 12; // + gap
+          if (-offset >= w) {
+            offset += w;
+            first.remove();
+            track.appendChild(item(nextToken()));
+          }
         }
-      });
-    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+        track.style.transform = 'translateX(' + offset + 'px)';
+        requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
 
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      // occasional flicker: briefly highlight a visible token
+      setInterval(() => {
+        const toks = track.querySelectorAll('.tok');
+        if (!toks.length) return;
+        const el = toks[Math.floor(Math.random() * Math.min(toks.length, 10))];
+        if (!el) return;
+        el.style.color = 'rgba(255,255,255,0.85)';
+        el.style.textShadow = '0 0 8px rgba(255,255,255,0.30)';
+        setTimeout(() => { el.style.color = ''; el.style.textShadow = ''; }, 560);
+      }, 1100);
+    })();
 
-    // ── Service Card Mouse Glow ──
-    document.querySelectorAll('.service-item').forEach(card => {
-      card.addEventListener('mousemove', e => {
-        const rect = card.getBoundingClientRect();
-        card.style.setProperty('--mouse-x', ((e.clientX - rect.left) / rect.width * 100) + '%');
-        card.style.setProperty('--mouse-y', ((e.clientY - rect.top) / rect.height * 100) + '%');
+    // ── Headline mask + split-stagger reveal ──
+    (function() {
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const targets = document.querySelectorAll('.section-head h2, .cta-final h2, #sicherheit h2');
+      targets.forEach(el => {
+        el.classList.add('reveal-text');
+        if (reduce) return;
+        const nodes = Array.from(el.childNodes);
+        el.innerHTML = '';
+        let idx = 0;
+        nodes.forEach(node => {
+          if (node.nodeName === 'BR') { el.appendChild(document.createElement('br')); return; }
+          (node.textContent || '').split(/(\s+)/).forEach(part => {
+            if (part === '') return;
+            if (/^\s+$/.test(part)) { el.appendChild(document.createTextNode(' ')); return; }
+            const w = document.createElement('span'); w.className = 'rt-word';
+            const inner = document.createElement('span');
+            inner.textContent = part;
+            inner.style.transitionDelay = (idx * 0.05) + 's';
+            w.appendChild(inner); el.appendChild(w); idx++;
+          });
+        });
       });
-    });
+      if (reduce) { targets.forEach(el => el.classList.add('in')); return; }
+      const obs = new IntersectionObserver(es => {
+        es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+      }, { threshold: 0.3, rootMargin: '0px 0px -40px 0px' });
+      targets.forEach(el => obs.observe(el));
+    })();
+
+    // ── Pinned scroll-story ──
+    (function() {
+      const wrap = document.getElementById('pipeline');
+      if (!wrap) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const panels = Array.from(wrap.querySelectorAll('.pin-panel'));
+      const ticks  = Array.from(wrap.querySelectorAll('.pin-tick'));
+      const fill   = document.getElementById('pinFill');
+      const numEl  = document.getElementById('pinNum');
+      const n = panels.length;
+      let cur = -1, ticking = false;
+
+      function update() {
+        const total = wrap.offsetHeight - window.innerHeight;
+        const top = wrap.getBoundingClientRect().top;
+        const scrolled = Math.min(Math.max(-top, 0), total);
+        const prog = total > 0 ? scrolled / total : 0;
+        fill.style.width = (prog * 100) + '%';
+        const idx = Math.min(n - 1, Math.floor(prog * n + 0.00001));
+        if (idx !== cur) {
+          cur = idx;
+          panels.forEach((p, i) => p.classList.toggle('active', i === idx));
+          ticks.forEach((t, i) => {
+            t.classList.toggle('active', i === idx);
+            t.classList.toggle('done', i < idx);
+          });
+          numEl.textContent = String(idx + 1).padStart(2, '0');
+        }
+      }
+      window.addEventListener('scroll', () => {
+        if (!ticking) { requestAnimationFrame(() => { update(); ticking = false; }); ticking = true; }
+      }, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+
+      ticks.forEach((t, i) => t.addEventListener('click', () => {
+        const total = wrap.offsetHeight - window.innerHeight;
+        const y = wrap.offsetTop + ((i + 0.5) / n) * total;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }));
+    })();
+
+    // ── Year ──
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
-
 </body>
 </html>
