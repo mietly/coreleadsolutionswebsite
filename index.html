@@ -3,12 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CoreLead | KI-Workflows, Software &amp; Informationssicherheit</title>
-  <meta name="description" content="CoreLead entwickelt sichere KI-Workflow-Systeme, individuelle Software und Compliance-Lösungen für den deutschen Mittelstand.">
+  <title>CoreLead | KI-Automatisierung &amp; Informationssicherheit München</title>
+  <meta name="description" content="CoreLead verbindet KI-Agenten, Workflow-Automatisierung und Informationssicherheit für den Mittelstand. Automatisierung, die ein Audit übersteht.">
+  <link rel="canonical" href="https://corelead.org/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CoreLead">
+  <meta property="og:title" content="CoreLead | KI-Automatisierung &amp; Informationssicherheit München">
+  <meta property="og:description" content="CoreLead verbindet KI-Agenten, Workflow-Automatisierung und Informationssicherheit für den Mittelstand. Automatisierung, die ein Audit übersteht.">
+  <meta property="og:url" content="https://corelead.org/">
+  <meta property="og:image" content="https://corelead.org/og-image.png">
+  <meta property="og:locale" content="de_DE">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CoreLead | KI-Automatisierung &amp; Informationssicherheit München">
+  <meta name="twitter:description" content="CoreLead verbindet KI-Agenten, Workflow-Automatisierung und Informationssicherheit für den Mittelstand. Automatisierung, die ein Audit übersteht.">
+  <meta name="twitter:image" content="https://corelead.org/og-image.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+
     :root {
       --bg:           #0a0a0a;
       --bg-alt:       #0f0f0f;
@@ -35,12 +48,10 @@
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
-
     ::selection { background: rgba(255,255,255,0.16); color: #fff; }
 
     .wrap { max-width: 1180px; margin: 0 auto; }
 
-    /* ── Shared micro-label ── */
     .eyebrow {
       display: inline-block;
       font-size: 10px;
@@ -51,33 +62,23 @@
       margin-bottom: 26px;
     }
 
-    /* ── Reveal ── */
     .reveal {
       opacity: 0;
       transform: translateY(28px);
       transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1),
                   transform 0.9s cubic-bezier(0.16,1,0.3,1);
     }
-    .reveal.visible { opacity: 1; transform: none; }
-    .reveal-delay-1 { transition-delay: 0.08s; }
-    .reveal-delay-2 { transition-delay: 0.16s; }
-    .reveal-delay-3 { transition-delay: 0.24s; }
-    .reveal-delay-4 { transition-delay: 0.32s; }
-    .reveal-delay-5 { transition-delay: 0.40s; }
+    .reveal.visible  { opacity: 1; transform: none; }
+    .reveal-delay-1  { transition-delay: 0.08s; }
+    .reveal-delay-2  { transition-delay: 0.16s; }
+    .reveal-delay-3  { transition-delay: 0.24s; }
+    .reveal-delay-4  { transition-delay: 0.32s; }
+    .reveal-delay-5  { transition-delay: 0.40s; }
 
     @media (prefers-reduced-motion: reduce) {
       .reveal { opacity: 1; transform: none; transition: none; }
       *, *::before, *::after { animation-duration: 0.001s !important; }
       html { scroll-behavior: auto; }
-      .rt-word > span { transform: none !important; }
-      .pin-wrap { height: auto; }
-      .pin-stage { position: static; height: auto; display: block; padding: 90px 24px; }
-      .pin-panels { height: auto; }
-      .pin-panel { position: static; opacity: 1; transform: none; margin-bottom: 44px; pointer-events: auto; }
-      .pin-panel h3 { font-size: clamp(40px, 12vw, 72px); }
-      .pin-rail { display: none; }
-      .uc-desc { max-height: none; opacity: 1; margin-top: 14px; }
-      .uc-ghost { display: none; }
     }
 
     /* ── Header ── */
@@ -104,19 +105,22 @@
     .logo { display: inline-flex; align-items: center; text-decoration: none; line-height: 1; }
     .logo img { height: 26px; width: auto; }
 
-    nav { display: flex; gap: 34px; align-items: center; }
+    nav { display: flex; gap: 28px; align-items: center; }
 
-    nav a.nav-link {
+    nav a.nav-link, .dropdown-trigger {
       font-family: var(--body);
       font-size: 10.5px;
       font-weight: 600;
       color: rgba(255,255,255,0.58);
       text-decoration: none;
       text-transform: uppercase;
-      letter-spacing: 2.2px;
+      letter-spacing: 2.1px;
       transition: color 0.3s;
       position: relative;
       white-space: nowrap;
+      background: none;
+      border: none;
+      cursor: pointer;
     }
     nav a.nav-link::after {
       content: '';
@@ -128,6 +132,60 @@
     }
     nav a.nav-link:hover        { color: var(--text); }
     nav a.nav-link:hover::after { width: 100%; }
+    nav a.nav-link.active       { color: var(--text); }
+    nav a.nav-link.active::after{ width: 100%; }
+
+    .nav-external { display: inline-flex; align-items: center; gap: 6px; }
+    .nav-external svg { opacity: 0.55; transition: opacity 0.3s, transform 0.3s; }
+    .nav-external:hover svg { opacity: 1; transform: translate(1px,-1px); }
+
+    /* ── Dropdown ── */
+    .nav-item { position: relative; display: flex; align-items: center; }
+    .dropdown-trigger { display: inline-flex; align-items: center; gap: 6px; padding: 4px 0; }
+    .dropdown-trigger .chev { transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); flex-shrink: 0; }
+    .nav-item:hover .dropdown-trigger,
+    .nav-item.open .dropdown-trigger,
+    .dropdown-trigger:focus-visible { color: var(--text); }
+    .nav-item:hover .chev, .nav-item.open .chev { transform: rotate(180deg); }
+    .nav-item.current > .dropdown-trigger { color: var(--text); }
+
+    .dropdown-panel {
+      position: absolute;
+      top: calc(100% + 22px);
+      left: 50%;
+      transform: translateX(-50%) translateY(6px);
+      min-width: 240px;
+      padding: 10px;
+      background: rgba(10,10,10,0.97);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1), visibility 0s linear 0.3s;
+      z-index: 999;
+    }
+    .nav-item:hover .dropdown-panel,
+    .nav-item.open .dropdown-panel,
+    .nav-item:focus-within .dropdown-panel {
+      opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
+      pointer-events: auto; transition-delay: 0s;
+    }
+    .dropdown-link {
+      display: block;
+      padding: 11px 14px;
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.62);
+      text-decoration: none;
+      letter-spacing: 0.2px;
+      border-radius: 2px;
+      transition: background 0.25s ease, color 0.25s ease;
+      white-space: nowrap;
+    }
+    .dropdown-link:hover  { background: rgba(255,255,255,0.05); color: var(--text); }
+    .dropdown-link.active { color: var(--text); background: rgba(255,255,255,0.04); }
 
     .nav-cta {
       font-family: var(--body);
@@ -176,109 +234,6 @@
     body.menu-open .menu-toggle span:nth-child(2) { opacity: 0; }
     body.menu-open .menu-toggle span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-    /* ── Hero ── */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 150px 48px 110px;
-      overflow: hidden;
-    }
-    #particle-canvas {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: 0;
-    }
-    .hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 50% 42%, transparent 30%, rgba(10,10,10,0.55) 100%);
-      pointer-events: none;
-      z-index: 1;
-    }
-    .hero-content { position: relative; z-index: 2; max-width: 980px; }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 8px 0;
-      border: 1px solid transparent;
-      margin-bottom: 48px;
-      opacity: 0;
-      animation: fadeInDown 0.8s 0.25s forwards;
-    }
-
-    /* Security-Log - tokens run right→left inside the badge frame */
-    .hex-stream {
-      position: relative;
-      width: 300px;
-      height: 13px;
-      overflow: hidden;
-      -webkit-mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent);
-              mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent);
-    }
-    .hex-stream .track {
-      position: absolute;
-      top: 0; left: 0;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      white-space: nowrap;
-      font-family: 'SFMono-Regular', ui-monospace, 'Menlo', monospace;
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.4px;
-      color: rgba(255,255,255,0.30);
-      will-change: transform;
-    }
-    .hex-stream .track .sep { color: rgba(255,255,255,0.12); }
-    .hex-stream .track b {
-      font-weight: 500;
-      color: rgba(255,255,255,0.85);
-      text-shadow: 0 0 8px rgba(255,255,255,0.30);
-      transition: color 0.4s ease, text-shadow 0.4s ease;
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .hex-stream .track { animation: none !important; }
-    }
-
-    .hero h1 {
-      font-family: var(--display);
-      font-weight: 400;
-      font-size: clamp(40px, 6.4vw, 88px);
-      letter-spacing: 3px;
-      color: var(--text);
-      text-transform: uppercase;
-      line-height: 1.02;
-      margin-bottom: 34px;
-    }
-    .hero h1 .line {
-      display: block;
-      opacity: 0;
-      transform: translateY(26px);
-      animation: heroLine 1s forwards;
-    }
-    .hero h1 .line:nth-child(1) { animation-delay: 0.45s; }
-    .hero h1 .line:nth-child(2) { animation-delay: 0.60s; color: rgba(255,255,255,0.55); }
-    .hero h1 .line:nth-child(3) { animation-delay: 0.75s; }
-    @keyframes heroLine { to { opacity: 1; transform: none; } }
-
-    .hero-actions {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeInUp 1s 1.25s forwards;
-    }
-
     /* ── Buttons ── */
     .btn {
       display: inline-block;
@@ -296,7 +251,6 @@
       transition: color 0.4s ease, border-color 0.4s ease;
     }
     .btn span { position: relative; z-index: 1; }
-
     .btn-primary { background: var(--text); color: var(--bg); }
     .btn-primary::before {
       content: '';
@@ -311,7 +265,6 @@
     }
     .btn-primary:hover { color: var(--text); }
     .btn-primary:hover::before { width: 620px; height: 620px; }
-
     .btn-ghost { background: transparent; color: var(--text); border-color: rgba(255,255,255,0.24); }
     .btn-ghost::before {
       content: '';
@@ -325,32 +278,49 @@
     .btn-ghost:hover { color: var(--bg); border-color: var(--text); }
     .btn-ghost:hover::before { left: 0; }
 
-    .scroll-indicator {
-      position: absolute;
-      bottom: 40px; left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-      opacity: 0;
-      animation: fadeInUp 1s 1.5s forwards;
-    }
-    .scroll-indicator .line {
-      width: 1px; height: 50px;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.22), transparent);
-      margin: 0 auto;
+    @keyframes fadeInUp   { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-14px); } to { opacity: 1; transform: none; } }
+
+    /* ── Page Hero (subpages) ── */
+    .page-hero {
+      padding: 168px 48px 96px;
+      text-align: center;
       position: relative;
-      overflow: hidden;
     }
-    .scroll-indicator .line::after {
+    .page-hero::after {
       content: '';
       position: absolute;
-      top: -50px; width: 1px; height: 50px;
-      background: linear-gradient(to bottom, transparent, var(--text));
-      animation: scrollLine 2.5s ease-in-out infinite;
+      bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 1px; height: 60px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.12), transparent);
     }
-
-    @keyframes scrollLine  { 0% { top: -50px; } 100% { top: 50px; } }
-    @keyframes fadeInUp    { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
-    @keyframes fadeInDown  { from { opacity: 0; transform: translateY(-14px); } to { opacity: 1; transform: none; } }
+    .page-hero .eyebrow { opacity: 0; animation: fadeInDown 0.8s 0.15s forwards; }
+    .page-hero h1 {
+      font-family: var(--display);
+      font-size: clamp(32px, 4.5vw, 56px);
+      font-weight: 400;
+      color: var(--text);
+      letter-spacing: 2px;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeInUp 1s 0.3s forwards;
+    }
+    .page-hero p {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--text-dim);
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.85;
+      opacity: 0;
+      animation: fadeInUp 1s 0.5s forwards;
+    }
+    .page-hero .hero-actions {
+      margin-top: 40px;
+      display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;
+      opacity: 0; animation: fadeInUp 1s 0.65s forwards;
+    }
 
     /* ── Section base ── */
     section.block { padding: 130px 48px; position: relative; }
@@ -363,7 +333,6 @@
       width: 1px; height: 58px;
       background: linear-gradient(to bottom, rgba(255,255,255,0.10), transparent);
     }
-
     .section-head { max-width: 760px; margin-bottom: 64px; }
     .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
     .section-head h2 {
@@ -375,142 +344,16 @@
       color: var(--text);
       margin-bottom: 22px;
     }
-    .section-head p {
-      font-size: 15px;
-      color: var(--text-dim);
-      line-height: 1.85;
-      max-width: 600px;
-    }
+    .section-head p { font-size: 15px; color: var(--text-dim); line-height: 1.85; max-width: 600px; }
     .section-head.center p { margin: 0 auto; }
 
-    /* ── Use cases — interactive index list ── */
-    .uc-list { border-top: 1px solid var(--border); }
-    .uc-row {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      padding: 30px 26px 30px 0;
-      border-bottom: 1px solid var(--border);
-      overflow: hidden;
-      transition: padding 0.55s cubic-bezier(0.16,1,0.3,1), background 0.5s ease;
-    }
-    .uc-row::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 50%;
-      transform: translateY(-50%);
-      width: 2px; height: 0;
-      background: var(--text);
-      transition: height 0.55s cubic-bezier(0.16,1,0.3,1);
-    }
-    .uc-row:hover, .uc-row:focus-within {
-      background: rgba(255,255,255,0.022);
-      padding-left: 26px;
-    }
-    .uc-row:hover::before, .uc-row:focus-within::before { height: 64%; }
-    .uc-row:focus-visible { outline: none; }
-
-    .uc-main { display: flex; align-items: baseline; gap: 26px; position: relative; z-index: 2; min-width: 0; }
-    .uc-idx {
-      font-family: var(--display);
-      font-size: 26px; letter-spacing: 1px;
-      color: var(--text-ghost); line-height: 1;
-      min-width: 42px; flex-shrink: 0;
-      transition: color 0.5s ease, transform 0.55s cubic-bezier(0.16,1,0.3,1);
-    }
-    .uc-row:hover .uc-idx, .uc-row:focus-within .uc-idx { color: var(--text); }
-
-    .uc-text { min-width: 0; }
-    .uc-tag {
-      display: block;
-      font-size: 9.5px; font-weight: 700; letter-spacing: 2.5px;
-      text-transform: uppercase; color: var(--text-faint);
-      margin-bottom: 10px; transition: color 0.5s ease;
-    }
-    .uc-row:hover .uc-tag, .uc-row:focus-within .uc-tag { color: var(--text-dim); }
-    .uc-text h3 {
-      font-family: var(--body);
-      font-size: clamp(19px, 2.3vw, 27px); font-weight: 600;
-      letter-spacing: 0.2px; color: var(--text); line-height: 1.18;
-    }
-    .uc-desc {
-      font-size: 14px; color: var(--text-dim); line-height: 1.75; max-width: 560px;
-      max-height: 0; opacity: 0; overflow: hidden; margin-top: 0;
-      transition: max-height 0.6s cubic-bezier(0.16,1,0.3,1), opacity 0.5s ease, margin-top 0.5s ease;
-    }
-    .uc-row:hover .uc-desc, .uc-row:focus-within .uc-desc {
-      max-height: 120px; opacity: 1; margin-top: 14px;
-    }
-
-    .uc-arrow {
-      position: relative; z-index: 2; flex-shrink: 0;
+    .placeholder-note {
+      font-size: 12px;
       color: var(--text-faint);
-      transition: color 0.45s ease, transform 0.55s cubic-bezier(0.16,1,0.3,1);
+      border: 1px dashed var(--border-hover);
+      padding: 18px 22px;
+      max-width: 620px;
     }
-    .uc-row:hover .uc-arrow, .uc-row:focus-within .uc-arrow { color: var(--text); transform: translateX(7px); }
-
-    .uc-ghost {
-      position: absolute; right: 18px; top: 50%;
-      transform: translateY(-50%) translateX(40px);
-      font-family: var(--display);
-      font-size: clamp(76px, 11vw, 148px); letter-spacing: 0.04em;
-      color: rgba(255,255,255,0.028); line-height: 1;
-      pointer-events: none; user-select: none; z-index: 1; opacity: 0;
-      transition: opacity 0.6s ease, transform 0.65s cubic-bezier(0.16,1,0.3,1);
-    }
-    .uc-row:hover .uc-ghost, .uc-row:focus-within .uc-ghost {
-      opacity: 1; transform: translateY(-50%) translateX(0);
-    }
-
-    /* ── Security / split layout ── */
-    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-    .sec-list { list-style: none; display: flex; flex-direction: column; }
-    .sec-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      padding: 18px 0;
-      border-top: 1px solid var(--border);
-      font-size: 14.5px;
-      color: var(--text-soft);
-    }
-    .sec-list li:last-child { border-bottom: 1px solid var(--border); }
-    .sec-list li svg { flex-shrink: 0; margin-top: 2px; color: var(--text-dim); }
-    .note {
-      margin-top: 30px;
-      font-size: 12.5px;
-      color: var(--text-faint);
-      line-height: 1.7;
-      max-width: 460px;
-      padding-left: 16px;
-      border-left: 1px solid var(--border);
-    }
-
-    /* ── Process steps ── */
-    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-    .step { background: var(--bg); padding: 40px 30px 46px; position: relative; transition: background 0.4s ease; }
-    .step:hover { background: rgba(255,255,255,0.02); }
-    .step-num {
-      font-family: var(--display);
-      font-size: 34px;
-      letter-spacing: 2px;
-      color: var(--text-ghost);
-      line-height: 1;
-      margin-bottom: 24px;
-      transition: color 0.4s ease;
-    }
-    .step:hover .step-num { color: rgba(255,255,255,0.22); }
-    .step h3 {
-      font-family: var(--body);
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 12px;
-      letter-spacing: 0.3px;
-    }
-    .step p { font-size: 13px; color: var(--text-dim); line-height: 1.75; }
 
     /* ── Closing CTA ── */
     .cta-final {
@@ -549,7 +392,7 @@
       line-height: 1.85;
       position: relative;
     }
-    .cta-final .hero-actions { animation: none; opacity: 1; }
+    .cta-final .hero-actions { animation: none; opacity: 1; display:flex; justify-content:center; gap:16px; flex-wrap:wrap; }
 
     /* ── Footer ── */
     footer {
@@ -591,96 +434,7 @@
     }
     .footer-bottom small { font-size: 11px; color: var(--text-faint); letter-spacing: 0.3px; }
 
-    /* ── Headline mask + split-stagger reveal ── */
-    .rt-word { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.06em; margin-bottom: -0.06em; }
-    .rt-word > span {
-      display: inline-block;
-      transform: translateY(118%);
-      transition: transform 0.75s cubic-bezier(0.16,1,0.3,1);
-    }
-    .reveal-text.in .rt-word > span { transform: translateY(0); }
-
-    /* ── Pinned scroll-story: Vom Dokument zum Prozess ── */
-    .pin-wrap { position: relative; height: 320vh; background: var(--bg); }
-    .pin-stage {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      padding: 80px 48px;
-    }
-    .pin-stage::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 50% 44%, rgba(255,255,255,0.035), transparent 60%);
-      pointer-events: none;
-    }
-    .pin-inner { width: 100%; max-width: 900px; text-align: center; position: relative; z-index: 1; }
-    .pin-count {
-      font-family: var(--display);
-      font-size: 14px;
-      letter-spacing: 4px;
-      color: var(--text-faint);
-      margin-bottom: 30px;
-    }
-    .pin-count #pinNum { color: var(--text); }
-    .pin-panels { position: relative; height: 240px; }
-    .pin-panel {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transform: translateY(26px);
-      transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
-      pointer-events: none;
-    }
-    .pin-panel.active { opacity: 1; transform: none; pointer-events: auto; }
-    .pin-panel h3 {
-      font-family: var(--display);
-      font-weight: 400;
-      font-size: clamp(54px, 9vw, 130px);
-      letter-spacing: 3px;
-      line-height: 1;
-      text-transform: uppercase;
-      color: var(--text);
-      margin-bottom: 22px;
-    }
-    .pin-panel p { font-size: 15px; color: var(--text-dim); line-height: 1.8; max-width: 460px; }
-    .pin-rail { margin-top: 44px; }
-    .pin-rail-line { position: relative; height: 1px; background: var(--border); max-width: 640px; margin: 0 auto 26px; }
-    .pin-rail-fill { position: absolute; left: 0; top: 0; height: 100%; width: 0; background: rgba(255,255,255,0.55); transition: width 0.15s linear; }
-    .pin-ticks { display: flex; justify-content: space-between; max-width: 680px; margin: 0 auto; }
-    .pin-tick {
-      background: none; border: none; cursor: pointer; padding: 0;
-      display: flex; flex-direction: column; align-items: center; gap: 11px; flex: 1;
-    }
-    .pin-tick .dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--text-ghost);
-      transition: background 0.35s ease, box-shadow 0.35s ease;
-    }
-    .pin-tick .lbl {
-      font-size: 9.5px; font-weight: 600; letter-spacing: 2px;
-      text-transform: uppercase; color: var(--text-faint);
-      transition: color 0.35s ease;
-    }
-    .pin-tick.done .dot { background: var(--text-dim); }
-    .pin-tick.active .dot { background: var(--text); box-shadow: 0 0 11px rgba(255,255,255,0.45); }
-    .pin-tick.active .lbl { color: var(--text); }
-
     /* ── Responsive ── */
-    @media (max-width: 980px) {
-      .steps { grid-template-columns: repeat(2, 1fr); }
-      .split { grid-template-columns: 1fr; gap: 48px; }
-    }
-
     @media (max-width: 768px) {
       header, header.scrolled { padding: 16px 24px; }
 
@@ -691,58 +445,369 @@
         z-index: 1050;
         flex-direction: column;
         justify-content: center;
-        gap: 30px;
+        gap: 22px;
         background: var(--bg);
         transform: translateX(100%);
         transition: transform 0.45s cubic-bezier(0.16,1,0.3,1);
+        overflow-y: auto;
+        padding: 100px 24px 40px;
       }
       body.menu-open { overflow: hidden; }
       body.menu-open nav { transform: translateX(0); }
-      nav a.nav-link { font-size: 14px; letter-spacing: 3px; color: var(--text-soft); }
+      nav a.nav-link, .dropdown-trigger { font-size: 14px; letter-spacing: 3px; color: var(--text-soft); }
       .nav-cta { margin-top: 10px; padding: 14px 30px; font-size: 12px; }
       .menu-toggle { display: flex; }
 
-      .hero { padding: 130px 24px 90px; }
-      .hero h1 { letter-spacing: 2px; }
+      .nav-item { flex-direction: column; align-items: center; width: 100%; }
+      .dropdown-trigger { justify-content: center; width: 100%; padding: 8px 0; }
+      .dropdown-panel {
+        position: static;
+        transform: none;
+        opacity: 1; visibility: visible; pointer-events: auto;
+        min-width: 0; width: 100%;
+        max-height: 0; overflow: hidden;
+        padding: 0; margin: 0;
+        background: none; border: none; backdrop-filter: none;
+        transition: max-height 0.4s cubic-bezier(0.16,1,0.3,1);
+      }
+      .nav-item.open .dropdown-panel { max-height: 300px; padding-top: 6px; }
+      .dropdown-link { text-align: center; font-size: 13px; padding: 10px 0; }
 
+      .page-hero { padding: 130px 24px 72px; }
       section.block { padding: 90px 24px; }
       .section-head { margin-bottom: 44px; }
+      .cta-final { padding: 100px 24px; }
+      .cta-final .hero-actions, .page-hero .hero-actions { flex-direction: column; align-items: stretch; width: 100%; max-width: 320px; margin-left: auto; margin-right: auto; }
+      .btn { text-align: center; }
 
+      footer { padding: 48px 24px 32px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+
+
+    /* ── Hero (index only) ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 150px 48px 110px;
+      overflow: hidden;
+    }
+    #particle-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+    .hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 42%, transparent 30%, rgba(10,10,10,0.55) 100%);
+      pointer-events: none; z-index: 1;
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 980px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; padding: 8px 0;
+      border: 1px solid transparent; margin-bottom: 48px;
+      opacity: 0; animation: fadeInDown 0.8s 0.25s forwards;
+    }
+    .hex-stream {
+      position: relative; width: 300px; height: 13px; overflow: hidden;
+      -webkit-mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent);
+              mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent);
+    }
+    .hex-stream .track {
+      position: absolute; top: 0; left: 0; height: 100%;
+      display: flex; align-items: center; gap: 12px; white-space: nowrap;
+      font-family: 'SFMono-Regular', ui-monospace, 'Menlo', monospace;
+      font-size: 10px; font-weight: 500; letter-spacing: 0.4px;
+      color: rgba(255,255,255,0.30); will-change: transform;
+    }
+    .hex-stream .track .sep { color: rgba(255,255,255,0.12); }
+    .hex-stream .track b {
+      font-weight: 500; color: rgba(255,255,255,0.85);
+      text-shadow: 0 0 8px rgba(255,255,255,0.30);
+      transition: color 0.4s ease, text-shadow 0.4s ease;
+    }
+    @media (prefers-reduced-motion: reduce) { .hex-stream .track { animation: none !important; } }
+
+    .hero h1 {
+      font-family: var(--display); font-weight: 400;
+      font-size: clamp(40px, 6.4vw, 88px); letter-spacing: 3px;
+      color: var(--text); text-transform: uppercase; line-height: 1.02;
+      margin-bottom: 34px;
+    }
+    .hero h1 .line { display: block; opacity: 0; transform: translateY(26px); animation: heroLine 1s forwards; }
+    .hero h1 .line:nth-child(1) { animation-delay: 0.45s; }
+    .hero h1 .line:nth-child(2) { animation-delay: 0.60s; color: rgba(255,255,255,0.55); }
+    .hero h1 .line:nth-child(3) { animation-delay: 0.75s; }
+    @keyframes heroLine { to { opacity: 1; transform: none; } }
+
+    .hero-sub {
+      font-size: 15.5px; color: var(--text-dim); line-height: 1.85;
+      max-width: 620px; margin: 0 auto 44px;
+      opacity: 0; animation: fadeInUp 1s 0.95s forwards;
+    }
+
+    .hero-actions {
+      display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;
+      opacity: 0; animation: fadeInUp 1s 1.25s forwards;
+    }
+
+    .scroll-indicator { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 2; opacity: 0; animation: fadeInUp 1s 1.5s forwards; }
+    .scroll-indicator .line {
+      width: 1px; height: 50px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.22), transparent);
+      margin: 0 auto; position: relative; overflow: hidden;
+    }
+    .scroll-indicator .line::after {
+      content: ''; position: absolute; top: -50px; width: 1px; height: 50px;
+      background: linear-gradient(to bottom, transparent, var(--text));
+      animation: scrollLine 2.5s ease-in-out infinite;
+    }
+    @keyframes scrollLine { 0% { top: -50px; } 100% { top: 50px; } }
+
+    @media (max-width: 768px) {
+      .hero { padding: 130px 24px 90px; }
+      .hero h1 { letter-spacing: 2px; }
+    }
+
+    /* ── Zahlenband ── */
+    .stat-band { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg-alt); }
+    .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); max-width: 1180px; margin: 0 auto; }
+    .stat-item { padding: 44px 24px; text-align: center; border-left: 1px solid var(--border); }
+    .stat-item:first-child { border-left: none; }
+    .stat-num {
+      font-family: var(--display); font-weight: 400;
+      font-size: clamp(24px, 2.6vw, 36px); letter-spacing: 1px;
+      color: var(--text); margin-bottom: 10px; line-height: 1;
+    }
+    .stat-label { font-size: 10.5px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-faint); line-height: 1.5; }
+
+    /* ── Zwei-Säulen ── */
+    .pillar-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .pillar-card { background: var(--bg); padding: 56px 52px; }
+    .pillar-card h3 {
+      font-family: var(--display); font-weight: 400;
+      font-size: clamp(24px, 2.8vw, 32px); letter-spacing: 1px; line-height: 1.1;
+      color: var(--text); margin-bottom: 24px;
+    }
+    .pillar-list { list-style: none; margin-bottom: 30px; }
+    .pillar-list li {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 15px 0; border-top: 1px solid var(--border);
+      font-size: 13.5px; color: var(--text-soft); line-height: 1.6;
+    }
+    .pillar-list li:last-child { border-bottom: 1px solid var(--border); }
+    .pillar-list li svg { flex-shrink: 0; margin-top: 3px; color: var(--text-dim); }
+    .pillar-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 10.5px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text); text-decoration: none; transition: gap 0.3s ease;
+    }
+    .pillar-link:hover { gap: 12px; }
+
+    /* ── Use-case list ── */
+    .uc-list { border-top: 1px solid var(--border); }
+    .uc-row {
+      position: relative; display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; padding: 28px 26px 28px 0; border-bottom: 1px solid var(--border);
+      overflow: hidden; transition: padding 0.55s cubic-bezier(0.16,1,0.3,1), background 0.5s ease;
+    }
+    .uc-row::before {
+      content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+      width: 2px; height: 0; background: var(--text); transition: height 0.55s cubic-bezier(0.16,1,0.3,1);
+    }
+    .uc-row:hover, .uc-row:focus-within { background: rgba(255,255,255,0.022); padding-left: 26px; }
+    .uc-row:hover::before, .uc-row:focus-within::before { height: 64%; }
+    .uc-row:focus-visible { outline: none; }
+    .uc-main { display: flex; align-items: baseline; gap: 26px; position: relative; z-index: 2; min-width: 0; }
+    .uc-idx {
+      font-family: var(--display); font-size: 24px; letter-spacing: 1px;
+      color: var(--text-ghost); line-height: 1; min-width: 40px; flex-shrink: 0;
+      transition: color 0.5s ease;
+    }
+    .uc-row:hover .uc-idx, .uc-row:focus-within .uc-idx { color: var(--text); }
+    .uc-text { min-width: 0; }
+    .uc-tag {
+      display: block; font-size: 9.5px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--text-faint); margin-bottom: 10px; transition: color 0.5s ease;
+    }
+    .uc-row:hover .uc-tag, .uc-row:focus-within .uc-tag { color: var(--text-dim); }
+    .uc-text h3 {
+      font-family: var(--body); font-size: clamp(17px, 2vw, 22px); font-weight: 600;
+      letter-spacing: 0.2px; color: var(--text); line-height: 1.18;
+    }
+    .uc-desc {
+      font-size: 13.5px; color: var(--text-dim); line-height: 1.7; max-width: 560px;
+      max-height: 0; opacity: 0; overflow: hidden; margin-top: 0;
+      transition: max-height 0.6s cubic-bezier(0.16,1,0.3,1), opacity 0.5s ease, margin-top 0.5s ease;
+    }
+    .uc-row:hover .uc-desc, .uc-row:focus-within .uc-desc { max-height: 160px; opacity: 1; margin-top: 12px; }
+    .uc-security { display: block; margin-top: 8px; color: var(--text-faint); font-size: 12px; }
+    .uc-arrow { position: relative; z-index: 2; flex-shrink: 0; color: var(--text-faint); transition: color 0.45s ease, transform 0.55s cubic-bezier(0.16,1,0.3,1); }
+    .uc-row:hover .uc-arrow, .uc-row:focus-within .uc-arrow { color: var(--text); transform: translateX(7px); }
+
+    /* ── Pinned scroll-story ── */
+    .pin-wrap { position: relative; height: 320vh; background: var(--bg); }
+    .pin-stage { position: sticky; top: 0; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 80px 48px; }
+    .pin-stage::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 44%, rgba(255,255,255,0.035), transparent 60%);
+      pointer-events: none;
+    }
+    .pin-inner { width: 100%; max-width: 900px; text-align: center; position: relative; z-index: 1; }
+    .pin-count { font-family: var(--display); font-size: 14px; letter-spacing: 4px; color: var(--text-faint); margin-bottom: 30px; }
+    .pin-count #pinNum { color: var(--text); }
+    .pin-panels { position: relative; height: 240px; }
+    .pin-panel {
+      position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      opacity: 0; transform: translateY(26px);
+      transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
+      pointer-events: none;
+    }
+    .pin-panel.active { opacity: 1; transform: none; pointer-events: auto; }
+    .pin-panel h3 {
+      font-family: var(--display); font-weight: 400; font-size: clamp(54px, 9vw, 130px);
+      letter-spacing: 3px; line-height: 1; text-transform: uppercase; color: var(--text); margin-bottom: 22px;
+    }
+    .pin-panel p { font-size: 15px; color: var(--text-dim); line-height: 1.8; max-width: 460px; }
+    .pin-rail { margin-top: 44px; }
+    .pin-rail-line { position: relative; height: 1px; background: var(--border); max-width: 640px; margin: 0 auto 26px; }
+    .pin-rail-fill { position: absolute; left: 0; top: 0; height: 100%; width: 0; background: rgba(255,255,255,0.55); transition: width 0.15s linear; }
+    .pin-ticks { display: flex; justify-content: space-between; max-width: 680px; margin: 0 auto; }
+    .pin-tick { background: none; border: none; cursor: pointer; padding: 0; display: flex; flex-direction: column; align-items: center; gap: 11px; flex: 1; }
+    .pin-tick .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--text-ghost); transition: background 0.35s ease, box-shadow 0.35s ease; }
+    .pin-tick .lbl { font-size: 9.5px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-faint); transition: color 0.35s ease; }
+    .pin-tick.done .dot { background: var(--text-dim); }
+    .pin-tick.active .dot { background: var(--text); box-shadow: 0 0 11px rgba(255,255,255,0.45); }
+    .pin-tick.active .lbl { color: var(--text); }
+
+    /* ── Security split ── */
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .sec-list { list-style: none; display: flex; flex-direction: column; }
+    .sec-list li { display: flex; align-items: flex-start; gap: 16px; padding: 16px 0; border-top: 1px solid var(--border); font-size: 14px; color: var(--text-soft); }
+    .sec-list li:last-child { border-bottom: 1px solid var(--border); }
+    .sec-list li svg { flex-shrink: 0; margin-top: 2px; color: var(--text-dim); }
+    .note { margin-top: 30px; font-size: 12.5px; color: var(--text-faint); line-height: 1.7; max-width: 460px; padding-left: 16px; border-left: 1px solid var(--border); }
+
+    /* ── Warum Corelead ── */
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .why-card { background: var(--bg); padding: 48px 38px; transition: background 0.4s ease; }
+    .why-card:hover { background: rgba(255,255,255,0.02); }
+    .why-num { font-family: var(--display); font-size: 32px; letter-spacing: 2px; color: var(--text-ghost); line-height: 1; margin-bottom: 22px; }
+    .why-card h3 { font-family: var(--body); font-size: 16.5px; font-weight: 600; color: var(--text); margin-bottom: 14px; letter-spacing: 0.2px; line-height: 1.3; }
+    .why-card p { font-size: 13.5px; color: var(--text-dim); line-height: 1.75; }
+
+    /* ── CompliantDesk teaser ── */
+    .cd-teaser {
+      border: 1px solid rgba(255,255,255,0.09); background: rgba(255,255,255,0.025);
+      padding: 60px 56px; position: relative; overflow: hidden;
+    }
+    .cd-teaser::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.14), transparent); }
+    .cd-teaser h2 { margin-bottom: 20px; }
+    .cd-teaser p { font-size: 15px; color: var(--text-dim); line-height: 1.85; max-width: 680px; margin-bottom: 18px; }
+    .cd-teaser .note { border-left: 1px solid var(--border); }
+    .cd-teaser .hero-actions { justify-content: flex-start; margin-top: 32px; animation: none; opacity: 1; }
+
+    /* ── Process steps ── */
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .step { background: var(--bg); padding: 38px 28px 42px; position: relative; transition: background 0.4s ease; }
+    .step:hover { background: rgba(255,255,255,0.02); }
+    .step-num { font-family: var(--display); font-size: 32px; letter-spacing: 2px; color: var(--text-ghost); line-height: 1; margin-bottom: 22px; transition: color 0.4s ease; }
+    .step:hover .step-num { color: rgba(255,255,255,0.22); }
+    .step h3 { font-family: var(--body); font-size: 15.5px; font-weight: 600; color: var(--text); margin-bottom: 12px; letter-spacing: 0.3px; }
+    .step p { font-size: 12.5px; color: var(--text-dim); line-height: 1.7; }
+
+    /* ── Headline mask + split-stagger reveal ── */
+    .rt-word { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.06em; margin-bottom: -0.06em; }
+    .rt-word > span { display: inline-block; transform: translateY(118%); transition: transform 0.75s cubic-bezier(0.16,1,0.3,1); }
+    .reveal-text.in .rt-word > span { transform: translateY(0); }
+
+    @media (max-width: 980px) {
+      .steps { grid-template-columns: repeat(2, 1fr); }
+      .why-grid { grid-template-columns: 1fr; }
+      .split { grid-template-columns: 1fr; gap: 48px; }
+      .stat-row { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(3) { border-left: none; }
+    }
+    @media (max-width: 768px) {
+      .pillar-grid { grid-template-columns: 1fr; }
+      .pillar-card { padding: 40px 28px; }
+      .stat-row { grid-template-columns: repeat(2, 1fr); }
+      .stat-item { padding: 30px 16px; border-left: none; border-top: 1px solid var(--border); }
+      .stat-item:nth-child(1), .stat-item:nth-child(2) { border-top: none; }
       .steps { grid-template-columns: 1fr; }
-      .tile, .step { padding: 38px 28px; }
-
-      /* use-case list: always expanded on mobile (no hover) */
-      .uc-row { padding: 24px 0; }
+      .step { padding: 34px 26px; }
+      .why-card { padding: 38px 28px; }
+      .uc-row { padding: 22px 0; }
       .uc-row:hover, .uc-row:focus-within { padding-left: 0; }
-      .uc-main { gap: 18px; }
-      .uc-idx { font-size: 21px; min-width: 32px; }
-      .uc-text h3 { font-size: 19px; }
-      .uc-desc { max-height: none; opacity: 1; margin-top: 12px; }
-      .uc-arrow, .uc-ghost { display: none; }
-
+      .uc-main { gap: 16px; }
+      .uc-idx { font-size: 19px; min-width: 30px; }
+      .uc-text h3 { font-size: 17px; }
+      .uc-desc { max-height: none; opacity: 1; margin-top: 10px; }
+      .uc-arrow { display: none; }
       .pin-stage { padding: 80px 22px; }
       .pin-panels { height: 220px; }
       .pin-panel h3 { font-size: clamp(46px, 15vw, 76px); letter-spacing: 1.5px; }
       .pin-panel p { font-size: 13.5px; }
       .pin-tick .lbl { font-size: 8px; letter-spacing: 1px; }
       .pin-ticks { gap: 4px; }
-
-      .cta-final { padding: 100px 24px; }
-      .hero-actions { flex-direction: column; align-items: stretch; width: 100%; max-width: 320px; margin-left: auto; margin-right: auto; }
-      .btn { text-align: center; }
-
-      footer { padding: 48px 24px 32px; }
-      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .cd-teaser { padding: 40px 26px; }
+      .cd-teaser .hero-actions { justify-content: center; }
     }
+
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Corelead GmbH",
+    "alternateName": "CoreLead",
+    "url": "https://corelead.org/",
+    "logo": "https://corelead.org/logo-corelead.svg",
+    "description": "CoreLead verbindet KI-Automatisierung und Informationssicherheit für den Mittelstand: KI-Agenten, Workflow-Automatisierung, Individualsoftware, ISMS und CISO as a Service.",
+    "email": "hello@corelead.solutions",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "München",
+      "addressCountry": "DE"
+    },
+    "sameAs": ["https://www.compliantdesk.de"]
+  }
+  </script>
 </head>
 <body>
 
   <header id="header">
     <a href="/" class="logo"><img src="logo-corelead.svg" alt="CoreLead"></a>
     <nav id="nav">
-      <a href="#ki" class="nav-link">KI-Workflows</a>
-      <a href="#sicherheit" class="nav-link">Informationssicherheit</a>
+      <div class="nav-item has-dropdown">
+        <button class="dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          KI-Automatisierung
+          <svg class="chev" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="dropdown-panel">
+          <a href="ki-agenten.html" class="dropdown-link">KI-Agenten</a>
+          <a href="workflow-automatisierung.html" class="dropdown-link">Workflow-Automatisierung</a>
+          <a href="individualsoftware.html" class="dropdown-link">Individualsoftware</a>
+          <a href="use-cases.html" class="dropdown-link">Use Cases</a>
+          <a href="faq.html" class="dropdown-link">FAQ</a>
+        </div>
+      </div>
+      <div class="nav-item has-dropdown">
+        <button class="dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          Informationssicherheit
+          <svg class="chev" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="dropdown-panel">
+          <a href="informationssicherheit.html" class="dropdown-link">ISMS &amp; ISO 27001/NIS2</a>
+          <a href="ciso-as-a-service.html" class="dropdown-link">CISO as a Service</a>
+          <a href="eu-ai-act.html" class="dropdown-link">EU AI Act</a>
+        </div>
+      </div>
+      <a href="https://www.compliantdesk.de" target="_blank" rel="noopener" class="nav-link nav-external">CompliantDesk<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      <a href="blog/index.html" class="nav-link">Blog</a>
+      <a href="vorgehen.html" class="nav-link">Vorgehen</a>
       <a href="kontakt.html" class="nav-link">Kontakt</a>
       <a href="kontakt.html" class="nav-cta">Projekt besprechen</a>
     </nav>
@@ -751,33 +816,78 @@
     </button>
   </header>
 
-  <!-- ── Hero ── -->
   <section class="hero">
     <canvas id="particle-canvas"></canvas>
     <div class="hero-content">
-      <div class="hero-badge" aria-label="Software, KI-Workflows, Informationssicherheit">
+      <div class="hero-badge" aria-label="KI-Automatisierung und Informationssicherheit">
         <span class="hex-stream" aria-hidden="true"><span class="track" id="hexTrack"></span></span>
       </div>
       <h1>
-        <span class="line">KI-Workflows.</span>
-        <span class="line">Informationssicherheit.</span>
-        <span class="line"><span id="heroWord">Transformation.</span></span>
+        <span class="line">KI-Automatisierung,</span>
+        <span class="line">die ein Audit</span>
+        <span class="line"><span id="heroWord">übersteht.</span></span>
       </h1>
+      <p class="hero-sub">Corelead verbindet KI-Agenten, Workflow-Automatisierung und Informationssicherheit für den Mittelstand. Aus einer Hand, aus München, mit Betreiber-Erfahrung statt Beratungsfolien.</p>
       <div class="hero-actions">
         <a href="kontakt.html" class="btn btn-primary"><span>Projekt besprechen</span></a>
-        <a href="#ki" class="btn btn-ghost"><span>Leistungen ansehen</span></a>
+        <a href="use-cases.html" class="btn btn-ghost"><span>Leistungen ansehen</span></a>
       </div>
     </div>
     <div class="scroll-indicator"><div class="line"></div></div>
   </section>
 
+  <!-- ── Zahlenband ── -->
+  <section class="stat-band">
+    <div class="stat-row">
+      <div class="stat-item reveal"><div class="stat-num">15+</div><div class="stat-label">Jahre IT-Leitung</div></div>
+      <div class="stat-item reveal reveal-delay-1"><div class="stat-num">1.700</div><div class="stat-label">User verantwortet</div></div>
+      <div class="stat-item reveal reveal-delay-2"><div class="stat-num">Eigenes SaaS</div><div class="stat-label">im Einsatz</div></div>
+      <div class="stat-item reveal reveal-delay-3"><div class="stat-num">100&nbsp;%</div><div class="stat-label">EU-Datenverarbeitung</div></div>
+    </div>
+  </section>
+
+  <!-- ── Zwei Säulen ── -->
+  <section class="block">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Zwei Säulen, eine Verantwortung</span>
+        <h2>Automatisierung und Sicherheit gehören zusammen.</h2>
+        <p>Reine KI-Agenturen bauen Workflows ohne Sicherheitskonzept. Reine Security-Berater liefern Dokumente ohne Umsetzung. Corelead deckt beides ab.</p>
+      </div>
+      <div class="pillar-grid reveal reveal-delay-1">
+        <div class="pillar-card">
+          <span class="eyebrow">Leistung</span>
+          <h3>KI-Automatisierung &amp; Agenten</h3>
+          <ul class="pillar-list">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>KI-Agenten mit Werkzeugzugriff und Freigabe-Prinzip</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Workflow-Automatisierung mit n8n, Power Automate oder individuellem Code</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Individuelle Fachportale und interne Software</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>EU-Datenverarbeitung, Protokollierung und Nachvollziehbarkeit</li>
+          </ul>
+          <a href="use-cases.html" class="pillar-link">Use Cases ansehen<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <div class="pillar-card">
+          <span class="eyebrow">Leistung</span>
+          <h3>Informationssicherheit &amp; Compliance</h3>
+          <ul class="pillar-list">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>ISMS-Aufbau, ISO 27001- und NIS2-Vorbereitung</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>CISO as a Service, externe Security-Verantwortung</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>EU AI Act Readiness für KI-Projekte</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Eigenes SaaS-Produkt CompliantDesk, im laufenden Betrieb</li>
+          </ul>
+          <a href="informationssicherheit.html" class="pillar-link">Informationssicherheit ansehen<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ── Use Cases ── -->
-  <section class="block alt" id="ki">
+  <section class="block alt" id="use-cases">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="eyebrow">KI-Workflows</span>
+        <span class="eyebrow">Use Cases</span>
         <h2>Konkrete Anwendungsfälle.</h2>
-        <p>Anwendungsfälle, die im Tagesgeschäft Zeit sparen - KI-gestützt, mit kontrollierter Datenhaltung und nachvollziehbaren Ergebnissen.</p>
+        <p>Anwendungsfälle, die im Tagesgeschäft Zeit sparen. KI-gestützt, mit kontrollierter Datenhaltung und nachvollziehbaren Ergebnissen.</p>
       </div>
       <div class="uc-list reveal reveal-delay-1">
         <div class="uc-row" tabindex="0">
@@ -786,13 +896,10 @@
             <div class="uc-text">
               <span class="uc-tag">Angebote</span>
               <h3>Angebotsassistent</h3>
-              <p class="uc-desc">Alte Angebote, Leistungsverzeichnisse und technische Unterlagen analysieren. Neue Angebotsentwürfe strukturiert vorbereiten.</p>
+              <p class="uc-desc">Alte Angebote, Leistungsverzeichnisse und technische Unterlagen analysieren. Neue Angebotsentwürfe strukturiert vorbereiten.<span class="uc-security">Sicherheit: Dokumente bleiben in Ihrer Umgebung, jeder Entwurf durchläuft eine Freigabe vor Versand.</span></p>
             </div>
           </div>
-          <span class="uc-arrow" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </span>
-          <span class="uc-ghost" aria-hidden="true">01</span>
+          <span class="uc-arrow" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </div>
         <div class="uc-row" tabindex="0">
           <div class="uc-main">
@@ -800,13 +907,10 @@
             <div class="uc-text">
               <span class="uc-tag">Vergabe</span>
               <h3>Ausschreibungsanalyse</h3>
-              <p class="uc-desc">Anforderungen, Risiken, Fristen und fehlende Informationen aus Ausschreibungsunterlagen extrahieren.</p>
+              <p class="uc-desc">Anforderungen, Risiken, Fristen und fehlende Informationen aus Ausschreibungsunterlagen extrahieren.<span class="uc-security">Sicherheit: Auswertung ausschließlich in EU-Infrastruktur, Ergebnis wird vor Nutzung geprüft.</span></p>
             </div>
           </div>
-          <span class="uc-arrow" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </span>
-          <span class="uc-ghost" aria-hidden="true">02</span>
+          <span class="uc-arrow" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </div>
         <div class="uc-row" tabindex="0">
           <div class="uc-main">
@@ -814,13 +918,10 @@
             <div class="uc-text">
               <span class="uc-tag">Verträge</span>
               <h3>Vertrags- und Fristenradar</h3>
-              <p class="uc-desc">Verträge, AVVs, Wartungsverträge und Fristen zentral überwachen - mit Erinnerungen statt Excel-Listen.</p>
+              <p class="uc-desc">Verträge, AVVs, Wartungsverträge und Fristen zentral überwachen, mit Erinnerungen statt Excel-Listen.<span class="uc-security">Sicherheit: Zugriff nach Rollenkonzept, jede Änderung wird protokolliert.</span></p>
             </div>
           </div>
-          <span class="uc-arrow" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </span>
-          <span class="uc-ghost" aria-hidden="true">03</span>
+          <span class="uc-arrow" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </div>
         <div class="uc-row" tabindex="0">
           <div class="uc-main">
@@ -828,13 +929,10 @@
             <div class="uc-text">
               <span class="uc-tag">Service-Desk</span>
               <h3>Service-Desk- &amp; Wissensassistent</h3>
-              <p class="uc-desc">Tickets klassifizieren, Lösungsvorschläge erzeugen und Wissen aus bestehenden Quellen nutzbar machen.</p>
+              <p class="uc-desc">Tickets klassifizieren, Lösungsvorschläge erzeugen und Wissen aus bestehenden Quellen nutzbar machen.<span class="uc-security">Sicherheit: Wissensbasis bleibt intern, Antworten werden vor Versand markiert, nicht automatisch verschickt.</span></p>
             </div>
           </div>
-          <span class="uc-arrow" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </span>
-          <span class="uc-ghost" aria-hidden="true">04</span>
+          <span class="uc-arrow" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </div>
         <div class="uc-row" tabindex="0">
           <div class="uc-main">
@@ -842,13 +940,10 @@
             <div class="uc-text">
               <span class="uc-tag">Projekte</span>
               <h3>Projekt- &amp; Baustellendokumentation</h3>
-              <p class="uc-desc">Berichte, Abnahmen, Nachträge und Projektdokumentation aus vorhandenen Informationen vorbereiten.</p>
+              <p class="uc-desc">Berichte, Abnahmen, Nachträge und Projektdokumentation aus vorhandenen Informationen vorbereiten.<span class="uc-security">Sicherheit: Versionsstände nachvollziehbar, Freigabe vor Übergabe an den Kunden.</span></p>
             </div>
           </div>
-          <span class="uc-arrow" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </span>
-          <span class="uc-ghost" aria-hidden="true">05</span>
+          <span class="uc-arrow" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </div>
         <div class="uc-row" tabindex="0">
           <div class="uc-main">
@@ -856,19 +951,82 @@
             <div class="uc-text">
               <span class="uc-tag">Fachportal</span>
               <h3>Fachportal für interne Prozesse</h3>
-              <p class="uc-desc">Rollen, Workflows, Freigaben, Uploads, Dashboards und Exporte als internes SaaS - auf Ihre Prozesse zugeschnitten.</p>
+              <p class="uc-desc">Rollen, Workflows, Freigaben, Uploads, Dashboards und Exporte als internes SaaS, auf Ihre Prozesse zugeschnitten.<span class="uc-security">Sicherheit: Rollenbasierte Zugriffe, EU-Hosting, vollständiges Audit-Log je Aktion.</span></p>
             </div>
           </div>
-          <span class="uc-arrow" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </span>
-          <span class="uc-ghost" aria-hidden="true">06</span>
+          <span class="uc-arrow" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+        <div class="uc-row" tabindex="0">
+          <div class="uc-main">
+            <span class="uc-idx">07</span>
+            <div class="uc-text">
+              <span class="uc-tag">Posteingang</span>
+              <h3>E-Mail-Triage &amp; Posteingangs-Agent</h3>
+              <p class="uc-desc">Eingehende E-Mails klassifizieren, Prioritäten setzen und Routineantworten vorschlagen.<span class="uc-security">Sicherheit: Postfach-Zugriff eng begrenzt, jede Antwort verlässt das System erst nach Freigabe.</span></p>
+            </div>
+          </div>
+          <span class="uc-arrow" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+        <div class="uc-row" tabindex="0">
+          <div class="uc-main">
+            <span class="uc-idx">08</span>
+            <div class="uc-text">
+              <span class="uc-tag">Buchhaltung</span>
+              <h3>Rechnungs- und Belegverarbeitung</h3>
+              <p class="uc-desc">Belege erfassen, Positionen zuordnen und an DATEV oder Lexoffice übergeben.<span class="uc-security">Sicherheit: Vier-Augen-Freigabe vor Buchung, lückenlose Nachvollziehbarkeit je Beleg.</span></p>
+            </div>
+          </div>
+          <span class="uc-arrow" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+        <div class="uc-row" tabindex="0">
+          <div class="uc-main">
+            <span class="uc-idx">09</span>
+            <div class="uc-text">
+              <span class="uc-tag">Vertrieb</span>
+              <h3>Lead-Anreicherung &amp; Vertriebsrecherche</h3>
+              <p class="uc-desc">Öffentlich verfügbare Informationen zu Leads zusammenfassen und für die Vertriebsvorbereitung aufbereiten.<span class="uc-security">Sicherheit: Nur freigegebene Quellen, Ergebnis wird vor CRM-Übernahme geprüft.</span></p>
+            </div>
+          </div>
+          <span class="uc-arrow" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+        <div class="uc-row" tabindex="0">
+          <div class="uc-main">
+            <span class="uc-idx">10</span>
+            <div class="uc-text">
+              <span class="uc-tag">Reporting</span>
+              <h3>Automatisierte Reports &amp; Management-Summaries</h3>
+              <p class="uc-desc">Kennzahlen aus mehreren Quellen bündeln und als lesbare Management-Summary aufbereiten.<span class="uc-security">Sicherheit: Datenquellen fest definiert, Report wird vor Verteilung freigegeben.</span></p>
+            </div>
+          </div>
+          <span class="uc-arrow" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+        <div class="uc-row" tabindex="0">
+          <div class="uc-main">
+            <span class="uc-idx">11</span>
+            <div class="uc-text">
+              <span class="uc-tag">Personal</span>
+              <h3>Onboarding- &amp; Offboarding-Workflows</h3>
+              <p class="uc-desc">Zugänge, Berechtigungen und Ausstattung bei Ein- und Austritt strukturiert abwickeln.<span class="uc-security">Sicherheit: Jede Berechtigungsvergabe und jeder Entzug wird als Nachweis dokumentiert.</span></p>
+            </div>
+          </div>
+          <span class="uc-arrow" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+        <div class="uc-row" tabindex="0">
+          <div class="uc-main">
+            <span class="uc-idx">12</span>
+            <div class="uc-text">
+              <span class="uc-tag">Meetings</span>
+              <h3>Meeting-Nachbereitung</h3>
+              <p class="uc-desc">Mitschnitte oder Notizen in strukturierte Protokolle und Aufgaben umwandeln.<span class="uc-security">Sicherheit: Verarbeitung in EU-Infrastruktur, Protokoll wird vor Verteilung gegengelesen.</span></p>
+            </div>
+          </div>
+          <span class="uc-arrow" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── Pinned scroll-story: Vom Dokument zum Prozess ── -->
+  <!-- ── Pinned scroll-story ── -->
   <section class="pin-wrap" id="pipeline" aria-label="Vom Dokument zum Prozess">
     <div class="pin-stage">
       <div class="pin-inner">
@@ -877,7 +1035,7 @@
         <div class="pin-panels">
           <div class="pin-panel active" data-step="0">
             <h3>Dokument</h3>
-            <p>Verträge, Angebote, Ausschreibungen und Berichte - Ihr vorhandenes Rohmaterial.</p>
+            <p>Verträge, Angebote, Ausschreibungen und Berichte, Ihr vorhandenes Rohmaterial.</p>
           </div>
           <div class="pin-panel" data-step="1">
             <h3>Analyse</h3>
@@ -889,7 +1047,7 @@
           </div>
           <div class="pin-panel" data-step="3">
             <h3>Freigabe</h3>
-            <p>Die menschliche Prüfung bleibt - nichts verlässt das System ungesehen.</p>
+            <p>Die menschliche Prüfung bleibt bestehen. Nichts verlässt das System ungesehen.</p>
           </div>
           <div class="pin-panel" data-step="4">
             <h3>Report</h3>
@@ -910,54 +1068,96 @@
     </div>
   </section>
 
-  <!-- ── Informationssicherheit & Compliance ── -->
+  <!-- ── Sicherheit & Compliance als System ── -->
   <section class="block alt" id="sicherheit">
     <div class="wrap split">
       <div class="reveal">
         <span class="eyebrow">Sicherheit &amp; Compliance</span>
         <h2 style="font-family:var(--display);font-weight:400;font-size:clamp(30px,4vw,52px);letter-spacing:1.5px;line-height:1.05;margin-bottom:22px;">Sicherheit und Compliance nicht als Anhang, sondern als System.</h2>
         <p style="font-size:15px;color:var(--text-dim);line-height:1.85;">
-          Wir bringen Struktur in Informationssicherheit und Compliance - auf Ebene von Prozessen, Nachweisen und Verantwortlichkeiten. Managementtauglich aufbereitet und für Audits vorbereitet.
+          Wir bringen Struktur in Informationssicherheit und Compliance, auf Ebene von Prozessen, Nachweisen und Verantwortlichkeiten. Managementtauglich aufbereitet und für Audits vorbereitet. Auch die Meldepflichten des Cyber Resilience Act ab September 2026 und die Anforderungen des EU AI Act binden wir in diese Struktur ein.
         </p>
         <p class="note">
-          Hinweis: CoreLead leistet keine Zertifizierung und keine Rechtsberatung. Wir schaffen die strukturelle und technische Grundlage - Bewertung und Zertifizierung erfolgen durch die zuständigen Stellen.
+          Hinweis: CoreLead leistet keine Zertifizierung und keine Rechtsberatung. Wir schaffen die strukturelle und technische Grundlage. Bewertung und Zertifizierung erfolgen durch die zuständigen Stellen.
         </p>
       </div>
       <ul class="sec-list reveal reveal-delay-1">
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>ISMS-Struktur und Dokumentenlenkung</li>
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>ISO 27001 / NIS2 Vorbereitung</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>CRA-Meldepflichten und Produktsicherheit</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>EU AI Act Readiness für KI-Workflows</li>
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Microsoft-365-Security-Checks</li>
-        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Richtlinien und Nachweise</li>
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Risiko- und Maßnahmenmanagement</li>
-        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Management-Reports</li>
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Audit-Readiness auf Strukturebene</li>
       </ul>
     </div>
   </section>
 
-  <!-- ── Vorgehen ── -->
+  <!-- ── Warum Corelead ── -->
+  <section class="block">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Warum Corelead</span>
+        <h2>Betreiber-Erfahrung statt Beratungsfolien.</h2>
+      </div>
+      <div class="why-grid reveal reveal-delay-1">
+        <div class="why-card">
+          <div class="why-num">01</div>
+          <h3>Betreiber, nicht nur Berater</h3>
+          <p>Mit CompliantDesk betreiben wir ein eigenes, auditgeprüftes SaaS-Produkt im laufenden Betrieb. Keine Theorie, sondern tägliche Betriebspraxis.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-num">02</div>
+          <h3>Sicherheit eingebaut, nicht angeflanscht</h3>
+          <p>AVV, DSGVO, EU-Hosting und das Freigabe-Prinzip gehören in jeden Workflow, von Anfang an mitgedacht statt nachträglich ergänzt.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-num">03</div>
+          <h3>Enterprise-Erfahrung, Mittelstands-Tempo</h3>
+          <p>15+ Jahre IT-Leitung, eine direkte Ansprechperson, keine Junior-Berater im Projekt.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CompliantDesk-Teaser ── -->
+  <section class="block alt">
+    <div class="wrap">
+      <div class="cd-teaser reveal">
+        <span class="eyebrow">Eigenes Produkt</span>
+        <h2 style="font-family:var(--display);font-weight:400;font-size:clamp(26px,3.2vw,40px);letter-spacing:1px;line-height:1.1;">CompliantDesk: unser eigenes GRC-SaaS</h2>
+        <p>CompliantDesk ist ein DACH-natives GRC- und ISMS-SaaS für ISO 27001, NIS2, DSGVO, DORA, TISAX und den EU AI Act, vollständig in EU-Infrastruktur betrieben (Supabase Frankfurt, Vercel fra1, Azure OpenAI Frankfurt) und ohne Standardvertragsklauseln.</p>
+        <p class="note">CompliantDesk wurde von einem qualifizierten ISO-27001-Auditor unabhängig auf Konformität mit DIN EN ISO/IEC 27001:2024-01 (Klauseln 4 bis 10 und Annex A) bewertet. Diese schriftliche Eignungsbewertung ist keine Zertifizierung.</p>
+        <div class="hero-actions">
+          <a href="https://www.compliantdesk.de" target="_blank" rel="noopener" class="btn btn-ghost"><span>compliantdesk.de ansehen</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Vorgehen-Teaser ── -->
   <section class="block">
     <div class="wrap">
       <div class="section-head center reveal">
         <span class="eyebrow">Vorgehen</span>
         <h2>Vom Prozessproblem zum funktionierenden System.</h2>
-        <p>Ein klarer Weg in vier Schritten - pragmatisch, messbar und ohne überzogene Versprechen.</p>
+        <p>Ein klarer Weg in vier Schritten, pragmatisch, messbar und ohne überzogene Versprechen.</p>
       </div>
       <div class="steps reveal reveal-delay-1">
         <div class="step">
           <div class="step-num">01</div>
           <h3>Analyse</h3>
-          <p>Wir klären Prozess, Datenquellen, Rollen, Risiken und Zielbild.</p>
+          <p>Prozess, Datenquellen, Rollen, Risiken und Zielbild klären.</p>
         </div>
         <div class="step">
           <div class="step-num">02</div>
           <h3>Prototyp</h3>
-          <p>Ein erster Workflow zeigt schnell, ob Automatisierung wirtschaftlich sinnvoll ist.</p>
+          <p>Ein erster Workflow zeigt in 2-3 Wochen, ob Automatisierung wirtschaftlich sinnvoll ist.</p>
         </div>
         <div class="step">
           <div class="step-num">03</div>
           <h3>Umsetzung</h3>
-          <p>Portal, Datenbank, KI-Auswertung, Freigaben, Reports und Sicherheit werden sauber umgesetzt.</p>
+          <p>Portal, Datenbank, KI-Auswertung, Freigaben, Reports und Sicherheit sauber umsetzen.</p>
         </div>
         <div class="step">
           <div class="step-num">04</div>
@@ -965,14 +1165,17 @@
           <p>Wartung, Weiterentwicklung, Backups, Monitoring und Security-Checks bleiben planbar.</p>
         </div>
       </div>
+      <div style="text-align:center;margin-top:48px;">
+        <a href="vorgehen.html" class="pillar-link">Vorgehen im Detail ansehen<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
     </div>
   </section>
 
   <!-- ── Closing CTA ── -->
   <section class="cta-final" id="kontakt">
-    <h2 class="reveal">Sie haben einen Prozess,<br>der zu viel Zeit kostet?</h2>
+    <h2 class="reveal">Sie haben einen Prozess, der zu viel Zeit kostet?<br>Oder eine Compliance-Anforderung, die niemand umsetzt?</h2>
     <p class="reveal reveal-delay-1">
-      Dann lohnt sich ein kurzer Austausch. Wir prüfen, ob ein internes KI-Workflow-System, ein Fachportal oder eine Compliance-Struktur sinnvoll ist.
+      Dann lohnt sich ein kurzer Austausch. Wir prüfen, ob ein KI-Workflow-System, ein Fachportal oder eine Compliance-Struktur sinnvoll ist.
     </p>
     <div class="hero-actions reveal reveal-delay-2">
       <a href="kontakt.html" class="btn btn-primary"><span>Projekt besprechen</span></a>
@@ -980,16 +1183,20 @@
     </div>
   </section>
 
-  <!-- ── Footer ── -->
   <footer>
     <div class="footer-top">
       <div class="footer-brand">
         <a href="/" class="footer-logo"><img src="logo-corelead.svg" alt="CoreLead"></a>
-        <p>Individuelle Software, KI-Workflows und Informationssicherheit für den Mittelstand.</p>
+        <p>KI-Automatisierung und Informationssicherheit aus einer Hand. München, Deutschland.</p>
       </div>
       <div class="footer-links">
-        <a href="#ki">Leistungen</a>
+        <a href="ki-agenten.html">KI-Agenten</a>
+        <a href="workflow-automatisierung.html">Workflow-Automatisierung</a>
+        <a href="informationssicherheit.html">Informationssicherheit</a>
         <a href="https://www.compliantdesk.de" target="_blank" rel="noopener">CompliantDesk</a>
+        <a href="blog/index.html">Blog</a>
+        <a href="faq.html">FAQ</a>
+        <a href="vorgehen.html">Vorgehen</a>
         <a href="kontakt.html">Kontakt</a>
         <a href="datenschutz.html">Datenschutz</a>
         <a href="impressum.html">Impressum</a>
@@ -1002,7 +1209,7 @@
   </footer>
 
   <script>
-    // ── Particle Network ──
+    // Particle network
     (function() {
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const canvas = document.getElementById('particle-canvas');
@@ -1010,216 +1217,201 @@
       const ctx = canvas.getContext('2d');
       let particles = [];
       let mouse = { x: null, y: null };
-
       function resize() {
         canvas.width  = canvas.offsetWidth  * window.devicePixelRatio;
         canvas.height = canvas.offsetHeight * window.devicePixelRatio;
         ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
         init();
       }
-
       class Particle {
         constructor() {
-          this.x  = Math.random() * canvas.offsetWidth;
-          this.y  = Math.random() * canvas.offsetHeight;
+          this.x = Math.random() * canvas.offsetWidth;
+          this.y = Math.random() * canvas.offsetHeight;
           this.vx = (Math.random() - 0.5) * 0.32;
           this.vy = (Math.random() - 0.5) * 0.32;
-          this.r  = Math.random() * 1.2 + 0.4;
+          this.r = Math.random() * 1.2 + 0.4;
         }
         update() {
           this.x += this.vx; this.y += this.vy;
-          if (this.x < 0 || this.x > canvas.offsetWidth)  this.vx *= -1;
+          if (this.x < 0 || this.x > canvas.offsetWidth) this.vx *= -1;
           if (this.y < 0 || this.y > canvas.offsetHeight) this.vy *= -1;
         }
         draw() {
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(255,255,255,0.11)';
-          ctx.fill();
+          ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(255,255,255,0.11)'; ctx.fill();
         }
       }
-
       function init() {
         const n = Math.min(64, Math.floor((canvas.offsetWidth * canvas.offsetHeight) / 15000));
         particles = Array.from({ length: n }, () => new Particle());
       }
-
       function connect() {
         for (let i = 0; i < particles.length; i++) {
           for (let j = i + 1; j < particles.length; j++) {
-            const dx = particles[i].x - particles[j].x;
-            const dy = particles[i].y - particles[j].y;
-            const d  = Math.sqrt(dx*dx + dy*dy);
+            const dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
+            const d = Math.sqrt(dx*dx + dy*dy);
             if (d < 140) {
-              ctx.beginPath();
-              ctx.strokeStyle = `rgba(255,255,255,${0.045 * (1 - d/140)})`;
-              ctx.lineWidth = 0.5;
-              ctx.moveTo(particles[i].x, particles[i].y);
-              ctx.lineTo(particles[j].x, particles[j].y);
-              ctx.stroke();
+              ctx.beginPath(); ctx.strokeStyle = `rgba(255,255,255,${0.045 * (1 - d/140)})`; ctx.lineWidth = 0.5;
+              ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke();
             }
           }
           if (mouse.x != null) {
-            const dx = particles[i].x - mouse.x;
-            const dy = particles[i].y - mouse.y;
-            const d  = Math.sqrt(dx*dx + dy*dy);
+            const dx = particles[i].x - mouse.x, dy = particles[i].y - mouse.y;
+            const d = Math.sqrt(dx*dx + dy*dy);
             if (d < 170) {
-              ctx.beginPath();
-              ctx.strokeStyle = `rgba(255,255,255,${0.09 * (1 - d/170)})`;
-              ctx.lineWidth = 0.5;
-              ctx.moveTo(particles[i].x, particles[i].y);
-              ctx.lineTo(mouse.x, mouse.y);
-              ctx.stroke();
+              ctx.beginPath(); ctx.strokeStyle = `rgba(255,255,255,${0.09 * (1 - d/170)})`; ctx.lineWidth = 0.5;
+              ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke();
             }
           }
         }
       }
-
       function animate() {
         ctx.clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
         particles.forEach(p => { p.update(); p.draw(); });
         connect();
         requestAnimationFrame(animate);
       }
-
       canvas.addEventListener('mousemove', e => {
-        const r = canvas.getBoundingClientRect();
-        mouse.x = e.clientX - r.left;
-        mouse.y = e.clientY - r.top;
+        const r = canvas.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
       });
       canvas.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
-
       window.addEventListener('resize', resize);
-      resize();
-      animate();
+      resize(); animate();
     })();
 
-    // ── Hero word scramble-in (once, on load) ──
+    // Hero word scramble-in
     (function() {
       const el = document.getElementById('heroWord');
       if (!el) return;
-      const target = 'Transformation.';
+      const target = 'übersteht.';
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { el.textContent = target; return; }
       const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
       const rc = () => CHARS[Math.floor(Math.random() * CHARS.length)];
       const len = target.length;
       let revealed = 0, acc = 0;
-      const RATE = 1 / 4.5;   // chars revealed per frame (50% slower than before)
+      const RATE = 1 / 4.5;
       function tick() {
         let out = '';
         for (let i = 0; i < len; i++) {
           const ch = target[i];
-          if (i < revealed || ch === '.' || ch === ' ') out += ch;
-          else out += rc();
+          if (i < revealed || ch === '.' || ch === ' ') out += ch; else out += rc();
         }
         el.textContent = out;
         acc += RATE;
         if (acc >= 1 && revealed < len) { revealed += Math.floor(acc); acc -= Math.floor(acc); }
-        if (revealed < len) requestAnimationFrame(tick);
-        else el.textContent = target;
+        if (revealed < len) requestAnimationFrame(tick); else el.textContent = target;
       }
       el.textContent = '';
-      // start once the third headline line has begun to appear
       setTimeout(() => requestAnimationFrame(tick), 850);
     })();
 
-    // ── Sticky Header ──
+    // Security-log stream (badge)
+    (function() {
+      const track = document.getElementById('hexTrack');
+      if (!track) return;
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const TOKENS = ['AES-256','sha256','TLS 1.3','ISO 27001','NIS2','RSA-4096','OAuth2','MFA','RBAC','JWT','GDPR','Azure','M365','EU AI Act','audit.log','policy✓','hash✓','200 OK','KI-Agent','encrypt','verify','Security-by-Design'];
+      let ti = Math.floor(Math.random() * TOKENS.length);
+      const nextToken = () => TOKENS[(ti++) % TOKENS.length];
+      function item(text) {
+        const frag = document.createDocumentFragment();
+        const hot = Math.random() < 0.16;
+        const tok = document.createElement(hot ? 'b' : 'span');
+        tok.className = 'tok'; tok.textContent = text;
+        const sep = document.createElement('span');
+        sep.className = 'sep'; sep.textContent = Math.random() < 0.3 ? '→' : '·';
+        frag.appendChild(tok); frag.appendChild(sep);
+        const wrap = document.createElement('span');
+        wrap.style.display = 'inline-flex'; wrap.style.alignItems = 'center'; wrap.style.gap = '12px';
+        wrap.appendChild(frag);
+        return wrap;
+      }
+      for (let i = 0; i < 40; i++) track.appendChild(item(nextToken()));
+      if (reduce) return;
+      let offset = 0;
+      const speed = 0.32;
+      function step() {
+        offset -= speed;
+        const first = track.firstElementChild;
+        if (first) {
+          const w = first.getBoundingClientRect().width + 12;
+          if (-offset >= w) { offset += w; first.remove(); track.appendChild(item(nextToken())); }
+        }
+        track.style.transform = 'translateX(' + offset + 'px)';
+        requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      setInterval(() => {
+        const toks = track.querySelectorAll('.tok');
+        if (!toks.length) return;
+        const el = toks[Math.floor(Math.random() * Math.min(toks.length, 10))];
+        if (!el) return;
+        el.style.color = 'rgba(255,255,255,0.85)'; el.style.textShadow = '0 0 8px rgba(255,255,255,0.30)';
+        setTimeout(() => { el.style.color = ''; el.style.textShadow = ''; }, 560);
+      }, 1100);
+    })();
+  </script>
+
+  <script>
+    // Sticky header
     window.addEventListener('scroll', () => {
       document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
     });
 
-    // ── Mobile Menu ──
+    // Mobile menu
     (function() {
       const toggle = document.getElementById('menuToggle');
       const nav = document.getElementById('nav');
       function close() {
         document.body.classList.remove('menu-open');
         toggle.setAttribute('aria-expanded', 'false');
+        document.querySelectorAll('.nav-item.open').forEach(i => i.classList.remove('open'));
       }
       toggle.addEventListener('click', () => {
         const open = document.body.classList.toggle('menu-open');
         toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       });
-      nav.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+      nav.querySelectorAll(':scope > a').forEach(a => a.addEventListener('click', close));
+      nav.querySelectorAll('.dropdown-link').forEach(a => a.addEventListener('click', close));
     })();
 
-    // ── Scroll Reveal ──
+    // Dropdown nav (hover on desktop via CSS; click/tap toggle for touch + mobile accordion)
+    (function() {
+      const items = Array.from(document.querySelectorAll('.nav-item.has-dropdown'));
+      items.forEach(item => {
+        const trigger = item.querySelector('.dropdown-trigger');
+        trigger.addEventListener('click', (e) => {
+          e.preventDefault();
+          const willOpen = !item.classList.contains('open');
+          items.forEach(i => { i.classList.remove('open'); i.querySelector('.dropdown-trigger').setAttribute('aria-expanded', 'false'); });
+          if (willOpen) { item.classList.add('open'); trigger.setAttribute('aria-expanded', 'true'); }
+        });
+      });
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.nav-item.has-dropdown')) {
+          items.forEach(i => { i.classList.remove('open'); i.querySelector('.dropdown-trigger').setAttribute('aria-expanded', 'false'); });
+        }
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          items.forEach(i => { i.classList.remove('open'); i.querySelector('.dropdown-trigger').setAttribute('aria-expanded', 'false'); });
+        }
+      });
+    })();
+
+    // Scroll reveal
     const revealObs = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-    // ── Security-Log stream (badge) ──
-    (function() {
-      const track = document.getElementById('hexTrack');
-      if (!track) return;
-      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-      const TOKENS = [
-        'AES-256', 'sha256', 'TLS 1.3', 'ISO 27001', 'NIS2', 'RSA-4096',
-        'OAuth2', 'MFA', 'RBAC', 'JWT', 'GDPR', 'Azure', 'M365',
-        '0xF2A9', '0x1C4E', 'audit.log', 'policy✓', 'hash✓', '200 OK',
-        'KI-Workflow', 'encrypt', 'verify', 'Security-by-Design'
-      ];
-      let ti = Math.floor(Math.random() * TOKENS.length);
-      const nextToken = () => TOKENS[(ti++) % TOKENS.length];
-
-      // a stream item = [token][separator]
-      function item(text) {
-        const frag = document.createDocumentFragment();
-        const hot = Math.random() < 0.16;
-        const tok = document.createElement(hot ? 'b' : 'span');
-        tok.className = 'tok';
-        tok.textContent = text;
-        const sep = document.createElement('span');
-        sep.className = 'sep';
-        sep.textContent = Math.random() < 0.3 ? '→' : '·';
-        frag.appendChild(tok); frag.appendChild(sep);
-        const wrap = document.createElement('span');
-        wrap.style.display = 'inline-flex';
-        wrap.style.alignItems = 'center';
-        wrap.style.gap = '12px';
-        wrap.appendChild(frag);
-        return wrap;
-      }
-      for (let i = 0; i < 40; i++) track.appendChild(item(nextToken()));
-
-      if (reduce) return;
-
-      let offset = 0;
-      const speed = 0.32;          // px per frame, calm terminal scroll
-      function step() {
-        offset -= speed;
-        const first = track.firstElementChild;
-        if (first) {
-          const w = first.getBoundingClientRect().width + 12; // + gap
-          if (-offset >= w) {
-            offset += w;
-            first.remove();
-            track.appendChild(item(nextToken()));
-          }
-        }
-        track.style.transform = 'translateX(' + offset + 'px)';
-        requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-
-      // occasional flicker: briefly highlight a visible token
-      setInterval(() => {
-        const toks = track.querySelectorAll('.tok');
-        if (!toks.length) return;
-        const el = toks[Math.floor(Math.random() * Math.min(toks.length, 10))];
-        if (!el) return;
-        el.style.color = 'rgba(255,255,255,0.85)';
-        el.style.textShadow = '0 0 8px rgba(255,255,255,0.30)';
-        setTimeout(() => { el.style.color = ''; el.style.textShadow = ''; }, 560);
-      }, 1100);
-    })();
-
-    // ── Headline mask + split-stagger reveal ──
+    // Headline mask + split-stagger reveal
     (function() {
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const targets = document.querySelectorAll('.section-head h2, .cta-final h2, #sicherheit h2');
+      const targets = document.querySelectorAll('.section-head h2, .cta-final h2, #sicherheit h2, .cd-teaser h2');
       targets.forEach(el => {
         el.classList.add('reveal-text');
         if (reduce) return;
@@ -1246,7 +1438,7 @@
       targets.forEach(el => obs.observe(el));
     })();
 
-    // ── Pinned scroll-story ──
+    // Pinned scroll-story
     (function() {
       const wrap = document.getElementById('pipeline');
       if (!wrap) return;
@@ -1288,11 +1480,9 @@
       }));
     })();
 
-    // ── Clean URLs (no /index.html, no #hash in the address bar) ──
+    // Clean URLs (no /index.html, no #hash in the address bar)
     (function() {
       function clean() { return location.pathname.replace(/index\.html$/, '') + location.search; }
-
-      // On load: scroll to a deep-link target (if any), then strip hash + index.html
       function normalize() {
         if (location.hash.length > 1) {
           const el = document.getElementById(decodeURIComponent(location.hash.slice(1)));
@@ -1301,13 +1491,10 @@
         history.replaceState(null, '', clean());
       }
       if (location.hash.length > 1) {
-        // wait for layout so the scroll lands correctly, then clean
         requestAnimationFrame(() => requestAnimationFrame(normalize));
       } else {
         history.replaceState(null, '', clean());
       }
-
-      // Intercept same-page anchor clicks: smooth-scroll, keep the URL clean
       document.addEventListener('click', function(e) {
         const a = e.target.closest('a[href]');
         if (!a) return;
@@ -1326,9 +1513,6 @@
         document.body.classList.remove('menu-open');
       });
     })();
-
-    // ── Year ──
-    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>

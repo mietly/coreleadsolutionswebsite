@@ -7,6 +7,8 @@ backup/
 backup-online-*/
 design-system/
 .extract-design-system/
+preview/
+_backup_*/
 
 # Node
 **/node_modules/

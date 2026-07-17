@@ -3,25 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kontakt - CoreLead</title>
+  <title>Kontakt | CoreLead München</title>
+  <meta name="description" content="Kontaktieren Sie CoreLead für KI-Automatisierung, Workflow-Automatisierung oder Informationssicherheit im Mittelstand.">
+  <link rel="canonical" href="https://corelead.org/kontakt.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+
     :root {
       --bg:           #0a0a0a;
       --bg-alt:       #0f0f0f;
+      --bg-card:      rgba(255,255,255,0.018);
       --text:         rgba(255,255,255,0.95);
+      --text-soft:    rgba(255,255,255,0.65);
       --text-dim:     rgba(255,255,255,0.45);
       --text-faint:   rgba(255,255,255,0.22);
+      --text-ghost:   rgba(255,255,255,0.07);
       --border:       rgba(255,255,255,0.07);
-      --border-hover: rgba(255,255,255,0.15);
+      --border-hover: rgba(255,255,255,0.16);
       --display:      'Bebas Neue', sans-serif;
       --body:         'Manrope', system-ui, sans-serif;
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
 
     body {
       font-family: var(--body);
@@ -30,6 +36,19 @@
       line-height: 1.6;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+    }
+    ::selection { background: rgba(255,255,255,0.16); color: #fff; }
+
+    .wrap { max-width: 1180px; margin: 0 auto; }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: var(--text-faint);
+      margin-bottom: 26px;
     }
 
     .reveal {
@@ -41,6 +60,15 @@
     .reveal.visible  { opacity: 1; transform: none; }
     .reveal-delay-1  { transition-delay: 0.08s; }
     .reveal-delay-2  { transition-delay: 0.16s; }
+    .reveal-delay-3  { transition-delay: 0.24s; }
+    .reveal-delay-4  { transition-delay: 0.32s; }
+    .reveal-delay-5  { transition-delay: 0.40s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      *, *::before, *::after { animation-duration: 0.001s !important; }
+      html { scroll-behavior: auto; }
+    }
 
     /* ── Header ── */
     header {
@@ -50,56 +78,204 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 17px 64px;
-      background: rgba(10,10,10,0.88);
+      padding: 26px 48px;
+      border-bottom: 1px solid transparent;
+      transition: padding 0.4s ease, background 0.4s ease,
+                  backdrop-filter 0.4s ease, border-color 0.4s ease;
+    }
+    header.scrolled {
+      padding: 15px 48px;
+      background: rgba(10,10,10,0.86);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
-      border-bottom: 1px solid var(--border);
+      border-bottom-color: var(--border);
     }
 
-    .logo { display: inline-block; text-decoration: none; line-height: 1; }
-    .logo img { height: 28px; width: auto; }
+    .logo { display: inline-flex; align-items: center; text-decoration: none; line-height: 1; }
+    .logo img { height: 26px; width: auto; }
 
-    nav { display: flex; gap: 40px; align-items: center; }
+    nav { display: flex; gap: 28px; align-items: center; }
 
-    nav a {
+    nav a.nav-link, .dropdown-trigger {
       font-family: var(--body);
       font-size: 10.5px;
       font-weight: 600;
-      color: var(--text-faint);
+      color: rgba(255,255,255,0.58);
       text-decoration: none;
       text-transform: uppercase;
-      letter-spacing: 2.5px;
+      letter-spacing: 2.1px;
       transition: color 0.3s;
       position: relative;
+      white-space: nowrap;
+      background: none;
+      border: none;
+      cursor: pointer;
     }
-
-    nav a::after {
+    nav a.nav-link::after {
       content: '';
       position: absolute;
-      bottom: -3px; left: 0;
+      bottom: -4px; left: 0;
       width: 0; height: 1px;
       background: var(--text);
       transition: width 0.3s ease;
     }
+    nav a.nav-link:hover        { color: var(--text); }
+    nav a.nav-link:hover::after { width: 100%; }
+    nav a.nav-link.active       { color: var(--text); }
+    nav a.nav-link.active::after{ width: 100%; }
 
-    nav a:hover         { color: var(--text); }
-    nav a:hover::after  { width: 100%; }
-    nav a.active        { color: var(--text); }
-    nav a.active::after { width: 100%; }
+    .nav-external { display: inline-flex; align-items: center; gap: 6px; }
+    .nav-external svg { opacity: 0.55; transition: opacity 0.3s, transform 0.3s; }
+    .nav-external:hover svg { opacity: 1; transform: translate(1px,-1px); }
 
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(22px); }
-      to   { opacity: 1; transform: none; }
+    /* ── Dropdown ── */
+    .nav-item { position: relative; display: flex; align-items: center; }
+    .dropdown-trigger { display: inline-flex; align-items: center; gap: 6px; padding: 4px 0; }
+    .dropdown-trigger .chev { transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); flex-shrink: 0; }
+    .nav-item:hover .dropdown-trigger,
+    .nav-item.open .dropdown-trigger,
+    .dropdown-trigger:focus-visible { color: var(--text); }
+    .nav-item:hover .chev, .nav-item.open .chev { transform: rotate(180deg); }
+    .nav-item.current > .dropdown-trigger { color: var(--text); }
+
+    .dropdown-panel {
+      position: absolute;
+      top: calc(100% + 22px);
+      left: 50%;
+      transform: translateX(-50%) translateY(6px);
+      min-width: 240px;
+      padding: 10px;
+      background: rgba(10,10,10,0.97);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1), visibility 0s linear 0.3s;
+      z-index: 999;
     }
+    .nav-item:hover .dropdown-panel,
+    .nav-item.open .dropdown-panel,
+    .nav-item:focus-within .dropdown-panel {
+      opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
+      pointer-events: auto; transition-delay: 0s;
+    }
+    .dropdown-link {
+      display: block;
+      padding: 11px 14px;
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.62);
+      text-decoration: none;
+      letter-spacing: 0.2px;
+      border-radius: 2px;
+      transition: background 0.25s ease, color 0.25s ease;
+      white-space: nowrap;
+    }
+    .dropdown-link:hover  { background: rgba(255,255,255,0.05); color: var(--text); }
+    .dropdown-link.active { color: var(--text); background: rgba(255,255,255,0.04); }
 
-    /* ── Page Hero ── */
+    .nav-cta {
+      font-family: var(--body);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--text);
+      padding: 10px 22px;
+      border: 1px solid var(--border-hover);
+      position: relative;
+      overflow: hidden;
+      transition: color 0.4s ease, border-color 0.4s ease;
+      white-space: nowrap;
+    }
+    .nav-cta::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: var(--text);
+      transition: left 0.4s cubic-bezier(0.16,1,0.3,1);
+      z-index: -1;
+    }
+    .nav-cta:hover { color: var(--bg); border-color: var(--text); }
+    .nav-cta:hover::before { left: 0; }
+
+    /* ── Mobile menu toggle ── */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      z-index: 1100;
+    }
+    .menu-toggle span {
+      width: 24px; height: 1.5px;
+      background: var(--text);
+      transition: transform 0.35s ease, opacity 0.3s ease;
+    }
+    body.menu-open .menu-toggle span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    body.menu-open .menu-toggle span:nth-child(2) { opacity: 0; }
+    body.menu-open .menu-toggle span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-block;
+      position: relative;
+      font-family: var(--body);
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      text-decoration: none;
+      padding: 16px 40px;
+      border: 1px solid var(--text);
+      overflow: hidden;
+      cursor: pointer;
+      transition: color 0.4s ease, border-color 0.4s ease;
+    }
+    .btn span { position: relative; z-index: 1; }
+    .btn-primary { background: var(--text); color: var(--bg); }
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 0; height: 0;
+      background: var(--bg);
+      border-radius: 50%;
+      transform: translate(-50%,-50%);
+      transition: width 0.55s ease, height 0.55s ease;
+      z-index: 0;
+    }
+    .btn-primary:hover { color: var(--text); }
+    .btn-primary:hover::before { width: 620px; height: 620px; }
+    .btn-ghost { background: transparent; color: var(--text); border-color: rgba(255,255,255,0.24); }
+    .btn-ghost::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: var(--text);
+      transition: left 0.45s cubic-bezier(0.16,1,0.3,1);
+      z-index: 0;
+    }
+    .btn-ghost:hover { color: var(--bg); border-color: var(--text); }
+    .btn-ghost:hover::before { left: 0; }
+
+    @keyframes fadeInUp   { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-14px); } to { opacity: 1; transform: none; } }
+
+    /* ── Page Hero (subpages) ── */
     .page-hero {
-      padding: 168px 64px 96px;
+      padding: 168px 48px 96px;
       text-align: center;
       position: relative;
     }
-
     .page-hero::after {
       content: '';
       position: absolute;
@@ -108,7 +284,7 @@
       width: 1px; height: 60px;
       background: linear-gradient(to bottom, rgba(255,255,255,0.12), transparent);
     }
-
+    .page-hero .eyebrow { opacity: 0; animation: fadeInDown 0.8s 0.15s forwards; }
     .page-hero h1 {
       font-family: var(--display);
       font-size: clamp(32px, 4.5vw, 56px);
@@ -119,185 +295,113 @@
       opacity: 0;
       animation: fadeInUp 1s 0.3s forwards;
     }
-
     .page-hero p {
       font-size: 15px;
       font-weight: 400;
       color: var(--text-dim);
-      max-width: 520px;
+      max-width: 620px;
       margin: 0 auto;
       line-height: 1.85;
       opacity: 0;
       animation: fadeInUp 1s 0.5s forwards;
     }
-
-    /* ── Contact Layout ── */
-    .contact-section {
-      padding: 100px 64px;
-      max-width: 1000px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
+    .page-hero .hero-actions {
+      margin-top: 40px;
+      display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;
+      opacity: 0; animation: fadeInUp 1s 0.65s forwards;
     }
 
-    /* ── Contact Info ── */
-    .contact-info-label {
-      font-size: 10px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 4px;
-      color: var(--text-faint);
-      margin-bottom: 40px;
-      display: block;
+    /* ── Section base ── */
+    section.block { padding: 130px 48px; position: relative; }
+    .block.alt { background: var(--bg-alt); }
+    .block.alt::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 1px; height: 58px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.10), transparent);
     }
-
-    .contact-detail { margin-bottom: 36px; }
-
-    .contact-detail .label {
-      font-size: 10px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      color: var(--text-faint);
-      margin-bottom: 8px;
-      display: block;
-    }
-
-    .contact-detail a,
-    .contact-detail p {
-      font-size: 15px;
+    .section-head { max-width: 760px; margin-bottom: 64px; }
+    .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+    .section-head h2 {
+      font-family: var(--display);
       font-weight: 400;
-      color: rgba(255,255,255,0.65);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    .contact-detail a:hover { color: var(--text); }
-
-    /* ── Form ── */
-    .contact-form-label {
-      font-size: 10px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 4px;
-      color: var(--text-faint);
-      margin-bottom: 40px;
-      display: block;
-    }
-
-    .form-group { margin-bottom: 28px; }
-
-    .form-group label {
-      display: block;
-      font-size: 10px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      color: var(--text-faint);
-      margin-bottom: 10px;
-    }
-
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: 13px 0;
-      background: transparent;
-      border: none;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      font-size: clamp(30px, 4vw, 52px);
+      letter-spacing: 1.5px;
+      line-height: 1.05;
       color: var(--text);
-      font-family: var(--body);
-      font-size: 15px;
-      font-weight: 400;
-      outline: none;
-      transition: border-color 0.3s;
-      -webkit-font-smoothing: antialiased;
+      margin-bottom: 22px;
+    }
+    .section-head p { font-size: 15px; color: var(--text-dim); line-height: 1.85; max-width: 600px; }
+    .section-head.center p { margin: 0 auto; }
+
+    .placeholder-note {
+      font-size: 12px;
+      color: var(--text-faint);
+      border: 1px dashed var(--border-hover);
+      padding: 18px 22px;
+      max-width: 620px;
     }
 
-    .form-group input:focus,
-    .form-group textarea:focus { border-bottom-color: rgba(255,255,255,0.38); }
-
-    .form-group input::placeholder,
-    .form-group textarea::placeholder { color: rgba(255,255,255,0.14); font-family: var(--body); }
-
-    .form-group textarea { resize: vertical; min-height: 120px; }
-
-    .consent {
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-      margin-bottom: 36px;
-    }
-
-    .consent input[type="checkbox"] { margin-top: 3px; accent-color: rgba(255,255,255,0.8); }
-
-    .consent label {
-      font-size: 11.5px;
-      font-weight: 400;
-      color: rgba(255,255,255,0.3);
-      line-height: 1.65;
-    }
-
-    .submit-btn {
-      display: inline-block;
+    /* ── Closing CTA ── */
+    .cta-final {
+      background: var(--bg-alt);
+      padding: 150px 48px;
+      text-align: center;
       position: relative;
-      background: var(--text);
-      color: var(--bg);
-      padding: 16px 44px;
-      font-family: var(--body);
-      font-size: 10.5px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      border: 1px solid var(--text);
-      cursor: pointer;
       overflow: hidden;
-      transition: color 0.4s;
     }
-
-    .submit-btn::before {
+    .cta-final::before {
       content: '';
       position: absolute;
       top: 50%; left: 50%;
-      width: 0; height: 0;
-      background: var(--bg);
-      border-radius: 50%;
       transform: translate(-50%,-50%);
-      transition: width 0.5s ease, height 0.5s ease;
-      z-index: 0;
+      width: 680px; height: 680px;
+      background: radial-gradient(circle, rgba(255,255,255,0.028) 0%, transparent 65%);
+      pointer-events: none;
     }
-
-    .submit-btn span { position: relative; z-index: 1; }
-    .submit-btn:hover { color: var(--text); }
-    .submit-btn:hover::before { width: 400px; height: 400px; }
-
-    .form-message {
-      margin-top: 18px;
-      font-size: 13px;
-      font-weight: 500;
-      color: rgba(255,255,255,0.5);
-      display: none;
+    .cta-final h2 {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(30px, 4.4vw, 58px);
+      letter-spacing: 1.5px;
+      line-height: 1.05;
+      margin-bottom: 20px;
+      position: relative;
+      max-width: 820px;
+      margin-left: auto;
+      margin-right: auto;
     }
+    .cta-final p {
+      font-size: 15px;
+      color: var(--text-dim);
+      max-width: 560px;
+      margin: 0 auto 46px;
+      line-height: 1.85;
+      position: relative;
+    }
+    .cta-final .hero-actions { animation: none; opacity: 1; display:flex; justify-content:center; gap:16px; flex-wrap:wrap; }
 
     /* ── Footer ── */
     footer {
       background: var(--bg);
-      padding: 36px 64px;
+      border-top: 1px solid var(--border);
+      padding: 64px 48px 40px;
+    }
+    .footer-top {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      border-top: 1px solid var(--border);
+      align-items: flex-start;
+      gap: 48px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
     }
-
-    .footer-logo {
-      display: inline-block; text-decoration: none; line-height: 1;
-      opacity: 0.38; transition: opacity 0.3s;
-    }
-    .footer-logo:hover { opacity: 0.7; }
-    .footer-logo img { height: 20px; width: auto; }
-
-    .footer-links { display: flex; gap: 28px; }
-
+    .footer-brand { max-width: 320px; }
+    .footer-brand .footer-logo { display: inline-block; margin-bottom: 18px; opacity: 0.85; }
+    .footer-brand .footer-logo img { height: 22px; width: auto; }
+    .footer-brand p { font-size: 13px; color: var(--text-dim); line-height: 1.7; }
+    .footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
     .footer-links a {
       font-size: 10px;
       font-weight: 600;
@@ -307,65 +411,189 @@
       letter-spacing: 2px;
       transition: color 0.3s;
     }
-    .footer-links a:hover { color: rgba(255,255,255,0.55); }
+    .footer-links a:hover { color: var(--text-soft); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+    .footer-bottom small { font-size: 11px; color: var(--text-faint); letter-spacing: 0.3px; }
 
-    /* ── Mobile ── */
+    /* ── Responsive ── */
     @media (max-width: 768px) {
-      header { padding: 16px 24px; }
-      nav    { gap: 20px; }
-      nav a  { font-size: 10px; letter-spacing: 2px; }
+      header, header.scrolled { padding: 16px 24px; }
+
+      nav {
+        position: fixed;
+        top: 0; right: 0; bottom: 0; left: 0;
+        width: 100%; height: 100vh;
+        z-index: 1050;
+        flex-direction: column;
+        justify-content: center;
+        gap: 22px;
+        background: var(--bg);
+        transform: translateX(100%);
+        transition: transform 0.45s cubic-bezier(0.16,1,0.3,1);
+        overflow-y: auto;
+        padding: 100px 24px 40px;
+      }
+      body.menu-open { overflow: hidden; }
+      body.menu-open nav { transform: translateX(0); }
+      nav a.nav-link, .dropdown-trigger { font-size: 14px; letter-spacing: 3px; color: var(--text-soft); }
+      .nav-cta { margin-top: 10px; padding: 14px 30px; font-size: 12px; }
+      .menu-toggle { display: flex; }
+
+      .nav-item { flex-direction: column; align-items: center; width: 100%; }
+      .dropdown-trigger { justify-content: center; width: 100%; padding: 8px 0; }
+      .dropdown-panel {
+        position: static;
+        transform: none;
+        opacity: 1; visibility: visible; pointer-events: auto;
+        min-width: 0; width: 100%;
+        max-height: 0; overflow: hidden;
+        padding: 0; margin: 0;
+        background: none; border: none; backdrop-filter: none;
+        transition: max-height 0.4s cubic-bezier(0.16,1,0.3,1);
+      }
+      .nav-item.open .dropdown-panel { max-height: 300px; padding-top: 6px; }
+      .dropdown-link { text-align: center; font-size: 13px; padding: 10px 0; }
 
       .page-hero { padding: 130px 24px 72px; }
+      section.block { padding: 90px 24px; }
+      .section-head { margin-bottom: 44px; }
+      .cta-final { padding: 100px 24px; }
+      .cta-final .hero-actions, .page-hero .hero-actions { flex-direction: column; align-items: stretch; width: 100%; max-width: 320px; margin-left: auto; margin-right: auto; }
+      .btn { text-align: center; }
 
-      .contact-section {
-        padding: 60px 24px;
-        grid-template-columns: 1fr;
-        gap: 60px;
-      }
-
-      footer {
-        flex-direction: column;
-        gap: 20px;
-        padding: 28px 24px;
-        text-align: center;
-      }
+      footer { padding: 48px 24px 32px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
     }
+
+
+    .contact-section {
+      padding: 168px 48px 100px;
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+    }
+    .contact-info-label, .contact-form-label {
+      font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 4px;
+      color: var(--text-faint); margin-bottom: 40px; display: block;
+    }
+    .contact-detail { margin-bottom: 36px; }
+    .contact-detail .label {
+      font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 3px;
+      color: var(--text-faint); margin-bottom: 8px; display: block;
+    }
+    .contact-detail a, .contact-detail p {
+      font-size: 15px; font-weight: 400; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.3s;
+    }
+    .contact-detail a:hover { color: var(--text); }
+    .form-group { margin-bottom: 28px; }
+    .form-group label {
+      display: block; font-size: 10px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 3px; color: var(--text-faint); margin-bottom: 10px;
+    }
+    .form-group input, .form-group textarea {
+      width: 100%; padding: 13px 0; background: transparent; border: none;
+      border-bottom: 1px solid rgba(255,255,255,0.1); color: var(--text);
+      font-family: var(--body); font-size: 15px; font-weight: 400; outline: none;
+      transition: border-color 0.3s; -webkit-font-smoothing: antialiased;
+    }
+    .form-group input:focus, .form-group textarea:focus { border-bottom-color: rgba(255,255,255,0.38); }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.14); font-family: var(--body); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .consent { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 36px; }
+    .consent input[type="checkbox"] { margin-top: 3px; accent-color: rgba(255,255,255,0.8); }
+    .consent label { font-size: 11.5px; font-weight: 400; color: rgba(255,255,255,0.3); line-height: 1.65; }
+    .submit-btn {
+      display: inline-block; position: relative; background: var(--text); color: var(--bg);
+      padding: 16px 44px; font-family: var(--body); font-size: 10.5px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 3px; border: 1px solid var(--text);
+      cursor: pointer; overflow: hidden; transition: color 0.4s;
+    }
+    .submit-btn::before {
+      content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0;
+      background: var(--bg); border-radius: 50%; transform: translate(-50%,-50%);
+      transition: width 0.5s ease, height 0.5s ease; z-index: 0;
+    }
+    .submit-btn span { position: relative; z-index: 1; }
+    .submit-btn:hover { color: var(--text); }
+    .submit-btn:hover::before { width: 400px; height: 400px; }
+    .form-message { margin-top: 18px; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.5); display: none; }
+    @media (max-width: 768px) {
+      .contact-section { padding: 130px 24px 60px; grid-template-columns: 1fr; gap: 60px; }
+    }
+
   </style>
 </head>
 <body>
 
-  <header>
+  <header id="header">
     <a href="/" class="logo"><img src="logo-corelead.svg" alt="CoreLead"></a>
-    <nav>
-      <a href="kontakt.html" class="active">Kontakt</a>
+    <nav id="nav">
+      <div class="nav-item has-dropdown">
+        <button class="dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          KI-Automatisierung
+          <svg class="chev" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="dropdown-panel">
+          <a href="ki-agenten.html" class="dropdown-link">KI-Agenten</a>
+          <a href="workflow-automatisierung.html" class="dropdown-link">Workflow-Automatisierung</a>
+          <a href="individualsoftware.html" class="dropdown-link">Individualsoftware</a>
+          <a href="use-cases.html" class="dropdown-link">Use Cases</a>
+          <a href="faq.html" class="dropdown-link">FAQ</a>
+        </div>
+      </div>
+      <div class="nav-item has-dropdown">
+        <button class="dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          Informationssicherheit
+          <svg class="chev" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="dropdown-panel">
+          <a href="informationssicherheit.html" class="dropdown-link">ISMS &amp; ISO 27001/NIS2</a>
+          <a href="ciso-as-a-service.html" class="dropdown-link">CISO as a Service</a>
+          <a href="eu-ai-act.html" class="dropdown-link">EU AI Act</a>
+        </div>
+      </div>
+      <a href="https://www.compliantdesk.de" target="_blank" rel="noopener" class="nav-link nav-external">CompliantDesk<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      <a href="blog/index.html" class="nav-link">Blog</a>
+      <a href="vorgehen.html" class="nav-link">Vorgehen</a>
+      <a href="kontakt.html" class="nav-link active">Kontakt</a>
+      <a href="kontakt.html" class="nav-cta">Projekt besprechen</a>
     </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </header>
 
-  <section class="page-hero">
+  <section class="page-hero" style="padding-bottom:0;">
     <h1>Kontakt</h1>
-    <p>Fragen zu unseren Produkten, Partnerschaften oder allgemeine Anfragen: wir freuen uns auf Ihre Nachricht.</p>
+    <p>Fragen zu KI-Automatisierung, Informationssicherheit oder ein konkretes Projekt: wir freuen uns auf Ihre Nachricht.</p>
   </section>
 
   <div class="contact-section">
     <div class="contact-info reveal">
       <span class="contact-info-label">Direkt erreichen</span>
-
       <div class="contact-detail">
         <span class="label">E-Mail</span>
         <a href="mailto:hello@corelead.solutions">hello@corelead.solutions</a>
       </div>
-
       <div class="contact-detail">
         <span class="label">Telefon</span>
         <a href="tel:+498920033313">+49 89 200 333 13</a>
       </div>
-
       <div class="contact-detail">
         <span class="label">Standort</span>
         <p>München, Deutschland</p>
       </div>
     </div>
-
     <div class="contact-form reveal reveal-delay-1">
       <span class="contact-form-label">Anfrage senden</span>
       <form id="contactForm">
@@ -392,19 +620,31 @@
   </div>
 
   <footer>
-    <a href="/" class="footer-logo"><img src="logo-corelead.svg" alt="CoreLead"></a>
-    <div class="footer-links">
-      <a href="datenschutz.html">Datenschutzerklärung</a>
-      <a href="impressum.html">Impressum</a>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="footer-logo"><img src="logo-corelead.svg" alt="CoreLead"></a>
+        <p>KI-Automatisierung und Informationssicherheit aus einer Hand. München, Deutschland.</p>
+      </div>
+      <div class="footer-links">
+        <a href="ki-agenten.html">KI-Agenten</a>
+        <a href="workflow-automatisierung.html">Workflow-Automatisierung</a>
+        <a href="informationssicherheit.html">Informationssicherheit</a>
+        <a href="https://www.compliantdesk.de" target="_blank" rel="noopener">CompliantDesk</a>
+        <a href="blog/index.html">Blog</a>
+        <a href="faq.html">FAQ</a>
+        <a href="vorgehen.html">Vorgehen</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="impressum.html">Impressum</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <small>&copy; <span id="year"></span> Corelead GmbH &middot; München, Deutschland</small>
+      <small>hello@corelead.solutions</small>
     </div>
   </footer>
 
   <script>
-    const revealObs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
-
     document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const msg = document.getElementById('formMessage');
@@ -412,6 +652,63 @@
       msg.textContent = 'Nachricht wurde erfolgreich gesendet.';
       this.reset();
     });
+  </script>
+
+  <script>
+    // Sticky header
+    window.addEventListener('scroll', () => {
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Mobile menu
+    (function() {
+      const toggle = document.getElementById('menuToggle');
+      const nav = document.getElementById('nav');
+      function close() {
+        document.body.classList.remove('menu-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.querySelectorAll('.nav-item.open').forEach(i => i.classList.remove('open'));
+      }
+      toggle.addEventListener('click', () => {
+        const open = document.body.classList.toggle('menu-open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      nav.querySelectorAll(':scope > a').forEach(a => a.addEventListener('click', close));
+      nav.querySelectorAll('.dropdown-link').forEach(a => a.addEventListener('click', close));
+    })();
+
+    // Dropdown nav (hover on desktop via CSS; click/tap toggle for touch + mobile accordion)
+    (function() {
+      const items = Array.from(document.querySelectorAll('.nav-item.has-dropdown'));
+      items.forEach(item => {
+        const trigger = item.querySelector('.dropdown-trigger');
+        trigger.addEventListener('click', (e) => {
+          e.preventDefault();
+          const willOpen = !item.classList.contains('open');
+          items.forEach(i => { i.classList.remove('open'); i.querySelector('.dropdown-trigger').setAttribute('aria-expanded', 'false'); });
+          if (willOpen) { item.classList.add('open'); trigger.setAttribute('aria-expanded', 'true'); }
+        });
+      });
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.nav-item.has-dropdown')) {
+          items.forEach(i => { i.classList.remove('open'); i.querySelector('.dropdown-trigger').setAttribute('aria-expanded', 'false'); });
+        }
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          items.forEach(i => { i.classList.remove('open'); i.querySelector('.dropdown-trigger').setAttribute('aria-expanded', 'false'); });
+        }
+      });
+    })();
+
+    // Scroll reveal
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>

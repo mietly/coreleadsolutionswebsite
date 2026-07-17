@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KI-Agent vs. Chatbot vs. Workflow: Was Ihr Unternehmen wirklich braucht | CoreLead Blog</title>
+  <meta name="description" content="Chatbot, Workflow oder Agent: Drei Begriffe, die oft durcheinandergeworfen werden. Eine Einordnung, die bei der Entscheidung hilft.">
+  <link rel="canonical" href="https://corelead.org/blog/ki-agent-vs-chatbot-vs-workflow.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="CoreLead">
+  <meta property="og:title" content="KI-Agent vs. Chatbot vs. Workflow: Was Ihr Unternehmen wirklich braucht">
+  <meta property="og:description" content="Chatbot, Workflow oder Agent: Drei Begriffe, die oft durcheinandergeworfen werden. Eine Einordnung, die bei der Entscheidung hilft.">
+  <meta property="og:url" content="https://corelead.org/blog/ki-agent-vs-chatbot-vs-workflow.html">
+  <meta property="og:image" content="https://corelead.org/og-image.png">
+  <meta property="og:locale" content="de_DE">
+  <meta property="article:published_time" content="2026-07-10">
+  <meta property="article:author" content="David Oberholzner">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="KI-Agent vs. Chatbot vs. Workflow: Was Ihr Unternehmen wirklich braucht">
+  <meta name="twitter:description" content="Chatbot, Workflow oder Agent: Drei Begriffe, die oft durcheinandergeworfen werden. Eine Einordnung, die bei der Entscheidung hilft.">
+  <meta name="twitter:image" content="https://corelead.org/og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+
+    :root {
+      --bg:           #0a0a0a;
+      --bg-alt:       #0f0f0f;
+      --bg-card:      rgba(255,255,255,0.018);
+      --text:         rgba(255,255,255,0.95);
+      --text-soft:    rgba(255,255,255,0.65);
+      --text-dim:     rgba(255,255,255,0.45);
+      --text-faint:   rgba(255,255,255,0.22);
+      --text-ghost:   rgba(255,255,255,0.07);
+      --border:       rgba(255,255,255,0.07);
+      --border-hover: rgba(255,255,255,0.16);
+      --display:      'Bebas Neue', sans-serif;
+      --body:         'Manrope', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+
+    body {
+      font-family: var(--body);
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    ::selection { background: rgba(255,255,255,0.16); color: #fff; }
+
+    .wrap { max-width: 1180px; margin: 0 auto; }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: var(--text-faint);
+      margin-bottom: 26px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.9s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.visible  { opacity: 1; transform: none; }
+    .reveal-delay-1  { transition-delay: 0.08s; }
+    .reveal-delay-2  { transition-delay: 0.16s; }
+    .reveal-delay-3  { transition-delay: 0.24s; }
+    .reveal-delay-4  { transition-delay: 0.32s; }
+    .reveal-delay-5  { transition-delay: 0.40s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      *, *::before, *::after { animation-duration: 0.001s !important; }
+      html { scroll-behavior: auto; }
+    }
+
+    /* ── Header ── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 26px 48px;
+      border-bottom: 1px solid transparent;
+      transition: padding 0.4s ease, background 0.4s ease,
+                  backdrop-filter 0.4s ease, border-color 0.4s ease;
+    }
+    header.scrolled {
+      padding: 15px 48px;
+      background: rgba(10,10,10,0.86);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom-color: var(--border);
+    }
+
+    .logo { display: inline-flex; align-items: center; text-decoration: none; line-height: 1; }
+    .logo img { height: 26px; width: auto; }
+
+    nav { display: flex; gap: 28px; align-items: center; }
+
+    nav a.nav-link, .dropdown-trigger {
+      font-family: var(--body);
+      font-size: 10.5px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.58);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 2.1px;
+      transition: color 0.3s;
+      position: relative;
+      white-space: nowrap;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    nav a.nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: var(--text);
+      transition: width 0.3s ease;
+    }
+    nav a.nav-link:hover        { color: var(--text); }
+    nav a.nav-link:hover::after { width: 100%; }
+    nav a.nav-link.active       { color: var(--text); }
+    nav a.nav-link.active::after{ width: 100%; }
+
+    .nav-external { display: inline-flex; align-items: center; gap: 6px; }
+    .nav-external svg { opacity: 0.55; transition: opacity 0.3s, transform 0.3s; }
+    .nav-external:hover svg { opacity: 1; transform: translate(1px,-1px); }
+
+    /* ── Dropdown ── */
+    .nav-item { position: relative; display: flex; align-items: center; }
+    .dropdown-trigger { display: inline-flex; align-items: center; gap: 6px; padding: 4px 0; }
+    .dropdown-trigger .chev { transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); flex-shrink: 0; }
+    .nav-item:hover .dropdown-trigger,
+    .nav-item.open .dropdown-trigger,
+    .dropdown-trigger:focus-visible { color: var(--text); }
+    .nav-item:hover .chev, .nav-item.open .chev { transform: rotate(180deg); }
+    .nav-item.current > .dropdown-trigger { color: var(--text); }
+
+    .dropdown-panel {
+      position: absolute;
+      top: calc(100% + 22px);
+      left: 50%;
+      transform: translateX(-50%) translateY(6px);
+      min-width: 240px;
+      padding: 10px;
+      background: rgba(10,10,10,0.97);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1), visibility 0s linear 0.3s;
+      z-index: 999;
+    }
+    .nav-item:hover .dropdown-panel,
+    .nav-item.open .dropdown-panel,
+    .nav-item:focus-within .dropdown-panel {
+      opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
+      pointer-events: auto; transition-delay: 0s;
+    }
+    .dropdown-link {
+      display: block;
+      padding: 11px 14px;
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.62);
+      text-decoration: none;
+      letter-spacing: 0.2px;
+      border-radius: 2px;
+      transition: background 0.25s ease, color 0.25s ease;
+      white-space: nowrap;
+    }
+    .dropdown-link:hover  { background: rgba(255,255,255,0.05); color: var(--text); }
+    .dropdown-link.active { color: var(--text); background: rgba(255,255,255,0.04); }
+
+    .nav-cta {
+      font-family: var(--body);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--text);
+      padding: 10px 22px;
+      border: 1px solid var(--border-hover);
+      position: relative;
+      overflow: hidden;
+      transition: color 0.4s ease, border-color 0.4s ease;
+      white-space: nowrap;
+    }
+    .nav-cta::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: var(--text);
+      transition: left 0.4s cubic-bezier(0.16,1,0.3,1);
+      z-index: -1;
+    }
+    .nav-cta:hover { color: var(--bg); border-color: var(--text); }
+    .nav-cta:hover::before { left: 0; }
+
+    /* ── Mobile menu toggle ── */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      z-index: 1100;
+    }
+    .menu-toggle span {
+      width: 24px; height: 1.5px;
+      background: var(--text);
+      transition: transform 0.35s ease, opacity 0.3s ease;
+    }
+    body.menu-open .menu-toggle span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    body.menu-open .menu-toggle span:nth-child(2) { opacity: 0; }
+    body.menu-open .menu-toggle span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-block;
+      position: relative;
+      font-family: var(--body);
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      text-decoration: none;
+      padding: 16px 40px;
+      border: 1px solid var(--text);
+      overflow: hidden;
+      cursor: pointer;
+      transition: color 0.4s ease, border-color 0.4s ease;
+    }
+    .btn span { position: relative; z-index: 1; }
+    .btn-primary { background: var(--text); color: var(--bg); }
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 0; height: 0;
+      background: var(--bg);
+      border-radius: 50%;
+      transform: translate(-50%,-50%);
+      transition: width 0.55s ease, height 0.55s ease;
+      z-index: 0;
+    }
+    .btn-primary:hover { color: var(--text); }
+    .btn-primary:hover::before { width: 620px; height: 620px; }
+    .btn-ghost { background: transparent; color: var(--text); border-color: rgba(255,255,255,0.24); }
+    .btn-ghost::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: var(--text);
+      transition: left 0.45s cubic-bezier(0.16,1,0.3,1);
+      z-index: 0;
+    }
+    .btn-ghost:hover { color: var(--bg); border-color: var(--text); }
+    .btn-ghost:hover::before { left: 0; }
+
+    @keyframes fadeInUp   { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-14px); } to { opacity: 1; transform: none; } }
+
+    /* ── Page Hero (subpages) ── */
+    .page-hero {
+      padding: 168px 48px 96px;
+      text-align: center;
+      position: relative;
+    }
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 1px; height: 60px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.12), transparent);
+    }
+    .page-hero .eyebrow { opacity: 0; animation: fadeInDown 0.8s 0.15s forwards; }
+    .page-hero h1 {
+      font-family: var(--display);
+      font-size: clamp(32px, 4.5vw, 56px);
+      font-weight: 400;
+      color: var(--text);
+      letter-spacing: 2px;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeInUp 1s 0.3s forwards;
+    }
+    .page-hero p {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--text-dim);
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.85;
+      opacity: 0;
+      animation: fadeInUp 1s 0.5s forwards;
+    }
+    .page-hero .hero-actions {
+      margin-top: 40px;
+      display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;
+      opacity: 0; animation: fadeInUp 1s 0.65s forwards;
+    }
+
+    /* ── Section base ── */
+    section.block { padding: 130px 48px; position: relative; }
+    .block.alt { background: var(--bg-alt); }
+    .block.alt::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 1px; height: 58px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.10), transparent);
+    }
+    .section-head { max-width: 760px; margin-bottom: 64px; }
+    .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+    .section-head h2 {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(30px, 4vw, 52px);
+      letter-spacing: 1.5px;
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 22px;
+    }
+    .section-head p { font-size: 15px; color: var(--text-dim); line-height: 1.85; max-width: 600px; }
+    .section-head.center p { margin: 0 auto; }
+
+    .placeholder-note {
+      font-size: 12px;
+      color: var(--text-faint);
+      border: 1px dashed var(--border-hover);
+      padding: 18px 22px;
+      max-width: 620px;
+    }
+
+    /* ── Closing CTA ── */
+    .cta-final {
+      background: var(--bg-alt);
+      padding: 150px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-final::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 680px; height: 680px;
+      background: radial-gradient(circle, rgba(255,255,255,0.028) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .cta-final h2 {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(30px, 4.4vw, 58px);
+      letter-spacing: 1.5px;
+      line-height: 1.05;
+      margin-bottom: 20px;
+      position: relative;
+      max-width: 820px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-final p {
+      font-size: 15px;
+      color: var(--text-dim);
+      max-width: 560px;
+      margin: 0 auto 46px;
+      line-height: 1.85;
+      position: relative;
+    }
+    .cta-final .hero-actions { animation: none; opacity: 1; display:flex; justify-content:center; gap:16px; flex-wrap:wrap; }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 64px 48px 40px;
+    }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 48px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+    .footer-brand { max-width: 320px; }
+    .footer-brand .footer-logo { display: inline-block; margin-bottom: 18px; opacity: 0.85; }
+    .footer-brand .footer-logo img { height: 22px; width: auto; }
+    .footer-brand p { font-size: 13px; color: var(--text-dim); line-height: 1.7; }
+    .footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
+    .footer-links a {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-faint);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--text-soft); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+    .footer-bottom small { font-size: 11px; color: var(--text-faint); letter-spacing: 0.3px; }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      header, header.scrolled { padding: 16px 24px; }
+
+      nav {
+        position: fixed;
+        top: 0; right: 0; bottom: 0; left: 0;
+        width: 100%; height: 100vh;
+        z-index: 1050;
+        flex-direction: column;
+        justify-content: center;
+        gap: 22px;
+        background: var(--bg);
+        transform: translateX(100%);
+        transition: transform 0.45s cubic-bezier(0.16,1,0.3,1);
+        overflow-y: auto;
+        padding: 100px 24px 40px;
+      }
+      body.menu-open { overflow: hidden; }
+      body.menu-open nav { transform: translateX(0); }
+      nav a.nav-link, .dropdown-trigger { font-size: 14px; letter-spacing: 3px; color: var(--text-soft); }
+      .nav-cta { margin-top: 10px; padding: 14px 30px; font-size: 12px; }
+      .menu-toggle { display: flex; }
+
+      .nav-item { flex-direction: column; align-items: center; width: 100%; }
+      .dropdown-trigger { justify-content: center; width: 100%; padding: 8px 0; }
+      .dropdown-panel {
+        position: static;
+        transform: none;
+        opacity: 1; visibility: visible; pointer-events: auto;
+        min-width: 0; width: 100%;
+        max-height: 0; overflow: hidden;
+        padding: 0; margin: 0;
+        background: none; border: none; backdrop-filter: none;
+        transition: max-height 0.4s cubic-bezier(0.16,1,0.3,1);
+      }
+      .nav-item.open .dropdown-panel { max-height: 300px; padding-top: 6px; }
+      .dropdown-link { text-align: center; font-size: 13px; padding: 10px 0; }
+
+      .page-hero { padding: 130px 24px 72px; }
+      section.block { padding: 90px 24px; }
+      .section-head { margin-bottom: 44px; }
+      .cta-final { padding: 100px 24px; }
+      .cta-final .hero-actions, .page-hero .hero-actions { flex-direction: column; align-items: stretch; width: 100%; max-width: 320px; margin-left: auto; margin-right: auto; }
+      .btn { text-align: center; }
+
+      footer { padding: 48px 24px 32px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+
+
+    /* ── Problem/Feature cards (3-col numbered) ── */
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .why-card { background: var(--bg); padding: 44px 36px; transition: background 0.4s ease; }
+    .why-card:hover { background: rgba(255,255,255,0.02); }
+    .why-num { font-family: var(--display); font-size: 30px; letter-spacing: 2px; color: var(--text-ghost); line-height: 1; margin-bottom: 20px; }
+    .why-card h3 { font-family: var(--body); font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 12px; letter-spacing: 0.2px; line-height: 1.3; }
+    .why-card p { font-size: 13.5px; color: var(--text-dim); line-height: 1.75; }
+
+    /* ── Checklist ── */
+    .sec-list { list-style: none; display: flex; flex-direction: column; border-top: 1px solid var(--border); }
+    .sec-list li { display: flex; align-items: flex-start; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); font-size: 14px; color: var(--text-soft); }
+    .sec-list li svg { flex-shrink: 0; margin-top: 2px; color: var(--text-dim); }
+
+    /* ── Use-case cards (up to 4/row) ── */
+    .steps { display: grid; grid-template-columns: repeat(var(--cols, 4), 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .step { background: var(--bg); padding: 36px 28px 40px; position: relative; transition: background 0.4s ease; }
+    .step:hover { background: rgba(255,255,255,0.02); }
+    .step-num { font-family: var(--display); font-size: 30px; letter-spacing: 2px; color: var(--text-ghost); line-height: 1; margin-bottom: 20px; transition: color 0.4s ease; }
+    .step:hover .step-num { color: rgba(255,255,255,0.22); }
+    .step h3 { font-family: var(--body); font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 10px; letter-spacing: 0.2px; }
+    .step p { font-size: 12.5px; color: var(--text-dim); line-height: 1.7; }
+
+    /* ── Vorgehen kompakt (inline strip) ── */
+    .vorgehen-strip { display: flex; flex-wrap: wrap; gap: 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .vorgehen-strip .vs-item { flex: 1; min-width: 180px; padding: 26px 24px; border-left: 1px solid var(--border); }
+    .vorgehen-strip .vs-item:first-child { border-left: none; }
+    .vs-item .vs-num { font-family: var(--display); font-size: 11px; letter-spacing: 2px; color: var(--text-faint); margin-bottom: 8px; display: block; }
+    .vs-item p { font-size: 13px; color: var(--text-soft); line-height: 1.6; }
+
+    /* ── FAQ ── */
+    .faq-list { border-top: 1px solid var(--border); max-width: 820px; }
+    .faq-item { border-bottom: 1px solid var(--border); padding: 22px 0; }
+    .faq-item summary {
+      cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;
+      font-family: var(--body); font-size: 15px; font-weight: 600; color: var(--text); gap: 20px;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: '+'; font-family: var(--display); font-size: 22px; color: var(--text-faint);
+      transition: transform 0.3s ease; flex-shrink: 0;
+    }
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq-item p { margin-top: 14px; font-size: 13.5px; color: var(--text-dim); line-height: 1.8; max-width: 700px; }
+
+    /* ── Related links row ── */
+    .related-row { display: flex; flex-wrap: wrap; gap: 16px 36px; }
+    .pillar-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 10.5px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text); text-decoration: none; transition: gap 0.3s ease;
+    }
+    .pillar-link:hover { gap: 12px; }
+
+    @media (max-width: 980px) {
+      .steps { --cols: 2; }
+      .why-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .steps { --cols: 1; }
+      .step { padding: 30px 26px; }
+      .why-card { padding: 34px 26px; }
+      .vorgehen-strip { flex-direction: column; }
+      .vorgehen-strip .vs-item { border-left: none; border-top: 1px solid var(--border); }
+      .vorgehen-strip .vs-item:first-child { border-top: none; }
+    }
+
+
+    /* ── Blog grid ── */
+    .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .blog-card {
+      background: var(--bg); padding: 36px 32px; display: flex; flex-direction: column;
+      min-height: 300px; text-decoration: none; transition: background 0.4s ease;
+      position: relative; overflow: hidden;
+    }
+    .blog-card:hover { background: rgba(255,255,255,0.02); }
+    .blog-card-cat { font-size: 9.5px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--text-faint); margin-bottom: 18px; }
+    .blog-card h3, .blog-card h2 {
+      font-family: var(--display); font-weight: 400; font-size: 21px; letter-spacing: 0.5px;
+      line-height: 1.2; color: var(--text); margin-bottom: 14px;
+    }
+    .blog-card p { font-size: 13px; color: var(--text-dim); line-height: 1.75; margin-bottom: 20px; flex-grow: 1; }
+    .blog-card-meta {
+      display: flex; gap: 14px; font-size: 10.5px; color: var(--text-faint);
+      letter-spacing: 0.5px; margin-top: auto; padding-top: 16px; border-top: 1px solid var(--border);
+    }
+    .blog-card-arrow {
+      position: absolute; top: 32px; right: 28px; color: var(--text-faint);
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .blog-card:hover .blog-card-arrow { color: var(--text); transform: translate(3px,-3px); }
+
+    @media (max-width: 980px) { .blog-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 768px) { .blog-grid { grid-template-columns: 1fr; } }
+
+    /* ── Article ── */
+    .article-hero { padding: 168px 48px 50px; max-width: 780px; margin: 0 auto; text-align: left; }
+    .article-hero .eyebrow { opacity: 0; animation: fadeInDown 0.8s 0.15s forwards; }
+    .article-hero h1 {
+      font-family: var(--display); font-weight: 400; font-size: clamp(30px, 4.6vw, 52px);
+      letter-spacing: 1px; line-height: 1.08; color: var(--text);
+      opacity: 0; animation: fadeInUp 1s 0.3s forwards;
+    }
+    .article-meta-row {
+      display: flex; gap: 20px; flex-wrap: wrap; font-size: 11px; color: var(--text-faint);
+      letter-spacing: 1px; text-transform: uppercase; margin-top: 26px;
+      opacity: 0; animation: fadeInUp 1s 0.5s forwards;
+    }
+    .article-body { max-width: 720px; margin: 0 auto; padding: 10px 48px 70px; }
+    .article-body h2 {
+      font-family: var(--display); font-weight: 400; font-size: clamp(24px, 3vw, 32px);
+      letter-spacing: 0.5px; color: var(--text); margin: 56px 0 20px; line-height: 1.15;
+    }
+    .article-body h3 { font-family: var(--body); font-size: 18px; font-weight: 600; color: var(--text); margin: 36px 0 14px; }
+    .article-body p { font-size: 15.5px; color: var(--text-soft); line-height: 1.95; margin-bottom: 20px; }
+    .article-body ul, .article-body ol { margin: 0 0 24px 22px; }
+    .article-body li { font-size: 15.5px; color: var(--text-soft); line-height: 1.9; margin-bottom: 10px; }
+    .article-body strong { color: rgba(255,255,255,0.92); font-weight: 600; }
+    .article-body a { color: rgba(255,255,255,0.85); border-bottom: 1px solid rgba(255,255,255,0.25); text-decoration: none; transition: all 0.3s; }
+    .article-body a:hover { color: #fff; border-bottom-color: #fff; }
+    .article-body blockquote {
+      border-left: 2px solid var(--border-hover); padding-left: 24px; margin: 36px 0;
+      font-family: var(--display); font-size: 21px; font-weight: 400; letter-spacing: 0.3px;
+      color: rgba(255,255,255,0.78); line-height: 1.5;
+    }
+    .article-note {
+      font-size: 12.5px; color: var(--text-faint); line-height: 1.7;
+      padding-left: 16px; border-left: 1px solid var(--border); margin: 40px 0;
+    }
+
+    .author-box {
+      display: flex; gap: 18px; align-items: center; max-width: 720px; margin: 56px auto 0;
+      padding: 26px 30px; border: 1px solid var(--border);
+    }
+    .author-avatar {
+      width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--border-hover);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--display); font-size: 17px; color: var(--text-dim); flex-shrink: 0;
+    }
+    .author-info .name { font-size: 13.5px; font-weight: 600; color: var(--text); }
+    .author-info .role { font-size: 11.5px; color: var(--text-faint); margin-top: 2px; }
+
+    .article-cta {
+      max-width: 720px; margin: 40px auto 0;
+      border: 1px solid rgba(255,255,255,0.09); background: rgba(255,255,255,0.025);
+      padding: 40px 44px; position: relative; overflow: hidden;
+    }
+    .article-cta::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.14), transparent); }
+    .article-cta h3 { font-family: var(--display); font-weight: 400; font-size: 22px; letter-spacing: 0.5px; color: var(--text); margin-bottom: 12px; }
+    .article-cta p { font-size: 13.5px; color: var(--text-dim); line-height: 1.8; margin-bottom: 24px; max-width: 560px; }
+    .article-cta .hero-actions { justify-content: flex-start; animation: none; opacity: 1; }
+
+    .related-heading { max-width: 720px; margin: 70px auto 24px; }
+    .related-heading span { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 4px; color: var(--text-faint); }
+
+    @media (max-width: 768px) {
+      .article-hero { padding: 130px 24px 40px; }
+      .article-body { padding: 10px 24px 50px; }
+      .author-box { flex-direction: column; align-items: flex-start; margin: 40px 24px 0; }
+      .article-cta { margin: 32px 24px 0; padding: 32px 26px; }
+      .related-heading { margin: 50px 24px 20px; }
+    }
+
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "KI-Agent vs. Chatbot vs. Workflow: Was Ihr Unternehmen wirklich braucht",
+  "description": "Chatbot, Workflow oder Agent: Drei Begriffe, die oft durcheinandergeworfen werden. Eine Einordnung, die bei der Entscheidung hilft.",
+  "author": {
+    "@type": "Person",
+    "name": "David Oberholzner"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Corelead GmbH",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://corelead.org/logo-corelead.svg"
+    }
+  },
+  "datePublished": "2026-07-10",
+  "dateModified": "2026-07-10",
+  "mainEntityOfPage": "https://corelead.org/blog/ki-agent-vs-chatbot-vs-workflow.html",
+  "image": "https://corelead.org/og-image.png"
+}
+  </script>
+</head>
+<body>
+
+  <header id="header">
+    <a href="../" class="logo"><img src="../logo-corelead.svg" alt="CoreLead"></a>
+    <nav id="nav">
+      <div class="nav-item has-dropdown">
+        <button class="dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          KI-Automatisierung
+          <svg class="chev" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="dropdown-panel">
+          <a href="../ki-agenten.html" class="dropdown-link">KI-Agenten</a>
+          <a href="../workflow-automatisierung.html" class="dropdown-link">Workflow-Automatisierung</a>
+          <a href="../individualsoftware.html" class="dropdown-link">Individualsoftware</a>
+          <a href="../use-cases.html" class="dropdown-link">Use Cases</a>
+          <a href="../faq.html" class="dropdown-link">FAQ</a>
+        </div>
+      </div>
+      <div class="nav-item has-dropdown">
+        <button class="dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          Informationssicherheit
+          <svg class="chev" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="dropdown-panel">
+          <a href="../informationssicherheit.html" class="dropdown-link">ISMS &amp; ISO 27001/NIS2</a>
+          <a href="../ciso-as-a-service.html" class="dropdown-link">CISO as a Service</a>
+          <a href="../eu-ai-act.html" class="dropdown-link">EU AI Act</a>
+        </div>
+      </div>
+      <a href="https://www.compliantdesk.de" target="_blank" rel="noopener" class="nav-link nav-external">CompliantDesk<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      <a href="../blog/index.html" class="nav-link">Blog</a>
+      <a href="../vorgehen.html" class="nav-link">Vorgehen</a>
+      <a href="../kontakt.html" class="nav-link">Kontakt</a>
+      <a href="../kontakt.html" class="nav-cta">Projekt besprechen</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <section class="article-hero">
+    <span class="eyebrow">KI-Automatisierung</span>
+    <h1>KI-Agent vs. Chatbot vs. Workflow: Was Ihr Unternehmen wirklich braucht</h1>
+    <div class="article-meta-row">
+      <span>David Oberholzner</span>
+      <span>10. Juli 2026</span>
+      <span>5 Min. Lesezeit</span>
+    </div>
+  </section>
+
+  <div class="article-body reveal">
+    <p>„Wir brauchen einen KI-Agenten" ist mittlerweile ein Standardsatz in Projektanfragen, oft gemeint ist aber ein Chatbot oder eine simple Workflow-Automatisierung. Die drei Begriffe werden ständig durcheinandergeworfen, dabei stehen sie für sehr unterschiedliche Werkzeuge mit unterschiedlichen Stärken.</p>
+
+    <h2>Der Chatbot: Antworten, keine Aktionen</h2>
+    <p>Ein Chatbot ist im Kern eine Konversationsoberfläche. Er beantwortet Fragen, führt durch ein Gespräch, hilft bei der Orientierung. Was er in der klassischen Form nicht tut: etwas in einem angebundenen System verändern. Ein Chatbot auf einer Website beantwortet Produktfragen, bucht aber keinen Termin und legt keinen Datensatz an, wenn er nicht explizit dafür gebaut wurde. Genau diese Beschränkung macht ihn aber auch einfach zu kontrollieren: Ein Chatbot kann im schlimmsten Fall eine falsche Antwort geben, aber selten direkten operativen Schaden anrichten.</p>
+
+    <h2>Der Workflow: Zuverlässig, aber starr</h2>
+    <p>Eine Workflow-Automatisierung folgt festen Regeln: Wenn Ereignis X eintritt, führe Schritt Y aus. Das ist die Domäne von n8n, Power Automate und ähnlichen Plattformen. Workflows sind extrem zuverlässig, solange der Ablauf klar definierbar ist. Ein eingehender Rechnungsbeleg wird immer gleich verarbeitet, ein neuer Mitarbeitereintrag löst immer dieselben Schritte aus. Workflows haben keine „Intelligenz" im engeren Sinn, sie führen aus, was vorab definiert wurde, nicht mehr und nicht weniger.</p>
+
+    <h2>Der Agent: Sprachverständnis plus Werkzeugzugriff</h2>
+    <p>Ein KI-Agent kombiniert Sprachverständnis mit Zugriff auf definierte Werkzeuge und kann innerhalb gesetzter Grenzen selbst entscheiden, welchen Schritt er als Nächstes geht. Ein Agent, der Support-Tickets bearbeitet, kann eine Anfrage lesen, in der Wissensdatenbank recherchieren, eine Antwort formulieren und je nach Komplexität selbst entscheiden, ob er direkt antwortet oder an einen Menschen weitergibt. Diese Flexibilität hat ihren Preis: Agenten sind komplexer zu bauen, zu testen und abzusichern als klassische Workflows.</p>
+
+    <blockquote>Die Frage ist nicht „Chatbot, Workflow oder Agent?", sondern: Welche Flexibilität braucht der jeweilige Anwendungsfall wirklich, und welche ist überflüssiger Aufwand?</blockquote>
+
+    <h2>Eine einfache Entscheidungshilfe</h2>
+    <ul>
+      <li><strong>Ablauf ist immer gleich, wenige Ausnahmen?</strong> Ein Workflow reicht meistens aus, zum Beispiel bei Rechnungsverarbeitung oder Onboarding-Checklisten.</li>
+      <li><strong>Nutzer sollen Fragen stellen und Antworten bekommen, ohne dass sich am System etwas ändert?</strong> Ein Chatbot ist die richtige, schlankere Lösung.</li>
+      <li><strong>Der Ablauf hängt vom Inhalt der jeweiligen Anfrage ab, mit vielen möglichen Varianten und Werkzeugen?</strong> Dann wird ein Agent gebraucht, etwa bei Service-Desk-Assistenz oder Dokumentenanalyse mit Rückfragen.</li>
+    </ul>
+
+    <h2>Der häufigste Fehler: Overengineering</h2>
+    <p>In der Praxis sehen wir öfter das Gegenteil von zu wenig Ambition: Unternehmen wollen einen Agenten bauen, wo ein einfacher Workflow völlig ausreichen würde. Das Ergebnis ist unnötige Komplexität, höhere Kosten und mehr Angriffsfläche für Fehler, ohne echten Zusatznutzen. Der umgekehrte Fehler kommt seltener vor, ist aber genauso teuer: ein starrer Workflow wird für einen Anwendungsfall gebaut, der eigentlich Flexibilität braucht, und produziert dann ständig Sonderfälle, die manuell nachbearbeitet werden müssen.</p>
+
+    <h2>Was Aufwand und Kosten wirklich treibt</h2>
+    <p>Ein Workflow ist in der Regel schneller gebaut und einfacher zu testen, weil sein Verhalten vorhersagbar ist: Ein bestimmter Input führt immer zum selben Ablauf. Ein Agent braucht mehr Vorarbeit, etwa beim Festlegen der Werkzeuge, auf die er zugreifen darf, bei der Definition der Freigabelogik und beim Testen unterschiedlicher, auch unerwarteter Eingaben. Dieser Mehraufwand lohnt sich dort, wo die Varianz der Anfragen tatsächlich hoch ist, ist aber verschwendet, wenn der Anwendungsfall in Wahrheit immer demselben Muster folgt.</p>
+
+    <h2>Ein Beispiel aus drei Blickwinkeln</h2>
+    <p>Nehmen wir Rechnungsverarbeitung, Kundenservice und Vertragsprüfung als drei typische Anwendungsfälle. Rechnungsverarbeitung folgt meist einem klaren Muster, hier reicht in der Regel ein Workflow. Erstkontakt im Kundenservice mit häufig wiederkehrenden Standardfragen lässt sich gut mit einem Chatbot abdecken. Vertragsprüfung mit unterschiedlichen Dokumenttypen, wechselnden Fragestellungen und dem Bedarf, in bestehenden Systemen nachzuschlagen, ist ein typischer Agenten-Anwendungsfall.</p>
+    <p>Interessant wird es, wenn sich ein Anwendungsfall über die Zeit verändert. Ein Kundenservice-Chatbot, der anfangs nur Standardfragen beantwortet, wird mit wachsendem Funktionsumfang irgendwann zum Agenten, sobald er beginnt, in Systemen nachzuschauen oder Aktionen auszulösen. Diese Entwicklung ist normal, sollte aber bewusst gesteuert werden, statt schleichend zu passieren, ohne dass Berechtigungen und Freigabelogik mitwachsen.</p>
+
+    <h2>Kombinationen in der Praxis</h2>
+    <p>Die drei Bausteine schließen sich nicht gegenseitig aus, sie lassen sich kombinieren. Ein typisches Muster: Ein Chatbot übernimmt den Erstkontakt und beantwortet Standardfragen. Erkennt er eine komplexere Anfrage, übergibt er an einen Agenten, der auf interne Systeme zugreifen und eine individuelle Lösung recherchieren kann. Im Hintergrund läuft ein Workflow, der die daraus entstehende Dokumentation automatisch ablegt und bei Bedarf eine Benachrichtigung an das zuständige Team auslöst. Jeder Baustein macht das, worin er am besten ist, statt dass ein einzelnes Werkzeug alles gleichzeitig leisten muss.</p>
+
+    <h2>Wie wir entscheiden</h2>
+    <p>Wir legen die Architektur nicht vorab fest, sondern leiten sie aus der Analyse des konkreten Prozesses ab. Erst wenn klar ist, wie viel Varianz ein Anwendungsfall tatsächlich hat, entscheidet sich, ob ein Workflow reicht, ein Chatbot die bessere Wahl ist oder ein <a href="../ki-agenten.html">KI-Agent</a> gebraucht wird. Häufig ist die Antwort auch eine Kombination: ein Workflow als zuverlässiges Rückgrat, ergänzt um einen Agenten für die Fälle, die echte Flexibilität brauchen.</p>
+    <p>Mehr zu unserem Ansatz für Workflow-Automatisierung finden Sie auf der Seite <a href="../workflow-automatisierung.html">Workflow-Automatisierung</a>, konkrete Anwendungsfälle im <a href="../use-cases.html">Use-Case-Katalog</a>.</p>
+  </div>
+
+  <div class="author-box reveal">
+    <span class="author-avatar">DO</span>
+    <div class="author-info">
+      <div class="name">David Oberholzner</div>
+      <div class="role">Gründer Corelead GmbH &middot; 15+ Jahre IT-Leitung &middot; Autor „NIS2 Kompakt" &amp; „Compliance ohne Excel-Chaos"</div>
+    </div>
+  </div>
+
+  <div class="wrap" style="max-width:720px;">
+  <div class="article-cta reveal">
+    <h3>Ein Projekt, das dazu passt?</h3>
+    <p>Wir prüfen in einem kurzen Austausch, ob und wie sich Ihr Anwendungsfall sicher automatisieren lässt.</p>
+    <div class="hero-actions">
+      <a href="../kontakt.html" class="btn btn-primary"><span>Projekt besprechen</span></a>
+      <a href="../use-cases.html" class="btn btn-ghost"><span>Use Cases ansehen</span></a>
+    </div>
+  </div>
+  </div>
+
+  <section class="block">
+    <div class="related-heading"><span>Weitere Artikel</span></div>
+    <div class="wrap">
+      <div class="blog-grid reveal">
+        <a href="ki-agenten-eu-ai-act-checkliste.html" class="blog-card">
+        <span class="blog-card-cat">KI-Automatisierung</span>
+        <h3>KI-Agenten im Mittelstand: Warum der EU AI Act kein Blocker ist, sondern eine Checkliste</h3>
+        <p>Der EU AI Act klingt nach Blocker für KI-Projekte. Mit der richtigen Checkliste wird er zur Struktur, nicht zur Bremse.</p>
+        <div class="blog-card-meta"><span>20. Juni 2026</span><span>5 Min. Lesezeit</span></div>
+      </a>
+      <a href="n8n-power-automate-oder-eigenbau.html" class="blog-card">
+        <span class="blog-card-cat">KI-Automatisierung</span>
+        <h3>n8n, Power Automate oder Eigenbau? Workflow-Automatisierung sicher auswählen</h3>
+        <p>n8n, Power Automate oder Eigenbau: Die Tool-Frage kommt zu früh. Worauf es bei der Auswahl wirklich ankommt.</p>
+        <div class="blog-card-meta"><span>5. Juni 2026</span><span>5 Min. Lesezeit</span></div>
+      </a>
+      <a href="cra-meldepflichten-2026.html" class="blog-card">
+        <span class="blog-card-cat">Informationssicherheit</span>
+        <h3>CRA-Meldepflichten ab 11. September 2026: Was Hersteller jetzt tun müssen</h3>
+        <p>Der Cyber Resilience Act bringt Meldepflichten für Sicherheitsvorfälle. Was Hersteller jetzt konkret vorbereiten sollten.</p>
+        <div class="blog-card-meta"><span>1. Juli 2026</span><span>6 Min. Lesezeit</span></div>
+      </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="../" class="footer-logo"><img src="../logo-corelead.svg" alt="CoreLead"></a>
+        <p>KI-Automatisierung und Informationssicherheit aus einer Hand. München, Deutschland.</p>
+      </div>
+      <div class="footer-links">
+        <a href="../ki-agenten.html">KI-Agenten</a>
+        <a href="../workflow-automatisierung.html">Workflow-Automatisierung</a>
+        <a href="../informationssicherheit.html">Informationssicherheit</a>
+        <a href="https://www.compliantdesk.de" target="_blank" rel="noopener">CompliantDesk</a>
+        <a href="../blog/index.html">Blog</a>
+        <a href="../faq.html">FAQ</a>
+        <a href="../vorgehen.html">Vorgehen</a>
+        <a href="../kontakt.html">Kontakt</a>
+        <a href="../datenschutz.html">Datenschutz</a>
+        <a href="../impressum.html">Impressum</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <small>&copy; <span id="year"></span> Corelead GmbH &middot; München, Deutschland</small>
+      <small>hello@corelead.solutions</small>
+    </div>
+  </footer>
+
+  <script>
+    // Sticky header
+    window.addEventListener('scroll', () => {
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Mobile menu
+    (function() {
+      const toggle = document.getElementById('menuToggle');
+      const nav = document.getElementById('nav');
+      function close() {
+        document.body.classList.remove('menu-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.querySelectorAll('.nav-item.open').forEach(i => i.classList.remove('open'));
+      }
+      toggle.addEventListener('click', () => {
+        const open = document.body.classList.toggle('menu-open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      nav.querySelectorAll(':scope > a').forEach(a => a.addEventListener('click', close));
+      nav.querySelectorAll('.dropdown-link').forEach(a => a.addEventListener('click', close));
+    })();
+
+    // Dropdown nav (hover on desktop via CSS; click/tap toggle for touch + mobile accordion)
+    (function() {
+      const items = Array.from(document.querySelectorAll('.nav-item.has-dropdown'));
+      items.forEach(item => {
+        const trigger = item.querySelector('.dropdown-trigger');
+        trigger.addEventListener('click', (e) => {
+          e.preventDefault();
+          const willOpen = !item.classList.contains('open');
+          items.forEach(i => { i.classList.remove('open'); i.querySelector('.dropdown-trigger').setAttribute('aria-expanded', 'false'); });
+          if (willOpen) { item.classList.add('open'); trigger.setAttribute('aria-expanded', 'true'); }
+        });
+      });
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.nav-item.has-dropdown')) {
+          items.forEach(i => { i.classList.remove('open'); i.querySelector('.dropdown-trigger').setAttribute('aria-expanded', 'false'); });
+        }
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          items.forEach(i => { i.classList.remove('open'); i.querySelector('.dropdown-trigger').setAttribute('aria-expanded', 'false'); });
+        }
+      });
+    })();
+
+    // Scroll reveal
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

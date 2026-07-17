@@ -3,9 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Impressum | Corelead GmbH</title>
-  <meta name="robots" content="noindex">
-  <link rel="canonical" href="https://corelead.org/impressum.html">
+  <title>EU AI Act Readiness für KI-Workflows | CoreLead München</title>
+  <meta name="description" content="EU-AI-Act-Pflichten bei KI-Agenten und Workflows: Risikoklassifizierung, Transparenz, Dokumentation, AI Literacy.">
+  <link rel="canonical" href="https://corelead.org/eu-ai-act.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CoreLead">
+  <meta property="og:title" content="EU AI Act Readiness für KI-Workflows | CoreLead München">
+  <meta property="og:description" content="EU-AI-Act-Pflichten bei KI-Agenten und Workflows: Risikoklassifizierung, Transparenz, Dokumentation, AI Literacy.">
+  <meta property="og:url" content="https://corelead.org/eu-ai-act.html">
+  <meta property="og:image" content="https://corelead.org/og-image.png">
+  <meta property="og:locale" content="de_DE">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="EU AI Act Readiness für KI-Workflows | CoreLead München">
+  <meta name="twitter:description" content="EU-AI-Act-Pflichten bei KI-Agenten und Workflows: Risikoklassifizierung, Transparenz, Dokumentation, AI Literacy.">
+  <meta name="twitter:image" content="https://corelead.org/og-image.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -474,102 +485,140 @@
     }
 
 
-    /* ── Legal hero: ghost watermark ── */
-    .legal-hero { position: relative; overflow: hidden; }
-    .legal-hero::before {
-      content: '';
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-      width: 680px; height: 680px;
-      background: radial-gradient(circle, rgba(255,255,255,0.035) 0%, transparent 65%);
-      pointer-events: none;
-    }
-    .legal-ghost-word {
-      position: absolute; top: 52%; left: 50%; transform: translate(-50%,-50%);
-      font-family: var(--display); font-size: clamp(160px, 34vw, 460px); letter-spacing: 0;
-      color: rgba(255,255,255,0.028); line-height: 1;
-      pointer-events: none; user-select: none; z-index: 0;
-    }
-    .legal-hero .page-hero { position: relative; z-index: 1; }
-    .legal-hero .page-hero h1,
-    .legal-hero .page-hero .sub { position: relative; }
-    .page-hero .sub {
-      font-size: 12px; color: var(--text-faint); letter-spacing: 2px; text-transform: uppercase;
-      margin-top: 18px; display: inline-block;
-      opacity: 0; animation: fadeInUp 1s 0.5s forwards;
-    }
+    /* ── Problem/Feature cards (3-col numbered) ── */
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .why-card { background: var(--bg); padding: 44px 36px; transition: background 0.4s ease; }
+    .why-card:hover { background: rgba(255,255,255,0.02); }
+    .why-num { font-family: var(--display); font-size: 30px; letter-spacing: 2px; color: var(--text-ghost); line-height: 1; margin-bottom: 20px; }
+    .why-card h3 { font-family: var(--body); font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 12px; letter-spacing: 0.2px; line-height: 1.3; }
+    .why-card p { font-size: 13.5px; color: var(--text-dim); line-height: 1.75; }
 
-    /* ── Layout: sticky TOC + cards ── */
-    .legal-layout {
-      display: grid; grid-template-columns: 220px 1fr; gap: 64px;
-      max-width: 1120px; margin: 0 auto; padding: 30px 48px 130px; align-items: start;
-    }
-    .legal-toc { position: sticky; top: 110px; display: flex; flex-direction: column; gap: 2px; }
-    .legal-toc a {
-      display: flex; align-items: baseline; gap: 12px;
-      padding: 10px 0 10px 14px; border-left: 2px solid transparent;
-      font-size: 10.5px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
-      color: var(--text-faint); text-decoration: none;
-      transition: color 0.3s ease, border-color 0.3s ease;
-    }
-    .legal-toc a .toc-num {
-      font-family: var(--display); font-size: 13px; letter-spacing: 1px;
-      color: var(--text-ghost); transition: color 0.3s ease;
-    }
-    .legal-toc a:hover, .legal-toc a.active { color: var(--text); border-left-color: rgba(255,255,255,0.4); }
-    .legal-toc a:hover .toc-num, .legal-toc a.active .toc-num { color: var(--text); }
+    /* ── Checklist ── */
+    .sec-list { list-style: none; display: flex; flex-direction: column; border-top: 1px solid var(--border); }
+    .sec-list li { display: flex; align-items: flex-start; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); font-size: 14px; color: var(--text-soft); }
+    .sec-list li svg { flex-shrink: 0; margin-top: 2px; color: var(--text-dim); }
 
-    .legal-cards { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); }
-    .legal-card {
-      background: var(--bg); padding: 44px 48px; position: relative; overflow: hidden;
-      scroll-margin-top: 110px; transition: background 0.4s ease;
+    /* ── Use-case cards (up to 4/row) ── */
+    .steps { display: grid; grid-template-columns: repeat(var(--cols, 4), 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .step { background: var(--bg); padding: 36px 28px 40px; position: relative; transition: background 0.4s ease; }
+    .step:hover { background: rgba(255,255,255,0.02); }
+    .step-num { font-family: var(--display); font-size: 30px; letter-spacing: 2px; color: var(--text-ghost); line-height: 1; margin-bottom: 20px; transition: color 0.4s ease; }
+    .step:hover .step-num { color: rgba(255,255,255,0.22); }
+    .step h3 { font-family: var(--body); font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 10px; letter-spacing: 0.2px; }
+    .step p { font-size: 12.5px; color: var(--text-dim); line-height: 1.7; }
+
+    /* ── Vorgehen kompakt (inline strip) ── */
+    .vorgehen-strip { display: flex; flex-wrap: wrap; gap: 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .vorgehen-strip .vs-item { flex: 1; min-width: 180px; padding: 26px 24px; border-left: 1px solid var(--border); }
+    .vorgehen-strip .vs-item:first-child { border-left: none; }
+    .vs-item .vs-num { font-family: var(--display); font-size: 11px; letter-spacing: 2px; color: var(--text-faint); margin-bottom: 8px; display: block; }
+    .vs-item p { font-size: 13px; color: var(--text-soft); line-height: 1.6; }
+
+    /* ── FAQ ── */
+    .faq-list { border-top: 1px solid var(--border); max-width: 820px; }
+    .faq-item { border-bottom: 1px solid var(--border); padding: 22px 0; }
+    .faq-item summary {
+      cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;
+      font-family: var(--body); font-size: 15px; font-weight: 600; color: var(--text); gap: 20px;
     }
-    .legal-card:hover { background: rgba(255,255,255,0.02); }
-    .legal-card-ghost {
-      position: absolute; top: -18px; right: 20px;
-      font-family: var(--display); font-size: 128px; letter-spacing: 1px;
-      color: rgba(255,255,255,0.028); line-height: 1;
-      pointer-events: none; user-select: none;
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: '+'; font-family: var(--display); font-size: 22px; color: var(--text-faint);
+      transition: transform 0.3s ease; flex-shrink: 0;
     }
-    .legal-card-head { display: flex; align-items: center; gap: 16px; margin-bottom: 22px; position: relative; z-index: 1; }
-    .legal-icon {
-      display: flex; align-items: center; justify-content: center;
-      width: 40px; height: 40px; border-radius: 50%;
-      border: 1px solid var(--border-hover); color: var(--text-dim); flex-shrink: 0;
-      transition: color 0.35s ease, border-color 0.35s ease;
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq-item p { margin-top: 14px; font-size: 13.5px; color: var(--text-dim); line-height: 1.8; max-width: 700px; }
+
+    /* ── Related links row ── */
+    .related-row { display: flex; flex-wrap: wrap; gap: 16px 36px; }
+    .pillar-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 10.5px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text); text-decoration: none; transition: gap 0.3s ease;
     }
-    .legal-card:hover .legal-icon { color: var(--text); border-color: rgba(255,255,255,0.32); }
-    .legal-card h2 { font-family: var(--display); font-weight: 400; font-size: 22px; letter-spacing: 1px; color: var(--text); }
-    .legal-card-body { position: relative; z-index: 1; max-width: 640px; }
-    .legal-label {
-      display: block; font-size: 10px; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 3px; color: var(--text-faint); margin: 18px 0 6px;
-    }
-    .legal-label:first-child { margin-top: 0; }
-    .legal-card p { font-size: 14.5px; color: var(--text-soft); line-height: 1.9; margin-bottom: 8px; }
-    .legal-card ul { list-style: none; margin: 6px 0 10px; }
-    .legal-card ul li { font-size: 14.5px; color: var(--text-soft); line-height: 1.9; padding-left: 20px; position: relative; }
-    .legal-card ul li::before { content: ''; position: absolute; left: 0; top: 12px; width: 8px; height: 1px; background: rgba(255,255,255,0.28); }
-    .legal-card a {
-      color: rgba(255,255,255,0.82); text-decoration: none;
-      border-bottom: 1px solid rgba(255,255,255,0.2); transition: all 0.3s;
-    }
-    .legal-card a:hover { color: #fff; border-bottom-color: rgba(255,255,255,0.55); }
+    .pillar-link:hover { gap: 12px; }
 
     @media (max-width: 980px) {
-      .legal-layout { grid-template-columns: 1fr; gap: 22px; padding: 20px 24px 90px; }
-      .legal-toc {
-        position: static; flex-direction: row; overflow-x: auto; gap: 20px;
-        padding-bottom: 12px; margin-bottom: 4px; border-bottom: 1px solid var(--border);
-        -webkit-overflow-scrolling: touch;
-      }
-      .legal-toc a { padding: 4px 0 8px; white-space: nowrap; border-left: none; border-bottom: 2px solid transparent; }
-      .legal-toc a:hover, .legal-toc a.active { border-left-color: transparent; border-bottom-color: rgba(255,255,255,0.4); }
-      .legal-card { padding: 32px 26px; }
-      .legal-card-ghost { font-size: 84px; top: -8px; right: 12px; }
-      .legal-ghost-word { font-size: clamp(120px, 46vw, 220px); }
+      .steps { --cols: 2; }
+      .why-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .steps { --cols: 1; }
+      .step { padding: 30px 26px; }
+      .why-card { padding: 34px 26px; }
+      .vorgehen-strip { flex-direction: column; }
+      .vorgehen-strip .vs-item { border-left: none; border-top: 1px solid var(--border); }
+      .vorgehen-strip .vs-item:first-child { border-top: none; }
     }
 
+
   </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "EU AI Act Readiness",
+  "description": "EU-AI-Act-Pflichten bei KI-Agenten und Workflows: Risikoklassifizierung, Transparenz, Dokumentation, AI Literacy.",
+  "provider": {
+    "@type": "Organization",
+    "name": "Corelead GmbH",
+    "url": "https://corelead.org/"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Deutschland"
+  },
+  "url": "https://corelead.org/eu-ai-act.html"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Gilt der EU AI Act auch für kleinere Unternehmen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja, die Pflichten richten sich nach Risikoklasse und Rolle, nicht primär nach Unternehmensgröße. Auch kleinere Unternehmen können als Betreiber eines KI-Systems Pflichten haben."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was bedeutet Risikoklassifizierung konkret?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Jeder KI-Anwendungsfall wird danach eingeordnet, welches Risiko er birgt. Daraus ergeben sich unterschiedlich strenge Pflichten, von minimalen Transparenzhinweisen bis zu umfangreicher Dokumentation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was ist AI Literacy und wer muss das nachweisen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AI Literacy bezeichnet das nötige Wissen von Mitarbeitenden im Umgang mit KI-Systemen. Anbieter und Betreiber von KI-Systemen müssen sicherstellen, dass ihr Personal ausreichend geschult ist."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ersetzt das eine juristische Prüfung?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nein. Wir bauen die technische und organisatorische Struktur, für eine rechtsverbindliche Einordnung empfehlen wir eine spezialisierte Kanzlei."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie hängt der EU AI Act mit NIS2 zusammen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Beide Regelwerke greifen ineinander, sobald KI-Systeme in kritischen oder regulierten Prozessen eingesetzt werden. Wir denken beides gemeinsam statt getrennt."
+      }
+    }
+  ]
+}
+  </script>
 </head>
 <body>
 
@@ -589,7 +638,7 @@
           <a href="faq.html" class="dropdown-link">FAQ</a>
         </div>
       </div>
-      <div class="nav-item has-dropdown">
+      <div class="nav-item has-dropdown current">
         <button class="dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false">
           Informationssicherheit
           <svg class="chev" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
@@ -597,7 +646,7 @@
         <div class="dropdown-panel">
           <a href="informationssicherheit.html" class="dropdown-link">ISMS &amp; ISO 27001/NIS2</a>
           <a href="ciso-as-a-service.html" class="dropdown-link">CISO as a Service</a>
-          <a href="eu-ai-act.html" class="dropdown-link">EU AI Act</a>
+          <a href="eu-ai-act.html" class="dropdown-link active">EU AI Act</a>
         </div>
       </div>
       <a href="https://www.compliantdesk.de" target="_blank" rel="noopener" class="nav-link nav-external">CompliantDesk<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
@@ -611,79 +660,131 @@
     </button>
   </header>
 
-  <div class="legal-hero">
-    <span class="legal-ghost-word" aria-hidden="true">§</span>
-    <section class="page-hero">
-      <h1>Impressum</h1>
-      <span class="sub">Angaben gemäß § 5 DDG</span>
-    </section>
-  </div>
+  <section class="page-hero">
+    <span class="eyebrow reveal visible">EU AI Act</span>
+    <h1>EU AI Act Readiness</h1>
+    <p>Wer KI-Workflows einführt, hat ab sofort Pflichten: Risikoklassifizierung, Transparenz, Dokumentation, AI Literacy. Wir bauen die Automatisierung und liefern die Compliance-Struktur dazu.</p>
+    <div class="hero-actions">
+      <a href="kontakt.html" class="btn btn-primary"><span>Projekt besprechen</span></a>
+      <a href="informationssicherheit.html" class="btn btn-ghost"><span>Informationssicherheit ansehen</span></a>
+    </div>
+  </section>
 
-  <div class="legal-layout">
-    <nav class="legal-toc" aria-label="Abschnitte">
-      <a href="#anbieter"><span class="toc-num">01</span><span>Anbieter</span></a>
-      <a href="#vertretung"><span class="toc-num">02</span><span>Vertretung</span></a>
-      <a href="#kontakt"><span class="toc-num">03</span><span>Kontakt</span></a>
-      <a href="#register"><span class="toc-num">04</span><span>Registereintrag</span></a>
-      <a href="#verantwortlich"><span class="toc-num">05</span><span>Inhaltlich verantwortlich</span></a>
-    </nav>
-    <div class="legal-cards">
-    <div class="legal-card reveal" id="anbieter">
-      <span class="legal-card-ghost" aria-hidden="true">01</span>
-      <div class="legal-card-head">
-        <span class="legal-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V6a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v15M4 21h16M14 21V9a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v12M9 8h.01M9 12h.01M9 16h.01"/></svg></span>
-        <h2>Anbieter</h2>
+  <section class="block">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Ausgangslage</span>
+        <h2 style="font-family:var(--display);font-weight:400;font-size:clamp(28px,3.6vw,44px);letter-spacing:1px;line-height:1.08;">Der AI Act ist kein Blocker.</h2>
+        <p>Er ist eine Checkliste. Wer sie kennt, kann KI-Workflows einführen, ohne später nachbessern zu müssen.</p>
       </div>
-      <div class="legal-card-body">
-        <p>Corelead GmbH<br>Togostr. 6<br>81827 München<br>Deutschland</p>
+      <div class="why-grid reveal reveal-delay-1">
+        <div class="why-card">
+          <div class="why-num">01</div>
+          <h3>Projekt ohne Risikoeinstufung</h3>
+          <p>Viele Automatisierungsprojekte starten, ohne zu prüfen, welche Pflichten der EU AI Act auslöst.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-num">02</div>
+          <h3>Reine KI-Agenturen liefern keine Compliance</h3>
+          <p>Wer nur Workflows baut, liefert selten die Dokumentation, die der AI Act verlangt.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-num">03</div>
+          <h3>AI Literacy wird unterschätzt</h3>
+          <p>Mitarbeitende müssen wissen, wie sie mit KI-Systemen umgehen. Diese Pflicht gilt unabhängig von der Risikoklasse.</p>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="legal-card reveal" id="vertretung">
-      <span class="legal-card-ghost" aria-hidden="true">02</span>
-      <div class="legal-card-head">
-        <span class="legal-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20.5c0-4 3.5-6.5 7.5-6.5s7.5 2.5 7.5 6.5"/></svg></span>
-        <h2>Vertretung</h2>
+  <section class="block alt">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Was Corelead liefert</span>
+        <h2 style="font-family:var(--display);font-weight:400;font-size:clamp(28px,3.6vw,44px);letter-spacing:1px;line-height:1.08;">Automatisierung und Compliance aus einer Hand.</h2>
+        <p>Das unterscheidet uns von reinen KI-Agenturen: Wir liefern nicht nur den Workflow, sondern auch die Struktur, die der EU AI Act verlangt.</p>
       </div>
-      <div class="legal-card-body">
-        <span class="legal-label">Geschäftsführer</span><p>David Oberholzner</p>
-      </div>
+      <ul class="sec-list reveal reveal-delay-1">
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Risikoklassifizierung Ihrer KI-Anwendungsfälle nach EU AI Act</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Transparenzpflichten technisch und organisatorisch umgesetzt</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Dokumentation, die im Ernstfall vorgelegt werden kann</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>AI-Literacy-Maßnahmen für Ihr Team</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Verzahnung mit bestehendem ISMS und NIS2-Vorbereitung</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Automatisierung und Compliance-Struktur aus einer Hand, nicht getrennt beauftragt</li>
+      </ul>
     </div>
+  </section>
 
-    <div class="legal-card reveal" id="kontakt">
-      <span class="legal-card-ghost" aria-hidden="true">03</span>
-      <div class="legal-card-head">
-        <span class="legal-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="1.5"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg></span>
-        <h2>Kontakt</h2>
+  <section class="block">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Typische Anwendungsfälle</span>
+        <h2 style="font-family:var(--display);font-weight:400;font-size:clamp(28px,3.6vw,44px);letter-spacing:1px;line-height:1.08;">Wo wir das einbauen.</h2>
       </div>
-      <div class="legal-card-body">
-        <span class="legal-label">Telefon</span><p><a href="tel:+498920033313">+49 89 200 333 13</a></p><span class="legal-label">E-Mail</span><p><a href="mailto:hello@corelead.solutions">hello@corelead.solutions</a></p>
+      <div class="steps reveal reveal-delay-1">
+        <div class="step"><div class="step-num">01</div><h3>Einstufung neuer Agenten-Projekte</h3><p>Risikoklasse vor dem ersten Prototyp klären.</p></div>
+        <div class="step"><div class="step-num">02</div><h3>Dokumentation bestehender Workflows</h3><p>Nachträglich nachweisbar machen, was bereits läuft.</p></div>
+        <div class="step"><div class="step-num">03</div><h3>AI-Literacy-Schulung</h3><p>Team-Wissen für den verantwortungsvollen Umgang mit KI.</p></div>
+        <div class="step"><div class="step-num">04</div><h3>Integration in bestehendes ISMS</h3><p>KI-Risiken als Teil der bestehenden Sicherheitsstruktur führen.</p></div>
       </div>
     </div>
+  </section>
 
-    <div class="legal-card reveal" id="register">
-      <span class="legal-card-ghost" aria-hidden="true">04</span>
-      <div class="legal-card-head">
-        <span class="legal-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.2h6.5L18 7.7V20a.8.8 0 0 1-.8.8H7a.8.8 0 0 1-.8-.8V4a.8.8 0 0 1 .8-.8Z"/><path d="M13.4 3.2V8H18"/></svg></span>
-        <h2>Registereintrag</h2>
+  <section class="block alt">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Vorgehen kompakt</span>
+        <h2 style="font-family:var(--display);font-weight:400;font-size:clamp(26px,3.2vw,38px);letter-spacing:1px;">Vier Schritte, keine Überraschungen.</h2>
       </div>
-      <div class="legal-card-body">
-        <span class="legal-label">Handelsregister</span><p>Amtsgericht München · HRB 313245</p>
+      <div class="vorgehen-strip reveal reveal-delay-1">
+        <div class="vs-item"><span class="vs-num">01 · ANALYSE</span><p>Prozess, Datenquellen, Rollen und Risiken klären.</p></div>
+        <div class="vs-item"><span class="vs-num">02 · PROTOTYP</span><p>Erster funktionsfähiger Ablauf, typischerweise in 2-3 Wochen.</p></div>
+        <div class="vs-item"><span class="vs-num">03 · UMSETZUNG</span><p>Sauberer Ausbau inklusive Sicherheits-Check.</p></div>
+        <div class="vs-item"><span class="vs-num">04 · BETRIEB</span><p>Wartung, Monitoring und Weiterentwicklung.</p></div>
+      </div>
+      <div style="margin-top:32px;">
+        <a href="vorgehen.html" class="pillar-link">Vorgehen im Detail ansehen<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
+  </section>
 
-    <div class="legal-card reveal" id="verantwortlich">
-      <span class="legal-card-ghost" aria-hidden="true">05</span>
-      <div class="legal-card-head">
-        <span class="legal-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2 19 6v6c0 5-3 8.2-7 9-4-.8-7-4-7-9V6l7-2.8Z"/></svg></span>
-        <h2>Inhaltlich verantwortlich</h2>
+  <section class="block alt">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">FAQ</span>
+        <h2 style="font-family:var(--display);font-weight:400;font-size:clamp(26px,3.2vw,38px);letter-spacing:1px;">Häufige Fragen.</h2>
       </div>
-      <div class="legal-card-body">
-        <p>Gemäß § 18 Abs. 2 MStV:</p><p>David Oberholzner<br>Togostr. 6<br>81827 München</p>
+      <div class="faq-list reveal reveal-delay-1">
+        <details class="faq-item"><summary>Gilt der EU AI Act auch für kleinere Unternehmen?</summary><p>Ja, die Pflichten richten sich nach Risikoklasse und Rolle, nicht primär nach Unternehmensgröße. Auch kleinere Unternehmen können als Betreiber eines KI-Systems Pflichten haben.</p></details>
+        <details class="faq-item"><summary>Was bedeutet Risikoklassifizierung konkret?</summary><p>Jeder KI-Anwendungsfall wird danach eingeordnet, welches Risiko er birgt. Daraus ergeben sich unterschiedlich strenge Pflichten, von minimalen Transparenzhinweisen bis zu umfangreicher Dokumentation.</p></details>
+        <details class="faq-item"><summary>Was ist AI Literacy und wer muss das nachweisen?</summary><p>AI Literacy bezeichnet das nötige Wissen von Mitarbeitenden im Umgang mit KI-Systemen. Anbieter und Betreiber von KI-Systemen müssen sicherstellen, dass ihr Personal ausreichend geschult ist.</p></details>
+        <details class="faq-item"><summary>Ersetzt das eine juristische Prüfung?</summary><p>Nein. Wir bauen die technische und organisatorische Struktur, für eine rechtsverbindliche Einordnung empfehlen wir eine spezialisierte Kanzlei.</p></details>
+        <details class="faq-item"><summary>Wie hängt der EU AI Act mit NIS2 zusammen?</summary><p>Beide Regelwerke greifen ineinander, sobald KI-Systeme in kritischen oder regulierten Prozessen eingesetzt werden. Wir denken beides gemeinsam statt getrennt.</p></details>
       </div>
     </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Weiterlesen</span>
+      </div>
+      <div class="related-row reveal reveal-delay-1">
+        <a href="ki-agenten.html" class="pillar-link">KI-Agenten<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="informationssicherheit.html" class="pillar-link">Informationssicherheit<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="workflow-automatisierung.html" class="pillar-link">Workflow-Automatisierung<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <section class="cta-final">
+    <h2 class="reveal">Ein KI-Projekt, das noch nicht eingestuft ist?</h2>
+    <p class="reveal reveal-delay-1">Dann lohnt sich ein kurzer Austausch, bevor der erste Agent produktiv geht.</p>
+    <div class="hero-actions reveal reveal-delay-2">
+      <a href="kontakt.html" class="btn btn-primary"><span>Projekt besprechen</span></a>
+      <a href="mailto:hello@corelead.solutions" class="btn btn-ghost"><span>E-Mail schreiben</span></a>
+    </div>
+  </section>
 
   <footer>
     <div class="footer-top">
@@ -767,23 +868,10 @@
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
   <script>
-    // TOC scroll-tracking
+    // Headline mask reveal (section headers only, page-hero h1 already animates via CSS)
     (function() {
-      const cards = Array.from(document.querySelectorAll('.legal-card'));
-      const links = Array.from(document.querySelectorAll('.legal-toc a'));
-      if (!cards.length || !links.length) return;
-      const byId = id => links.find(a => a.getAttribute('href') === '#' + id);
-      const obs = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          const link = byId(e.target.id);
-          if (!link) return;
-          if (e.isIntersecting) {
-            links.forEach(a => a.classList.remove('active'));
-            link.classList.add('active');
-          }
-        });
-      }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
-      cards.forEach(c => obs.observe(c));
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) return;
     })();
   </script>
 </body>
