@@ -114,4 +114,16 @@
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
+  <url>
+    <loc>https://corelead.org/fristenfuchs/</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://corelead.org/fristenfuchs/support/</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
 </urlset>

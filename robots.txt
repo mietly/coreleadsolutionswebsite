@@ -3,5 +3,6 @@ Allow: /
 Disallow: /impressum.html
 Disallow: /datenschutz.html
 Disallow: /stille/datenschutz/
+Disallow: /fristenfuchs/datenschutz/
 
 Sitemap: https://corelead.org/sitemap.xml
